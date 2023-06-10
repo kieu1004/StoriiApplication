@@ -3,6 +3,7 @@ import React from 'react'
 import {View, Text, StyleSheet, StatusBar} from 'react-native'
 import {colors} from './src/global/styles'
 import SignInScreen from './src/screens/authScreens/SignInScreen'
+import SplashScreen from './src/screens/authScreens/SplashScreen'
 
 export default function App(){
   return (
@@ -14,7 +15,7 @@ export default function App(){
        backgroundColor = {colors.statusbar}
       />
 
-      <SignInScreen/>
+      <SplashScreen/>
     
     </View>
   )
