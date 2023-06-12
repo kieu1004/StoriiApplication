@@ -9,7 +9,7 @@ import *as Animatable from 'react-native-animatable'
 
 import Swiper from "react-native-swiper";
 
-export default function SplashScreen() {
+export default function SplashScreen(navigation) {
     return (
         <View style={{ flex: 1 }}>
 
@@ -47,6 +47,9 @@ export default function SplashScreen() {
                         title="SIGN IN"
                         buttonStyle={parameters.styleButton}
                         titleStyle={parameters.buttonTitle}
+                        onPress={()=>{
+                            navigation.navigate("SignInScreen")
+                        }}
                     />
                 </View>
 
