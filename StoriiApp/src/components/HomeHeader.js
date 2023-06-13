@@ -20,7 +20,7 @@ export default function HomeHeader(){
             </View>
 
             <View style={{alignItems:"center", justifyContent:"center"}}>
-                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>XpressProduct</Text>
+                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII</Text>
             </View>
 
             <View style={{alignItems:"center", justifyContent:"center", marginRight:15}}>
