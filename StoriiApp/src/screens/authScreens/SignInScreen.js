@@ -8,7 +8,7 @@ import Header from '../../components/Header'
 import *as Animatable from 'react-native-animatable'
 
 
-export default function SignInScreen(navigation) {
+export default function SignInScreen({navigation}) {
 
     const [TextInput2Fossued, setTextInput2Fossued] = useState(false)
 
@@ -20,7 +20,6 @@ export default function SignInScreen(navigation) {
             <Header
                 title="My ACCOUNT"
                 type="arrow-left"
-                navigation={navigation}
             />
 
             <View style={{ marginLeft: 20, marginTop: 10 }}>
@@ -82,7 +81,7 @@ export default function SignInScreen(navigation) {
                         buttonStyle = {parameters.styleButton}
                         titleStyle = {parameters.buttonTitle}
                         onPress={()=>{
-                            navigation.navigate('HomeScreen')
+                            navigation.navigate('RootClientTabs')
                         }}
                     />
                 </View>

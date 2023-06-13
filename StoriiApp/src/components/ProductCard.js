@@ -49,7 +49,7 @@ export default function ProductCard({
                         </View>
                     </View>
                 </View>
-                
+
             </View>
 
 

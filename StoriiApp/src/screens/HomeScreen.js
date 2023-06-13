@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../global/styles'
-import { Countdown } from 'react-native-countdown-component'
+import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
 import { filterData, providerData } from '../global/Data'
@@ -13,13 +13,14 @@ import ProductCard from "../components/ProductCard"
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 
-export default function HomeScreen() {
+export default function HomeScreen({ navigation }) {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
     return (
         <View style={styles.container}>
-            <HomeHeader />
+
+            <HomeHeader navigation={navigation} />
 
             <ScrollView
                 stickyHeaderIndices={[0]}
@@ -116,17 +117,17 @@ export default function HomeScreen() {
                     <Text style={styles.headerText}>Free Delivery Now</Text>
                 </View>
 
-                <View>
+                <View style={{marginTop:5}}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5 }}>Options changing in</Text>
-                        {/* <Countdown
-                            until = {3600}
-                            size = {14}
-                            digitStyle = {{backgroundColor:colors.banner_sale}}
-                            digitTxtStyle = {{color:colors.cardbackground}}
-                            timeToShow = {['M', 'S']}
-                            timeLabels = {{m:'Min', s:'Sec'}}
-                        /> */}
+                        <Countdown
+                            until={3600}
+                            size={14}
+                            digitStyle={{ backgroundColor: colors.banner_sale }}
+                            digitTxtStyle={{ color: colors.cardbackground }}
+                            timeToShow={['M', 'S']}
+                            timeLabels={{ m: 'Min', s: 'Sec' }}
+                        />
                     </View>
 
                     <FlatList
@@ -201,6 +202,27 @@ export default function HomeScreen() {
                 </View>
 
             </ScrollView>
+
+            {delivery &&
+                <View style={styles.floatButton}>
+                    <TouchableOpacity
+                        onPress={() => {
+                            navigation.navigate('ProviderMapScreen')
+                        }}
+                    >
+
+                        <Icon
+                            name="place"
+                            type="material"
+                            size={32}
+                            color={colors.buttons}
+                        />
+
+                        <Text style={{ color: colors.primary_normal }}>Map</Text>
+                    </TouchableOpacity>
+                </View>
+            }
+
         </View>
     )
 }
@@ -296,5 +318,16 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         color: colors.cardbackground,
         fontSize: 10
+    },
+
+    floatButton: {
+        position: 'absolute',
+        bottom: 10, right: 15,
+        backgroundColor: 'white',
+        elevation: 10,
+        width: 60, height: 60,
+        borderRadius: 30,
+        alignItems: 'center'
     }
+
 })
