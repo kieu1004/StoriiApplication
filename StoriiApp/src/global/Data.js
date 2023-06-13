@@ -18,7 +18,7 @@ export const providerData = [
         discount: 10,
         deliveryTimme: 15,
         collectTime: 5,
-        foodType: "Album",
+        CategoryType: "Album",
         productData: [
             {
                 name: "Album Truyen Ngan",
@@ -84,7 +84,7 @@ export const providerData = [
         discount: 10,
         deliveryTimme: 15,
         collectTime: 5,
-        foodType: "Album",
+        CategoryType: "Album",
         productData: [
             {
                 name: "Album Truyen Ngan",

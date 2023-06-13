@@ -3,7 +3,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 
 import SplashScreen from '../screens/authScreens/SplashScreen'
 import SignInScreen from '../screens/authScreens/SignInScreen'
-import RootClientTabs from './ClientTabs'
+import DrawerNavigator from './DrawerNavigator'
 import ProviderMapScreen from '../screens/ProviderMapScreen'
 
 
@@ -31,8 +31,8 @@ export function AuthStack() {
             />
 
             <Auth.Screen
-                name="RootClientTabs"
-                component={RootClientTabs}
+                name="DrawerNavigator"
+                component={DrawerNavigator}
                 options={{
                     headerShown: false,
                     ...TransitionPresets.RevealFromBottomAndroid

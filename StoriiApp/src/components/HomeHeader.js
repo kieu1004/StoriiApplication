@@ -5,7 +5,7 @@ import {Icon, withBadge} from 'react-native-elements'
 
 import {colors, parameters} from '../global/styles'
 
-export default function HomeHeader(){
+export default function HomeHeader({navigation}){
 
     const BadgeIcon = withBadge(0)(Icon)
     return(
@@ -16,6 +16,9 @@ export default function HomeHeader(){
                     name="menu"
                     color={colors.primary_normal}
                     size={32}
+                    onPress={()=>{
+                        
+                    }}
                 />
             </View>
 

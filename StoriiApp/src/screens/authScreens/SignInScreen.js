@@ -6,8 +6,6 @@ import { colors, parameters } from "../../global/styles"
 import { Icon, Button, SocialIcon} from 'react-native-elements'
 import Header from '../../components/Header'
 import *as Animatable from 'react-native-animatable'
-import RootClientTabs from "../../navigation/ClientTabs";
-import HomeScreen from "../HomeScreen";
 
 
 export default function SignInScreen({navigation}) {
@@ -84,7 +82,7 @@ export default function SignInScreen({navigation}) {
                         buttonStyle = {parameters.styleButton}
                         titleStyle = {parameters.buttonTitle}
                         onPress={()=>{
-                            navigation.navigate('RootClientTabs')
+                            navigation.navigate('DrawerNavigator')
                         }}
                     />
                 </View>

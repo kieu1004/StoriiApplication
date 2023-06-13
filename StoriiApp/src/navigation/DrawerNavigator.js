@@ -8,8 +8,6 @@ import RootClientTabs from './ClientTabs'
 import BusinessConsoleScreen from '../screens/BusinessConsoleScreen';
 
 
-
-
 const Drawer = createDrawerNavigator()
 
 
@@ -31,7 +29,6 @@ export default function DrawerNavigator(){
                             name = "home"
                             color = {focussed ? '#7cc' :colors.primary_normal}
                             size = {size}
-
                         />
                     )
                 }}
