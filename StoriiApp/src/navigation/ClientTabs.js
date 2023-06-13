@@ -1,18 +1,21 @@
-import React from "react"
+import React from 'react'
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-import { colors, parameters } from '../global/styles'
+import { colors } from '../global/styles'
 import { Icon } from 'react-native-elements'
-import { create } from "react-test-renderer"
-import HomeScreen from "../screens/HomeScreen";
-import SearchScreen from "../screens/SearchScreen"
-import OrdersScreen from "../screens/OrdersScreen"
-import AccountScreen from "../screens/AccountScreen"
+
+import HomeScreen from '../screens/HomeScreen';
+import OrdersScreen from '../screens/OrdersScreen';
+import AccountScreen from '../screens/AccountScreen';
+import { ClientStack } from './clientStack';
+
 
 const ClientTabs = createBottomTabNavigator();
 
+
 export default function RootClientTabs() {
+
     return (
         <ClientTabs.Navigator
             tabBarOptions={{
@@ -22,67 +25,83 @@ export default function RootClientTabs() {
             <ClientTabs.Screen
                 name="HomeScreen"
                 component={HomeScreen}
-                options={{
-                    tabBarLabel: "Home",
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon
-                            name='home'
-                            type='material'
-                            color={color}
-                            size={size}
-                        />
-                    )
-                }}
+                options={
+                    {
+                        tabBarLabel: "Home",
+                        tabBarIcon: ({ color, size }) => (
+                            <Icon
+                                name='home'
+                                type='material'
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }
+                }
+
             />
+
 
             <ClientTabs.Screen
                 name="SearchScreen"
-                component={SearchScreen}
-                options={{
-                    tabBarLabel: "Search",
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon
-                            name='search'
-                            type='material'
-                            color={color}
-                            size={size}
-                        />
-                    )
-                }}
+                component={ClientStack}
+                options={
+                    {
+                        tabBarLabel: "Search",
+                        tabBarIcon: ({ color, size }) => (
+                            <Icon
+                                name='search'
+                                type='material'
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }
+                }
+
             />
+
+
 
             <ClientTabs.Screen
                 name="OrdersScreen"
                 component={OrdersScreen}
-                options={{
-                    tabBarLabel: "My Orders",
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon
-                            name='view-list'
-                            type='material'
-                            color={color}
-                            size={size}
-                        />
-                    )
-                }}
+                options={
+                    {
+                        tabBarLabel: "My Orders",
+                        tabBarIcon: ({ color, size }) => (
+                            <Icon
+                                name='view-list'
+                                type='material'
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }
+                }
+
             />
+
+
 
             <ClientTabs.Screen
-                name="AccountScreen"
+                name="MyAccount"
                 component={AccountScreen}
-                options={{
-                    tabBarLabel: "My Account",
-                    tabBarIcon: ({ color, size }) => (
-                        <Icon
-                            name='person'
-                            type='material'
-                            color={color}
-                            size={size}
-                        />
-                    )
-                }}
-            />
+                options={
+                    {
+                        tabBarLabel: "My Account",
+                        tabBarIcon: ({ color, size }) => (
+                            <Icon
+                                name='person'
+                                type='material'
+                                color={color}
+                                size={size}
+                            />
+                        )
+                    }
+                }
 
+            />
         </ClientTabs.Navigator>
     )
 }

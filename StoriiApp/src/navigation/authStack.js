@@ -1,15 +1,14 @@
-import React from "react";
+import React from 'react'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 
-import { createStackNavigator, TransitionPresets } from "@react-navigation/stack";
-import { View } from "react-native-animatable";
-import SplashScreen from "../screens/authScreens/SplashScreen";
-import SignInScreen from "../screens/authScreens/SignInScreen";
-import HomeScreen from "../screens/HomeScreen";
-import RootClientTabs from "./ClientTabs";
+import SplashScreen from '../screens/authScreens/SplashScreen';
+import SignInScreen from '../screens/authScreens/SignInScreen'
+
+
 
 const Auth = createStackNavigator();
 
-export default function AuthStack() {
+export function AuthStack() {
     return (
         <Auth.Navigator>
             <Auth.Screen
@@ -24,15 +23,6 @@ export default function AuthStack() {
             <Auth.Screen
                 name="SignInScreen"
                 component={SignInScreen}
-                options={{
-                    headerShown: false,
-                    ...TransitionPresets.RevealFromBottomAndroid
-                }}
-            />
-
-            <Auth.Screen
-                name="RootClientTabs"
-                component={RootClientTabs}
                 options={{
                     headerShown: false,
                     ...TransitionPresets.RevealFromBottomAndroid

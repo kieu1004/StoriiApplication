@@ -9,7 +9,7 @@ import *as Animatable from 'react-native-animatable'
 
 import Swiper from "react-native-swiper";
 
-export default function SplashScreen(navigation) {
+export default function SplashScreen({navigation}) {
     return (
         <View style={{ flex: 1 }}>
 
@@ -41,23 +41,23 @@ export default function SplashScreen(navigation) {
                 </Swiper>
             </View>
 
-            <View style={{ flex:4, justifyContent:'flex-end', marginBottom:20}}>
-                <View style={{ marginHorizontal: 20, marginVertical: 30 }}>
+            <View style={{ flex: 4, justifyContent: 'flex-end', marginBottom: 20 }}>
+                <View style={{ marginHorizontal: 20, marginTop: 30 }}>
                     <Button
                         title="SIGN IN"
-                        buttonStyle={parameters.styleButton}
+                        buttonStyle={parameters.styledButton}
                         titleStyle={parameters.buttonTitle}
-                        onPress={()=>{
+                        onPress={() => {
                             navigation.navigate("SignInScreen")
                         }}
                     />
                 </View>
 
-                <View style={{marginHorizontal:20, marginTop:10}}>
+                <View style={{ marginHorizontal: 20, marginTop: 10 }}>
                     <Button
                         title="Create an account"
-                        buttonStyle = {styles.createButton}
-                        titleStyle = {styles.createButtonTitle}
+                        buttonStyle={styles.createButton}
+                        titleStyle={styles.createButtonTitle}
                     />
                 </View>
             </View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#92bb09'
     },
 
-    createButton :{
+    createButton: {
         backgroundColor: "white",
         alignContent: "center",
         justifyContent: "center",
@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderColor: colors.primary_normal
     },
-    createButtonTitle :{
+    createButtonTitle: {
         color: colors.primary_normal,
         fontSize: 20,
         fontWeight: "bold",

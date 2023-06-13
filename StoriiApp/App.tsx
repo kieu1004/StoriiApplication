@@ -1,13 +1,19 @@
 import React from 'react'
 
-import {View, Text, StyleSheet, StatusBar} from 'react-native'
+import {View, Text, StyleSheet,StatusBar} from 'react-native'
 import {colors} from './src/global/styles'
-import HomeScreen from './src/screens/HomeScreen'
+import RootNavigator from './src/navigation/rootNavigation'
 
 export default function App(){
-  return (
+  return(
     <View style = {styles.container}>
-      <HomeScreen/>
+      <StatusBar 
+        barStyle = "light-content"
+        backgroundColor = {colors.statusbar}
+      />
+   
+        <RootNavigator />
+     
     </View>
   )
 }
