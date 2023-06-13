@@ -6,6 +6,8 @@ import { colors, parameters } from "../../global/styles"
 import { Icon, Button, SocialIcon} from 'react-native-elements'
 import Header from '../../components/Header'
 import *as Animatable from 'react-native-animatable'
+import RootClientTabs from "../../navigation/ClientTabs";
+import HomeScreen from "../HomeScreen";
 
 
 export default function SignInScreen({navigation}) {
@@ -20,6 +22,7 @@ export default function SignInScreen({navigation}) {
             <Header
                 title="My ACCOUNT"
                 type="arrow-left"
+                navigation={navigation}
             />
 
             <View style={{ marginLeft: 20, marginTop: 10 }}>
