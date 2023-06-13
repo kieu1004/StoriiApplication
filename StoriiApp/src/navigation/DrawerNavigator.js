@@ -1,10 +1,11 @@
 import * as React from 'react';
 
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { DrawerContent, createDrawerNavigator } from '@react-navigation/drawer';
 import {Icon} from 'react-native-elements'
 
+import {colors, parameters} from "../global/styles"
 import RootClientTabs from './ClientTabs'
-import {colors} from "../global/styles"
+import BusinessConsoleScreen from '../screens/BusinessConsoleScreen';
 
 
 
@@ -14,8 +15,10 @@ const Drawer = createDrawerNavigator()
 
 export default function DrawerNavigator(){
     return(
-        <Drawer.Navigator>
-
+        <Drawer.Navigator
+                drawerContent={props=><DrawerContent {...props}/>}
+            >
+                
             <Drawer.Screen 
                 name = "RootClientTabs"
                 component ={RootClientTabs}
@@ -45,7 +48,7 @@ export default function DrawerNavigator(){
                         <Icon 
                             type = "material"
                             name = "business"
-                            color = {focussed ? '#7cc' :colors.grey2}
+                            color = {focussed ? '#7cc' :colors.primary_normal}
                             size = {size}
 
                         />
