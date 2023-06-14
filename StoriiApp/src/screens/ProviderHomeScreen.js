@@ -62,10 +62,10 @@ const ProviderHomeScreen = ({ navigation, route }) => {
                             <Text style={styles.text2}>{providerData[id].restaurantName}</Text>
                             <Text style={styles.text3}>{providerData[id].foodType}</Text>
                             <View style={styles.view4}>
-                                <Icon name="star" type="material-community" color={colors.grey3} size={15} />
+                                <Icon name="star" type="material-community" color={colors.primary_light} size={15} />
                                 <Text style={styles.text4}>{providerData[id].averageReview}</Text>
                                 <Text style={styles.text5}>{providerData[id].numberOfReview}</Text>
-                                <Icon name="map-marker" type="material-community" color={colors.grey3} size={15} />
+                                <Icon name="map-marker" type="material-community" color={colors.primary_light} size={15} />
                                 <Text style={styles.text6}>{providerData[id].farAway} mi away</Text>
                             </View>
                         </View>
