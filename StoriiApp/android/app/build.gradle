@@ -1,5 +1,6 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+aplly plugin: "com.google.gms.google-services"
 
 import com.android.build.OutputFile
 
@@ -100,6 +101,10 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        //Add
+        multiDexEnabled true //add this line
+        vectorDrawables.useSupportLibrary = true //add this line
     }
 
     splits {
@@ -165,6 +170,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    //Firebase
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+    implementation 'com.google.firebase:firebase-analytics'
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)

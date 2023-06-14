@@ -1,9 +1,8 @@
 import React, {useState, useRef} from "react";
-
 import { View, Text, StyleSheet, Dimensions, TextInput } from 'react-native'
-import { colors, parameters } from "../../global/styles"
-
 import { Icon, Button, SocialIcon} from 'react-native-elements'
+import { Formik } from "formik";
+import { colors, parameters } from "../../global/styles"
 import Header from '../../components/Header'
 import *as Animatable from 'react-native-animatable'
 
