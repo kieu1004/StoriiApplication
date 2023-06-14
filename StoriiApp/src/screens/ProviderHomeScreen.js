@@ -37,8 +37,6 @@ const ProviderHomeScreen = ({ navigation, route }) => {
     )
 
 
-
-
     const UpdateRoute1 = () => {
         return (
             <View>
@@ -46,8 +44,6 @@ const ProviderHomeScreen = ({ navigation, route }) => {
             </View>
         )
     }
-
-
 
 
 

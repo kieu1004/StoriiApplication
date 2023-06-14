@@ -6,6 +6,7 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 
 import SearchScreen from '../screens/SearchScreen'
 import SearchResultScreen from '../screens/SearchResultScreen'
+import ProviderHomeScreen from '../screens/ProviderHomeScreen'
 
 
 
@@ -29,6 +30,16 @@ export function ClientStack({ navigation, route }) {
             <ClientSearch.Screen
                 name="SearchResultScreen"
                 component={SearchResultScreen}
+                options={
+                    () => ({
+                        headerShown: false
+                    })
+                }
+            />
+
+            <ClientSearch.Screen
+                name="ProviderHomeScreen"
+                component={ProviderHomeScreen}
                 options={
                     () => ({
                         headerShown: false
