@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions, StatusBar } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../global/styles'
 import Countdown from 'react-native-countdown-component'
@@ -19,6 +19,11 @@ export default function HomeScreen({ navigation }) {
     const [indexCheck, setIndexCheck] = useState("0")
     return (
         <View style={styles.container}>
+            <StatusBar
+                translucent
+                barStyle="light-content"
+                backgroundColor="rgb(234, 221, 202)"
+             />
 
             <HomeHeader navigation={navigation} />
 
@@ -229,7 +234,8 @@ export default function HomeScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        paddingTop: 20
     },
 
     deliveryButton: {
