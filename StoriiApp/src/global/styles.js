@@ -1,5 +1,5 @@
 export const colors = {
-    primary_backgroud:"#F6F2EA",
+    primary_backgroud: "#F6F2EA",
     primary_light: "#C8B6A6",
     primary_normal: "#A4907C",
     primary_bold: "#8D7B68",
@@ -13,7 +13,7 @@ export const colors = {
 
     headerText: "white",
 
-    transparent:"#00000000",
+    transparent: "#00000000",
     background: "#f5f5f5",
     delete: "#F44336",
     yellow_star: "#fdd836",
@@ -26,7 +26,7 @@ export const colors = {
 export const parameters = {
     headerHeight: 40,
 
-    styleButton :{
+    styleButton: {
         backgroundColor: colors.primary_bold,
         justifyContent: "center",
         alignContent: "center",
@@ -52,4 +52,30 @@ export const title = {
     color: colors.primary_bold,
     fontSize: 20,
     fontWeight: "bold"
+}
+
+export const fonts = {
+    ios: {
+        regular: 'System',
+        light: 'System',
+        lightItalic: 'System',
+        bold: 'System',
+        boldItalic: 'System',
+        black: 'System',
+        blackItalic: 'System',
+    },
+    android: {
+        regular: 'Roboto',
+        italic: 'Roboto-Italic',
+        thin: 'Roboto-Thin',
+        thinItalic: 'Roboto-ThinItalic',
+        light: 'Roboto-Light',
+        lightItalic: 'Roboto-LightItalic',
+        medium: 'Roboto-Medium',
+        mediumItalic: 'Roboto-MediumItalic',
+        bold: 'Roboto-Bold',
+        boldItalic: 'Roboto-BoldItalic',
+        condensed: 'RobotoCondensed-Regular',
+        condensedItalic: 'RobotoCondensed-Italic',
+    }
 }

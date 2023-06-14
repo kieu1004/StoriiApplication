@@ -2,15 +2,16 @@ import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, FlatList } from 'react-native'
 import { Icon } from 'react-native-elements'
 
-import { colors } from "../global/styles";
-import ProductCard from './ProductCard';
+import { colors } from "../global/styles"
+import ProductItemCard from './ProductItemCard'
+import { productData } from '../global/Data'
 
 
 
 
 const SearchResultCard = ({
-    OnPressRestaurantCard,
-    restaurantName,
+    OnPressProviderCard,
+    providerName,
     deliveryAvailabe,
     discountAvailable,
     discountPercent,
@@ -27,7 +28,7 @@ const SearchResultCard = ({
 
     return (
         <View>
-            <TouchableOpacity onPress={OnPressRestaurantCard}>
+            <TouchableOpacity onPress={OnPressProviderCard}>
                 <View style={styles.view1}>
                     <View style={{ height: 150 }}>
                         <ImageBackground
@@ -46,7 +47,7 @@ const SearchResultCard = ({
 
                     <View style={styles.view3}>
                         <View style={{ paddingTop: 5 }}>
-                            <Text style={styles.text5}>{restaurantName}</Text>
+                            <Text style={styles.text5}>{providerName}</Text>
                         </View>
 
                         <View style={{ flexDirection: "row" }}>
@@ -73,14 +74,15 @@ const SearchResultCard = ({
                 </View>
 
             </TouchableOpacity>
-            <View style={{ marginTop: 5, paddingBottom: 20 }}>
 
+
+            <View style={{ marginTop: 5, paddingBottom: 20 }}>
                 <FlatList
                     style={{ backgroundColor: colors.cardbackground }}
                     data={productData}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => (
-                        <ProductCard
+                        <ProductItemCard
                             image={item.image}
                             productName={item.name}
                             price={item.price}
@@ -90,7 +92,6 @@ const SearchResultCard = ({
                 />
 
             </View>
-
 
         </View>
     )
@@ -147,13 +148,13 @@ const styles = StyleSheet.create({
     text3: {
         fontSize: 10,
         fontWeight: 'bold',
-        color: colors.grey2,
+        color: colors.primary_normal,
     },
 
     text4: {
         fontSize: 10,
         fontWeight: 'bold',
-        color: colors.grey2,
+        color: colors.primary_normal,
     },
     view3: {
         flexDirection: "column",
@@ -166,14 +167,14 @@ const styles = StyleSheet.create({
     text5: {
         fontSize: 17,
         fontWeight: 'bold',
-        color: colors.grey1,
+        color: colors.primary_bold,
     },
 
     view4: {
         flex: 4,
         flexDirection: "row",
         borderRightWidth: 1,
-        borderRightColor: colors.grey4,
+        borderRightColor: colors.primary_light,
         paddingHorizontal: 5,
 
     },
@@ -182,13 +183,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
         paddingTop: 5,
-        color: colors.grey3
+        color: colors.primary_light
     },
 
     text6: {
         fontSize: 12,
         paddingTop: 5,
-        color: colors.grey2,
+        color: colors.primary_normal,
         paddingHorizontal: 10,
 
     }

@@ -1,49 +1,46 @@
 import React from 'react'
-import { StyleSheet, Text, View,Dimensions,FlatList } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native'
 import SearchResultCard from '../components/SearchResultCard'
-import { restaurantsData } from '../global/Data';
-import {colors} from "../global/styles";
+import { productData, providerData } from '../global/Data';
+import { colors } from "../global/styles";
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
-const SearchResultScreen = ({navigation,route}) => {
+const SearchResultScreen = ({ navigation, route }) => {
     return (
-        <View style ={styles.container}>
-
-           
-
+        <View style={styles.container}>
             <View>
-                <FlatList 
-                     style ={{backgroundColor:colors.cardbackground}}
-                    data = {restaurantsData}
-                    keyExtractor ={(item,index)=>index.toString()}
-                    renderItem ={({item,index})=> (
+                <FlatList
+                    style={{ backgroundColor: colors.cardbackground }}
+                    data={providerData}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({ item, index }) => (
 
                         <SearchResultCard
-                            screenWidth = {SCREEN_WIDTH}
-                            images = {item.images}
-                            averageReview ={item.averageReview}
-                            numberOfReview ={item.numberOfReview}
-                            restaurantName ={item.restaurantName}
-                            farAway ={item.farAway}
-                            businessAddress ={item.businessAddress}
-                            productData ={item.productData}
-                            OnPressRestaurantCard ={()=>{navigation.navigate("RestaurantHomeScreen",{id:index,restaurant:item.restaurantName})}}
+                            screenWidth={SCREEN_WIDTH}
+                            images={item.images}
+                            averageReview={item.averageReview}
+                            numberOfReview={item.numberOfReview}
+                            providerName={item.providerName}
+                            farAway={item.farAway}
+                            businessAddress={item.businessAddress}
+                            productData={item.productData}
+                            OnPressProviderCard={() => { navigation.navigate("ProviderHomeScreen", { id: index, provider: item.providerName }) }}
                         />
-                                    
-                          )}
 
-                     ListHeaderComponent ={
+                    )}
+
+                    ListHeaderComponent={
                         <View>
-                            <Text style ={styles.listHeader}>{restaurantsData.length} Result for {route.params.item}</Text>
+                            <Text style={styles.listHeader}>{productData.length} Result for {route.params.item}</Text>
                         </View>
-                     }   
+                    }
 
-                     showsVerticalScrollIndicator ={false}
+                    showsVerticalScrollIndicator={false}
                 />
             </View>
-           
+
         </View>
     )
 }
@@ -51,15 +48,16 @@ const SearchResultScreen = ({navigation,route}) => {
 export default SearchResultScreen
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-      paddingTop:20
+    container: {
+        flex: 1,
+        paddingTop: 20
     },
 
-    listHeader:{color :colors.grey1,
-        fontSize:20,
-        paddingHorizontal:10,
-        paddingVertical:10,
-        fontWeight:"bold"
-}
+    listHeader: {
+        color: colors.primary_bold,
+        fontSize: 20,
+        paddingHorizontal: 10,
+        paddingVertical: 10,
+        fontWeight: "bold"
+    }
 })

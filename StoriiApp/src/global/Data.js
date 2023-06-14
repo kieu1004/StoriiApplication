@@ -6,6 +6,13 @@ export const filterData = [
     { name: "Lightstick", image: require('../assets/lightstick_cate.jpg'), id: "4" },
 ];
 
+export const filterData2 = [
+    { name: "Album", image: 'https://api.storii.vn/staticfiles/9512002b3f8045209c2883ed83ffa48d.png', id: "0" },
+    { name: "Mechandise", image: 'https://storii.vn/assets/images/about-us-cover.png', id: "1" },
+    { name: "Ticket", image: require('../assets/card_cate.jpg'), id: "2" },
+    { name: "Lightstick", image: require('../assets/lightstick_cate.jpg'), id: "3" }
+];
+
 export const providerData = [
     {
         providerName: "Storii",
@@ -37,7 +44,7 @@ export const providerData = [
                 image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png"
             }
         ],
-        id:0
+        id: 0
     },
 
     {
@@ -70,7 +77,7 @@ export const providerData = [
                 image: "https://api.storii.vn/staticfiles/7cef887ba25c48ba9833f901aa223684.png"
             }
         ],
-        id:1
+        id: 1
     },
 
     {
@@ -103,7 +110,7 @@ export const providerData = [
                 image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png"
             }
         ],
-        id:2
+        id: 2
     },
 
     {
@@ -136,6 +143,26 @@ export const providerData = [
                 image: "https://api.storii.vn/staticfiles/7cef887ba25c48ba9833f901aa223684.png"
             }
         ],
-        id:3
+        id: 3
     },
 ];
+
+
+export const productData = [{
+    name: "CD Nhung vet thuong lanh", price: 29, image: "https://api.storii.vn/staticfiles/c4274ef50231424ea143beb42f7468e7.png",
+    details: "Tuyet voi", id: 0
+},
+{
+    name: "Te Te Bong", price: 80, image: "https://api.storii.vn/staticfiles/38517a7574cd46ca9cf63fbdbc9da847.png",
+    details: "Mem min", id: 1
+},
+{
+    name: "CD Thu Phuong", price: 20, image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png",
+    details: "", id: 2
+},
+
+{
+    name: "Huy hieu RVN", price: 29.30, image: "https://api.storii.vn/staticfiles/bcdeffd7c59f449dbae0eeaba2412833.png",
+    details: "Two 100% fresh beef burger patties that are hot,deliciously", id: 3
+}
+];   
