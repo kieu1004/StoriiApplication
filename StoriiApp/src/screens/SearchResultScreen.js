@@ -1,11 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native'
 import SearchResultCard from '../components/SearchResultCard'
-import { productData, providerData } from '../global/Data';
-import { colors } from "../global/styles";
+import { productData, providerData } from '../global/Data'
+import { colors } from "../global/styles"
+
+
+
+
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-
 
 const SearchResultScreen = ({ navigation, route }) => {
     return (
@@ -40,12 +43,15 @@ const SearchResultScreen = ({ navigation, route }) => {
                     showsVerticalScrollIndicator={false}
                 />
             </View>
-
         </View>
     )
 }
 
+
+
 export default SearchResultScreen
+
+
 
 const styles = StyleSheet.create({
     container: {

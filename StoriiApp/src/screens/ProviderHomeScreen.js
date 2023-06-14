@@ -5,16 +5,22 @@ import { Icon } from 'react-native-elements'
 
 import { colors, fonts } from '../global/styles';
 import ProviderHeader from '../components/ProviderHeader';
-import { providerData } from '../global/Data';
+import { providerData, menu } from '../global/Data';
+import MenuScreen from './ProviderTabs/MenuScreen';
+import MenuProductScreen from './MenuProductScreen';
+
+
 
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 const initialLayout = SCREEN_WIDTH;
 
+
 const ProviderHomeScreen = ({ navigation, route }) => {
 
     const { id, provider } = route.params
+
     const [routes] = useState([
         { key: 'first', title: "MENU" },
         { key: 'second', title: "INFO" },
@@ -36,7 +42,6 @@ const ProviderHomeScreen = ({ navigation, route }) => {
         />
     )
 
-
     const UpdateRoute1 = () => {
         return (
             <View>
@@ -45,10 +50,17 @@ const ProviderHomeScreen = ({ navigation, route }) => {
         )
     }
 
+    const menuPressed = () => {
+        setModalVisible(true)
+    }
+
+
+
 
 
     return (
         <View style={styles.container}>
+
             <ScrollView>
                 <View>
                     <ProviderHeader id={id} navigation={navigation} />
@@ -99,6 +111,10 @@ const ProviderHomeScreen = ({ navigation, route }) => {
                     />
                 </View>
 
+                {index === 0 &&
+                    <MenuScreen onPress={menuPressed} />
+                }
+
             </ScrollView>
 
             <TouchableOpacity>
@@ -116,7 +132,14 @@ const ProviderHomeScreen = ({ navigation, route }) => {
     )
 }
 
+
+
+
 export default ProviderHomeScreen
+
+
+
+
 
 const styles = StyleSheet.create({
 
@@ -152,12 +175,12 @@ const styles = StyleSheet.create({
     text2: {
         fontSize: 20,
         fontWeight: "bold",
-        color: colors.grey1
+        color: colors.primary_bold
     },
 
     text3: {
         fontSize: 15,
-        color: colors.grey3
+        color: colors.primary_light
     },
 
     view4: {
@@ -169,21 +192,21 @@ const styles = StyleSheet.create({
     text4: {
         fontFamily: fonts.android.bold,
         fontSize: 13,
-        color: colors.grey3,
+        color: colors.primary_light,
         marginLeft: 2,
     },
 
     text5: {
         fontFamily: fonts.android.bold,
         fontSize: 13,
-        color: colors.grey3,
+        color: colors.primary_light,
         marginLeft: 2,
         marginRight: 5
     },
     text6: {
         fontFamily: fonts.android.bold,
         fontSize: 13,
-        color: colors.grey3,
+        color: colors.primary_light,
         marginLeft: 0,
     },
 
@@ -195,7 +218,7 @@ const styles = StyleSheet.create({
     text6: {
         fontSize: 15,
         fontWeight: "bold",
-        color: colors.grey1
+        color: colors.primary_bold
     },
 
     view7: {
@@ -339,5 +362,4 @@ const styles = StyleSheet.create({
         marginTop: 5,
         paddingBottom: 20
     }
-
 })
