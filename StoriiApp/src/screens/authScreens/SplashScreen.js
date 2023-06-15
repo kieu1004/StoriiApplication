@@ -1,13 +1,15 @@
 import React, { useState, useRef } from "react";
-
 import { View, Text, StyleSheet, Dimensions, TextInput, Image } from 'react-native'
-import { colors, parameters } from "../../global/styles"
-
 import { Icon, Button, SocialIcon } from 'react-native-elements'
-import Header from '../../components/Header'
 import *as Animatable from 'react-native-animatable'
+import Swiper from "react-native-swiper"
 
-import Swiper from "react-native-swiper";
+import { colors, parameters } from "../../global/styles"
+import Header from '../../components/Header'
+
+
+
+
 
 export default function SplashScreen({navigation}) {
     return (
@@ -58,6 +60,9 @@ export default function SplashScreen({navigation}) {
                         title="Create an account"
                         buttonStyle={styles.createButton}
                         titleStyle={styles.createButtonTitle}
+                        onPress={() => {
+                            navigation.navigate("SignUpScreen")
+                        }}
                     />
                 </View>
             </View>
