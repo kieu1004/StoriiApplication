@@ -13,6 +13,7 @@ export function AppStack() {
 
     return (
         <App.Navigator>
+            
             <App.Screen
                 name="App"
                 component={DrawerNavigator}
@@ -21,6 +22,7 @@ export function AppStack() {
                     ...TransitionPresets.RevealFromBottomAndroid
                 }}
             />
+
 
             <App.Screen
                 name="ProviderMapScreen"

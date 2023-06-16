@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions, StatusBar } from 'react-native'
 import { Icon } from 'react-native-elements'
 import { colors, parameters } from '../global/styles'
@@ -7,7 +6,7 @@ import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
 import { filterData, providerData } from '../global/Data'
-import ProductCard from "../components/ProductCard"
+import FoodCard from "../components/FoodCard"
 
 
 
@@ -17,19 +16,26 @@ export default function HomeScreen({ navigation }) {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
+
+
     return (
         <View style={styles.container}>
+
+
             <StatusBar
                 translucent
                 barStyle="light-content"
                 backgroundColor="rgb(234, 221, 202)"
-             />
+            />
+
 
             <HomeHeader navigation={navigation} />
+
 
             <ScrollView
                 stickyHeaderIndices={[0]}
                 showsVerticalScrollIndicator={true}>
+
 
                 <View style={{ backgroundColor: colors.cardbackground, paddingBottom: 5 }}>
                     <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "space-evenly" }}>
@@ -52,6 +58,7 @@ export default function HomeScreen({ navigation }) {
                         </TouchableOpacity>
                     </View>
                 </View>
+
 
                 <View style={styles.filterView}>
                     <View style={styles.addressView}>
@@ -89,9 +96,11 @@ export default function HomeScreen({ navigation }) {
 
                 </View>
 
+
                 <View style={styles.headerTextView}>
                     <Text style={styles.headerText}>Categories</Text>
                 </View>
+
 
                 <View>
                     <FlatList
@@ -118,11 +127,13 @@ export default function HomeScreen({ navigation }) {
                     />
                 </View>
 
+
                 <View style={styles.headerTextView}>
                     <Text style={styles.headerText}>Free Delivery Now</Text>
                 </View>
 
-                <View style={{marginTop:5}}>
+
+                <View style={{ marginTop: 5 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5 }}>Options changing in</Text>
                         <Countdown
@@ -144,7 +155,7 @@ export default function HomeScreen({ navigation }) {
 
                         renderItem={({ item }) => (
                             <View style={{ marginRight: 5 }}>
-                                <ProductCard
+                                <FoodCard
                                     screenWidth={SCREEN_WIDTH * 0.8}
                                     images={item.images}
                                     providerName={item.providerName}
@@ -162,6 +173,7 @@ export default function HomeScreen({ navigation }) {
                     <Text style={styles.headerText}>Promotion available</Text>
                 </View>
 
+
                 <View>
                     <FlatList
                         style={{ marginTop: 10, marginBottom: 10 }}
@@ -172,7 +184,7 @@ export default function HomeScreen({ navigation }) {
 
                         renderItem={({ item }) => (
                             <View style={{ marginRight: 5 }}>
-                                <ProductCard
+                                <FoodCard
                                     screenWidth={SCREEN_WIDTH * 0.8}
                                     images={item.images}
                                     providerName={item.providerName}
@@ -185,9 +197,11 @@ export default function HomeScreen({ navigation }) {
                     />
                 </View>
 
+
                 <View style={styles.headerTextView}>
                     <Text style={styles.headerText}>Provider in your area</Text>
                 </View>
+
 
                 <View style={{ width: SCREEN_WIDTH, paddingTop: 10 }}>
                     {
@@ -206,7 +220,9 @@ export default function HomeScreen({ navigation }) {
                     }
                 </View>
 
+
             </ScrollView>
+
 
             {delivery &&
                 <View style={styles.floatButton}>
@@ -228,9 +244,14 @@ export default function HomeScreen({ navigation }) {
                 </View>
             }
 
+
         </View>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     container: {

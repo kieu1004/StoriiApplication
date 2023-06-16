@@ -55,6 +55,8 @@ const SignUpScreen = ({ navigation }) => {
             <Header title="MY ACCOUNT" type="arrow-left" navigation={navigation} />
 
             <ScrollView keyboardShouldPersistTaps="always">
+
+
                 <View style={styles.view1}>
                     <Text style={styles.text1}>Sign-Up</Text>
                 </View>
@@ -63,6 +65,7 @@ const SignUpScreen = ({ navigation }) => {
                 <Formik initialValues={initialValues} onSubmit={(values) => { signUp(values) }}>
                     {(props) => (
                         <View style={styles.view2}>
+
 
                             <View>
                                 <Text style={styles.text2}>New on STORII ?</Text>
@@ -155,6 +158,8 @@ const SignUpScreen = ({ navigation }) => {
                                     onPress={props.handleSubmit}
                                 />
                             </View>
+
+
                         </View>
 
                     )}
@@ -180,13 +185,19 @@ const SignUpScreen = ({ navigation }) => {
 
 
             </ScrollView>
+
+            
         </View>
     )
 }
 
 
 
+
+
 export default SignUpScreen
+
+
 
 
 

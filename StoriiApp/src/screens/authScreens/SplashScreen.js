@@ -1,19 +1,19 @@
-import React, { useState, useRef, useEffect, useContext } from "react";
-import { View, Text, StyleSheet, Dimensions, TextInput, Image, ScrollView } from 'react-native'
-import { Icon, Button, SocialIcon } from 'react-native-elements'
-import *as Animatable from 'react-native-animatable'
-import Swiper from "react-native-swiper"
+import React,{useState,useRef,useContext, useEffect} from 'react';
+import {View, Text, StyleSheet, Dimensions,TextInput, Alert, ScrollView, Swiper, Image} from 'react-native'
+import {colors, parameters,title} from "../../global/styles"
+import * as Animatable from 'react-native-animatable'
+import {Icon, Button,SocialIcon} from 'react-native-elements'
+import { Formik } from 'formik'
 
-import { colors, parameters, title } from "../../global/styles"
 import Header from '../../components/Header'
 import auth from '@react-native-firebase/auth'
+import { SignInContext } from '../../contexts/authContext'
 
 
 
 
 
-
-export default function SignInWelcomeScreen({ navigation }) {
+export default function SplashScreen({ navigation }) {
 
     const { dispatchSignedIn } = useContext(SignInContext)
 
@@ -85,9 +85,15 @@ export default function SignInWelcomeScreen({ navigation }) {
                     />
                 </View>
             </View>
+
+
         </ScrollView>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     slide1: {

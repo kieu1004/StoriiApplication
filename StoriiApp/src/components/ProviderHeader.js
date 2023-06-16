@@ -5,13 +5,22 @@ import { colors } from "../global/styles"
 
 import { providerData } from '../global/Data'
 
+
+
+
+
+//Khai báo và định nghĩa ProviderHeader
 export default function ProviderHeader({ navigation, id }) {
+
+
     const index2 = 10
     const currentValue = new Animated.Value(1)
+
 
     const [liked, setLiked] = useState(false)
     const [counter, setCounter] = useState(-2)
     const [visible, setVisible] = useState(false)
+
 
     const likeHander = () => {
         if (liked == false)
@@ -20,6 +29,7 @@ export default function ProviderHeader({ navigation, id }) {
         setLiked(!liked)
         setCounter(index2)
     }
+
 
     useEffect(() => {
         if (liked == true) {
@@ -39,12 +49,19 @@ export default function ProviderHeader({ navigation, id }) {
         }
     }, [liked])
 
+
+
+
+
     return (
         <View style={styles.container}>
+
+
             <ImageBackground
                 style={styles.container}
                 source={{ uri: providerData[id].images }}
             >
+
 
                 <View style={styles.view1}>
                     <View style={styles.view2}>
@@ -65,20 +82,28 @@ export default function ProviderHeader({ navigation, id }) {
                             onPress={likeHander}
                         />
                     </View>
-
                 </View>
+
+
                 <View style={styles.view4}>
                     {visible && (index2 == counter) &&
                         <Animated.View style={{ transform: [{ scale: currentValue }] }}>
                             <Icon name="favorite" size={40} color="red" type="material" />
                         </Animated.View>
                     }
-
                 </View>
+
+
             </ImageBackground>
+
+
         </View>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
 
@@ -118,6 +143,6 @@ const styles = StyleSheet.create({
         marginTop: 0,
         alignItems: "center",
         justifyContent: "center"
-    },
+    }
 
 })

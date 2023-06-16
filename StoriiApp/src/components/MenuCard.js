@@ -1,11 +1,22 @@
-import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
-import { colors } from '../global/styles'
+import React from 'react'
+import { Text, View, Image, StyleSheet } from 'react-native'
+import { colors, parameters } from '../global/styles'
 
 
 
 
 
+/** Định nghĩa thành phần MenuCard:
+ * Hiển thị thông tin sản phẩm trong menu gồm: Tên sản phẩm, giá cả, ảnh sản phẩm, chi tiết sản phẩm.
+ * 
+ * Text, View, Image, StyleSheet để tạo giao diện người dùng
+ */
+
+
+
+
+
+//Khai báo và định nghĩa hàm MenuCard
 export default function MenuCard({ productName, price, image, productDetails }) {
     return (
         <View style={styles.view1}>

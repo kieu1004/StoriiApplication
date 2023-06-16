@@ -1,10 +1,11 @@
 import React from 'react'
 import { StyleSheet, Text, View, ImageBackground, TouchableOpacity, FlatList } from 'react-native'
 import { Icon } from 'react-native-elements'
-
 import { colors } from "../global/styles"
-import ProductItemCard from './ProductItemCard'
+
+import ProductCard from './ProductCard'
 import { productData } from '../global/Data'
+
 
 
 
@@ -28,8 +29,12 @@ const SearchResultCard = ({
 
     return (
         <View>
+
             <TouchableOpacity onPress={OnPressProviderCard}>
+
                 <View style={styles.view1}>
+
+
                     <View style={{ height: 150 }}>
                         <ImageBackground
                             style={{ height: 160 }}
@@ -41,7 +46,6 @@ const SearchResultCard = ({
                             <Text style={styles.text1}>{averageReview}</Text>
                             <Text style={styles.text2}> {numberOfReview} reviews</Text>
                         </View>
-
                     </View>
 
 
@@ -67,7 +71,6 @@ const SearchResultCard = ({
                             </View>
 
                         </View>
-
                     </View>
 
 
@@ -82,7 +85,7 @@ const SearchResultCard = ({
                     data={productData}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item, index }) => (
-                        <ProductItemCard
+                        <ProductCard
                             image={item.image}
                             productName={item.name}
                             price={item.price}
@@ -90,14 +93,21 @@ const SearchResultCard = ({
                     )}
                     horizontal={true}
                 />
-
             </View>
+
 
         </View>
     )
 }
 
+
+
+
+
 export default SearchResultCard
+
+
+
 
 
 const styles = StyleSheet.create({

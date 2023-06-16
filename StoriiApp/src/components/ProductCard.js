@@ -1,137 +1,74 @@
-import React from "react"
-import { Text, View, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native'
-
-import { Icon } from 'react-native-elements'
-import { colors, parameters } from '../global/styles'
+import React from 'react'
+import { StyleSheet, Text, View, Image } from 'react-native'
+import { colors } from '../global/styles'
 
 
-export default function ProductCard({
-    OnPressProductCard,
-    providerName,
-    deliveryAvailable,
-    discountAvailable,
-    discountPercent,
-    numberOfReview,
-    businessAddress,
-    farAway,
-    averageReview,
-    images,
-    screenWidth
-}) {
+
+
+
+//Khai báo và định nghĩa ProductCard
+const ProductCard = ({ productName, price, image }) => {
     return (
-        <TouchableOpacity>
-
-            <View style={{ ...styles.cardView, width: screenWidth }}>
-                <Image
-                    style={{ ...styles.image, width: screenWidth }}
-                    source={{ uri: images }}
-                />
-
-                <View>
-
-                    <View>
-                        <Text style={styles.providerName}>{providerName}</Text>
-                    </View>
-
-                    <View style={{ flex: 1, flexDirection: "row" }}>
-                        <View style={styles.distance}>
-                            <Icon
-                                name="place"
-                                type="meterial"
-                                size={18}
-                                iconStyle={{ marginTop: 3 }}
-                            />
-                            <Text style={styles.Min}>{farAway} Min</Text>
-                        </View>
-
-                        <View style={{ flex: 9, flexDirection: "row" }}>
-                            <Text style={styles.address}>{businessAddress}</Text>
-                        </View>
-                    </View>
+        <View style={styles.view1}>
+            <View style={styles.view2}>
+                <View style={styles.view3}>
+                    <Text style={styles.text1}>{productName}</Text>
+                    <Text style={styles.text1}>${price}</Text>
                 </View>
-
+                <View style={styles.view4}>
+                    <Image style={styles.image} source={{ uri: image }} />
+                </View>
             </View>
-
-
-
-            <View style={styles.review}>
-                <Text style={styles.average}>{averageReview}</Text>
-                <Text style={styles.numberofreview}>{numberOfReview} reviews</Text>
-            </View>
-        </TouchableOpacity>
+        </View>
     )
 }
 
+
+
+
+export default ProductCard
+
+
+
+
+
 const styles = StyleSheet.create({
-    cardView: {
-        marginHorizontal: 9,
-        borderTopRightRadius: 5,
-        borderTopLeftRadius: 5,
-        borderWidth: 1,
-        borderColor: colors.primary_normal,
-        borderBottomLeftRadius: 5,
-        borderBottomRightRadius: 5
+
+    view1: {
+        backgroundColor: "white",
+        elevation: 4,
+        shadowOpacity: 0.4,
+        shadowColor: "black",
+        margin: 5,
+        width: 210,
+        padding: 10
+    },
+
+    view2: {
+        flexDirection: "row",
+        padding: 0,
+        justifyContent: "space-between"
+    },
+
+    view3: {
+        justifyContent: "space-between",
+        width: 110
+    },
+
+    text1: {
+        fontSize: 15,
+        color: colors.primary_bold,
+    },
+
+    view4: {
+        width: 75,
+        height: 65
     },
 
     image: {
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
-        height: 150
-    },
-
-    providerName: {
-        fontSize: 17,
-        fontWeight: "bold",
-        color: colors.primary_bold,
-        marginTop: 5,
-        marginLeft: 10
-    },
-
-    distance: {
-        flex: 4,
-        flexDirection: "row",
-        borrderRightColor: colors.primary_light,
-        paddingHorizontal: 5,
-        borderRightWidth: 1
-    },
-
-    Min: {
-        fontSize: 12,
-        fontWeight: "bold",
-        paddingTop: 5,
-        color: colors.primary_normal
-    },
-
-    address: {
-        fontSize: 12,
-        paddingTop: 5,
-        color: colors.primary_normal,
-        paddingHorizontal: 10
-    },
-
-    review: {
-        position: "absolute",
-        top: 0,
-        right: 10,
-        backgroundColor: 'rgba(52,52,52,0.3)',
-        padding: 2,
-        alignItems: "center",
-        justifyContent: "center",
-        borderTopRightRadius: 5,
-        borderBottomLeftRadius: 12
-    },
-
-    average: {
-        color: "white",
-        fontSize: 20,
-        fontWeight: "bold",
-        marginTop: -3
-    },
-
-    numberofreview: {
-        color: "white",
-        fontSize: 13,
-        marginRight: 0,
-        marginLeft: 0
+        height: 65,
+        width: 75
     }
+
+
 })

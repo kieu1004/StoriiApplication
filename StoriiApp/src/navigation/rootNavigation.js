@@ -1,5 +1,6 @@
 import React,{useContext} from 'react'
 import { NavigationContainer } from '@react-navigation/native'
+
 import { AuthStack } from './authStack'
 import { SignInContext } from '../contexts/authContext'
 import { AppStack } from './appStack'

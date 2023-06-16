@@ -13,7 +13,6 @@ export const SignInContextProvider = (props) => {
         userToken: null,
     })
 
-    
     return (
         <SignInContext.Provider value={{ signedIn, dispatchSignedIn }}>
             {props.children}

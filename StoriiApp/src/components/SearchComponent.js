@@ -1,15 +1,19 @@
 import React, { useState, useRef } from 'react'
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Modal, TextInput, FlatList, TouchableOpacity, Keyboard } from 'react-native'
-import * as Animatable from 'react-native-animatable';
-import { useNavigation } from '@react-navigation/native';
-import { Icon } from 'react-native-elements';
+import * as Animatable from 'react-native-animatable'
+import { useNavigation } from '@react-navigation/native'
+import { Icon } from 'react-native-elements'
+import filter from 'lodash/filter'
 import { colors } from "../global/styles"
 
-import { filterData } from '../global/Data';
-import filter from 'lodash/filter'
+import { filterData } from '../global/Data'
+
+
+
 
 
 export default function SearchComponent() {
+
 
     const navigation = useNavigation();
 
@@ -35,8 +39,13 @@ export default function SearchComponent() {
         setData([...dataS])
     }
 
+
+
+
     return (
         <View style={{ alignItems: "center" }}>
+
+
             <TouchableWithoutFeedback
                 onPress={() => {
                     setModalVisible(true)
@@ -53,14 +62,23 @@ export default function SearchComponent() {
                 </View>
             </TouchableWithoutFeedback>
 
+
+
+
             <Modal
                 animationType="fade"
                 transparent={false}
                 visible={modalVisible}
             >
+
+
                 <View style={styles.modal}>
+
                     <View style={styles.view1}>
+
                         <View style={styles.TextInput}>
+
+
                             <Animatable.View
                                 animation={textInputFossued ? "fadeInRight" : "fadeInLeft"}
                                 duration={400}
@@ -76,6 +94,7 @@ export default function SearchComponent() {
                                     iconStyle={{ marginRight: 5 }}
                                 />
                             </Animatable.View>
+
 
                             <TextInput
                                 style={{ width: "90%" }}
@@ -94,6 +113,7 @@ export default function SearchComponent() {
                                 onChangeText={handleSearch}
                             />
 
+
                             <Animatable.View
                                 animation={textInputFossued ? "fadeInLeft" : ""}
                                 duration={400}
@@ -108,15 +128,21 @@ export default function SearchComponent() {
                                     }}
                                 />
                             </Animatable.View>
+
+
                         </View>
+
                     </View>
 
+
+
+
+                    {/* Danh sách kết quả tìm kiếm */}
                     <FlatList
                         data={data}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 onPress={() => {
-
                                     Keyboard.dismiss
                                     navigation.navigate("SearchResultScreen", { item: item.name })
                                     setModalVisible(false)
@@ -131,7 +157,11 @@ export default function SearchComponent() {
                     />
 
                 </View>
+
+
             </Modal>
+
+
         </View>
     )
 }

@@ -1,15 +1,32 @@
 import React from "react"
-
 import {View, Text, StyleSheet} from 'react-native'
 import {Icon, withBadge} from 'react-native-elements'
-
 import {colors, parameters} from '../global/styles'
 
+
+
+
+
+/** Định nghĩa thành phần HomeHeader:
+ * Hiển thị tiêu đề trang chủ.
+ * Nút mở menu, giỏ hàng.
+ * 
+ * Sử dụng View, Text, StyleSheet, withBadge Icon để tạo giao diện.
+ */
+
+
+
+
+
+//Khai báo và định nghĩa hàm HomeHeader
 export default function HomeHeader({navigation}){
 
     const BadgeIcon = withBadge(0)(Icon)
+
+
     return(
         <View style={styles.header}>
+
             <View style={{alignItems:"center", justifyContent:"center", marginLeft:15}}>
                 <Icon
                     type="material-community"
@@ -22,9 +39,11 @@ export default function HomeHeader({navigation}){
                 />
             </View>
 
+
             <View style={{alignItems:"center", justifyContent:"center"}}>
-                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII</Text>
+                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII XpressFood</Text>
             </View>
+
 
             <View style={{alignItems:"center", justifyContent:"center", marginRight:15}}>
                 <BadgeIcon
@@ -34,9 +53,14 @@ export default function HomeHeader({navigation}){
                     color={colors.primary_light}
                 />
             </View>
+
         </View>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     header :{

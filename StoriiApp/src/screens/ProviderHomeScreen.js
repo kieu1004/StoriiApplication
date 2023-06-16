@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, ScrollView, Dimensions, TouchableOpacity, Modal } from 'react-native'
-import { TabView, TabBar } from 'react-native-tab-view';
+import { TabView, TabBar } from 'react-native-tab-view'
 import { Icon } from 'react-native-elements'
 
-import { colors, fonts } from '../global/styles';
-import ProviderHeader from '../components/ProviderHeader';
-import { providerData, menu } from '../global/Data';
-import MenuScreen from './ProviderTabs/MenuScreen';
-import MenuProductScreen from './MenuProductScreen';
+import { colors, fonts } from '../global/styles'
+import ProviderHeader from '../components/ProviderHeader'
+import { providerData, menu } from '../global/Data'
+import MenuScreen from './ProviderTabs/MenuScreen'
+import MenuProductScreen from './MenuProductScreen'
 
 
 

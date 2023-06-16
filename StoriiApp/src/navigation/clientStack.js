@@ -30,6 +30,7 @@ export function ClientStack({ navigation, route }) {
     return (
         <ClientSearch.Navigator>
 
+
             <ClientSearch.Screen
                 name="SearchScreen"
                 component={SearchScreen}
@@ -79,6 +80,8 @@ export function ClientStack({ navigation, route }) {
                     })
                 }
             />
+
+
         </ClientSearch.Navigator>
     )
 }

@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-
 import { colors } from '../global/styles'
 import { Icon } from 'react-native-elements'
 
@@ -10,8 +8,11 @@ import SearchScreen from '../screens/SearchScreen'
 import OrdersScreen from '../screens/OrdersScreen'
 import AccountScreen from '../screens/AccountScreen'
 
-const ClientTabs = createBottomTabNavigator();
 
+
+
+
+const ClientTabs = createBottomTabNavigator()
 
 export default function RootClientTabs() {
 
@@ -21,6 +22,8 @@ export default function RootClientTabs() {
                 activeTintColor: colors.buttons
             }}
         >
+
+
             <ClientTabs.Screen
                 name="HomeScreen"
                 component={HomeScreen}
@@ -37,7 +40,6 @@ export default function RootClientTabs() {
                         )
                     }
                 }
-
             />
 
 
@@ -57,7 +59,6 @@ export default function RootClientTabs() {
                         )
                     }
                 }
-
             />
 
 
@@ -78,7 +79,6 @@ export default function RootClientTabs() {
                         )
                     }
                 }
-
             />
 
 
@@ -99,8 +99,9 @@ export default function RootClientTabs() {
                         )
                     }
                 }
-
             />
+
+
         </ClientTabs.Navigator>
     )
 }

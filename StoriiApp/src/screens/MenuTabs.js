@@ -7,7 +7,6 @@ import MenuCard from '../components/MenuCard'
 
 
 
-
 export function Route1({ navigation }) {
     return (
         <View style={{ flex: 1 }}>

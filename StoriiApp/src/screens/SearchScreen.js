@@ -1,9 +1,12 @@
 import React from 'react'
 import { View, Text, StyleSheet, FlatList, ImageBackground, Dimensions, TouchableWithoutFeedback, ImageBackgroundComponent } from 'react-native'
+import { colors } from "../global/styles"
 
-import { colors } from "../global/styles";
 import SearchComponent from '../components/SearchComponent'
 import { filterData2 } from "../global/Data"
+
+
+
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -14,6 +17,7 @@ export default function SearchScreen({ navigation }) {
         <View style={{ flex: 1, marginBottom: 10, paddingTop: 20 }}>
 
             <SearchComponent />
+
             <View style={{ marginTop: 10 }}>
 
                 <View>
@@ -27,6 +31,7 @@ export default function SearchScreen({ navigation }) {
                                     navigation.navigate("SearchResultScreen", { item: item.name })
                                 }}
                             >
+
                                 <View style={styles.imageView}>
                                     <ImageBackground
                                         style={styles.image}
@@ -38,6 +43,7 @@ export default function SearchScreen({ navigation }) {
                                         </View>
                                     </ImageBackground>
                                 </View>
+
                             </TouchableWithoutFeedback>
                         )}
 
@@ -46,6 +52,7 @@ export default function SearchScreen({ navigation }) {
                         numColumns={2}
                         ListHeaderComponent={<Text style={styles.listHeader}>Top Categories</Text>}
                         ListFooterComponent={<Footer />}
+
                     />
                 </View>
 
@@ -92,11 +99,15 @@ const Footer = () => {
                     ListHeaderComponent={<Text style={styles.listHeader}>More categories</Text>}
 
                 />
+
             </View>
 
         </View>
     )
 }
+
+
+
 
 
 const styles = StyleSheet.create({

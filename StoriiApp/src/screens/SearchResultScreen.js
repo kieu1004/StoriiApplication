@@ -13,8 +13,10 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SearchResultScreen = ({ navigation, route }) => {
     return (
         <View style={styles.container}>
+
             <View>
                 <FlatList
+
                     style={{ backgroundColor: colors.cardbackground }}
                     data={providerData}
                     keyExtractor={(item, index) => index.toString()}
@@ -34,22 +36,30 @@ const SearchResultScreen = ({ navigation, route }) => {
 
                     )}
 
+
                     ListHeaderComponent={
                         <View>
                             <Text style={styles.listHeader}>{productData.length} Result for {route.params.item}</Text>
                         </View>
                     }
 
+
                     showsVerticalScrollIndicator={false}
+
                 />
             </View>
+
         </View>
     )
 }
 
 
 
+
+
 export default SearchResultScreen
+
+
 
 
 

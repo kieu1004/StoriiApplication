@@ -1,33 +1,88 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react'
+import auth from '@react-native-firebase/auth'
 import { View, Text, Linking, Pressable, Alert, Switch, StyleSheet, TouchableOpacity } from 'react-native'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer';
 import { Avatar, Button, Icon } from 'react-native-elements'
 import { colors } from '../global/styles'
 
+import { SignInContext } from '../contexts/authContext'
 
 
 
 
+
+
+/** Thanh điều hướng Drawer:
+ * Sử dụng thư viện và API để hiển thị các mục trong thanh điều hướng.
+ * Thực hiện các chức năng như: đăng xuất, dark mode.
+ * 
+ * Sử dụng View, Text, Linking, Pressable, Alert, Switch, StyleSheet, TouchableOpacity, DrawerContentScrollView, DrawerItemList, DrawerItem, Avatar, Button, Icon để tạo giao diện.
+ * Sử dụng useState, useContext, use Effect hooks để quản lý trạng thái và hiển thị thông tin người dùng.
+ * Sử dụng thư viện @react-native-firebase/auth cho đăng xuất khi người dùng nhấn nút "Sign Out".
+ * Xuất ra DrawerContent để sử dụng trong thanh điều hướng.
+ */
+
+
+
+
+
+//Khai báo và định nghĩa hàm DrawerContent
 export default function DrawerContent(props) {
+
+    const { dispatchSignedIn } = useContext(SignInContext)
+
+    async function signOut() {
+
+        try {
+            auth()
+                //Đăng xuất
+                .signOut()
+                //Xử lý kết quả trả về từ Firebase
+                .then(
+                    () => {
+                        console.log("USER SUCCESSFULLY SIGNED OUT")
+
+                        //Cập nhật trạng thái đăng nhập
+                        dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } })
+                    })
+
+        } catch (errot) {
+            Alert.alert(error.code)
+        }
+    }
+
+    
+
+
+    //Tạo giao diện điều hướng
     return (
         <View style={styles.container}>
+
+
+            {/* Tạo Scrollview cho thanh điều hướng */}
             <DrawerContentScrollView {...props}>
 
-                
+
+                {/*User Infor*/}
                 <View style={{ backgroundColor: colors.buttons }}>
 
-                    <View style={{ flexDirection: 'row', alignItems: 'center', paddingLeft: 20, paddingVertical: 10 }}>
+
+                    <View style={{
+                        flexDirection: 'row', alignItems: 'center',
+                        paddingLeft: 20, paddingVertical: 10
+                    }}>
                         <Avatar
                             rounded
                             avatarStyle={styles.avatar}
                             size={75}
-                            source={{ uri: "https://scontent.fsgn2-8.fna.fbcdn.net/v/t39.30808-6/345922544_767818595019884_114742103876237789_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=wgnoDsK_9ZAAX_g60DS&_nc_ht=scontent.fsgn2-8.fna&oh=00_AfAIG5jLGUSgTkxOLRmOS9JkxsiRGaIgm5-_EK55Ag1arw&oe=648DB988" }}
+                            source={{ uri: "https://media.vov.vn/sites/default/files/styles/large/public/2022-12/ha_anh_tuan_1.jpg" }}
                         />
                         <View style={{ marginLeft: 10 }}>
                             <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }} >Ha Anh Tuan</Text>
                             <Text style={{ color: colors.cardbackground, fontSize: 14 }} > hatsaigon@gmail.com</Text>
                         </View>
                     </View>
+
 
                     <View style={{ flexDirection: 'row', justifyContent: "space-evenly", paddingBottom: 5 }}>
                         <View style={{ flexDirection: 'row', marginTop: 0, }}>
@@ -36,6 +91,8 @@ export default function DrawerContent(props) {
                                 <Text style={{ color: colors.cardbackground, fontSize: 14 }} >My Favorites</Text>
                             </View>
                         </View>
+
+
                         <View style={{ flexDirection: 'row', marginTop: 0 }}>
                             <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center" }}  >
                                 <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>0</Text>
@@ -44,12 +101,15 @@ export default function DrawerContent(props) {
                         </View>
                     </View>
 
+
                 </View>
 
 
+                {/* Hiển thị danh sách các mục trong thanh điều hướng */}
                 <DrawerItemList {...props} />
 
 
+                {/* Tạo mục trong thanh điều hướng */}
                 <DrawerItem
                     label="Payment"
                     icon={({ color, size }) => (
@@ -61,7 +121,6 @@ export default function DrawerContent(props) {
                         />
                     )}
                 />
-
 
                 <DrawerItem
                     label="Promotions"
@@ -75,7 +134,6 @@ export default function DrawerContent(props) {
                     )}
                 />
 
-
                 <DrawerItem
                     label="Settings"
                     icon={({ color, size }) => (
@@ -87,7 +145,6 @@ export default function DrawerContent(props) {
                         />
                     )}
                 />
-
 
                 <DrawerItem
                     label="Help"
@@ -102,8 +159,11 @@ export default function DrawerContent(props) {
                 />
 
 
+                {/* Dark mode */}
                 <View style={{ borderTopWidth: 1, borderTopColor: colors.grey5 }}>
+
                     <Text style={styles.preferences}>Preferences</Text>
+
                     <View style={styles.switchText}>
                         <Text style={styles.darkthemeText}>Dark Theme</Text>
                         <View style={{ paddingRight: 10 }}>
@@ -117,7 +177,6 @@ export default function DrawerContent(props) {
                 </View>
 
 
-
             </DrawerContentScrollView>
 
 
@@ -129,9 +188,7 @@ export default function DrawerContent(props) {
                         name="logout-variant"
                         color={color}
                         size={size}
-                        onPress={() => {
-                            
-                        }}
+                        onPress={() => { signOut() }}
                     />
                 )}
             />
@@ -139,6 +196,10 @@ export default function DrawerContent(props) {
         </View>
     )
 }
+
+
+
+
 
 const styles = StyleSheet.create({
     container: {

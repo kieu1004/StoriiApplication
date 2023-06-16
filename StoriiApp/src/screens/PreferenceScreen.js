@@ -25,6 +25,7 @@ export default class PreferenceScreen extends Component {
 
 
     render() {
+
         const index = this.props.route.params.index
         const { meal, details, price } = menuDetailedData[index];
 
@@ -41,9 +42,11 @@ export default class PreferenceScreen extends Component {
                         />
                     </View>
 
+
                     <View style={styles.bar}>
                         <Text style={styles.title}>Choose a preference</Text>
                     </View>
+
 
                     <View style={styles.view12}>
                         <Icon
@@ -55,10 +58,12 @@ export default class PreferenceScreen extends Component {
                         />
                     </View>
 
+
                     <View style={styles.view1}>
                         <Text style={styles.text1}>{meal}</Text>
                         <Text style={styles.text2}>{details}</Text>
                     </View>
+
 
                     <View style={styles.view2}>
                         <Text style={styles.text3}>Choose a product type</Text>
@@ -66,6 +71,7 @@ export default class PreferenceScreen extends Component {
                             <Text style={styles.text4}>REQUIRED</Text>
                         </View>
                     </View>
+
 
                     <View style={styles.view4}>
                         <View style={styles.view5}>
@@ -84,44 +90,46 @@ export default class PreferenceScreen extends Component {
                         </View>
                     </View>
 
+
                     <View>
                         {
-                            this.state.preference.map(item => <View key={item.id}>
-                                <View style={styles.view7}>
-                                    <Text style={styles.text8}>{menuDetailedData[index].preferenceTitle[this.state.preference.indexOf(item)]}</Text>
-                                    {this.state.required[this.state.preference.indexOf(item)] &&
-                                        <View style={styles.view9}>
-                                            <Text style={styles.text7}>{this.state.minimum_quantity[this.state.preference.indexOf(item)]} REQUIRED</Text>
-                                        </View>
+                            this.state.preference.map(item =>
+                                <View key={item.id}>
+                                    <View style={styles.view7}>
+                                        <Text style={styles.text8}>{menuDetailedData[index].preferenceTitle[this.state.preference.indexOf(item)]}</Text>
+                                        {this.state.required[this.state.preference.indexOf(item)] &&
+                                            <View style={styles.view9}>
+                                                <Text style={styles.text7}>{this.state.minimum_quantity[this.state.preference.indexOf(item)]} REQUIRED</Text>
+                                            </View>
+                                        }
+                                    </View>
 
-                                    }
-                                </View>
 
-                                <View style={styles.view10}>
-                                    {item.map
-                                        (
-                                            items =>
-                                                <View style={styles.view4}>
-                                                    <View style={styles.view19}>
-                                                        <View style={styles.view6}>
-                                                            <CheckBox
-                                                                center
-                                                                checkedIcon="check-square-o"
-                                                                uncheckedIcon="square-o"
-                                                                checked={false}
-                                                                checkedColor={colors.buttons}
+                                    <View style={styles.view10}>
+                                        {item.map
+                                            (
+                                                items =>
+                                                    <View style={styles.view4}>
+                                                        <View style={styles.view19}>
+                                                            <View style={styles.view6}>
+                                                                <CheckBox
+                                                                    center
+                                                                    checkedIcon="check-square-o"
+                                                                    uncheckedIcon="square-o"
+                                                                    checked={false}
+                                                                    checkedColor={colors.buttons}
 
-                                                            />
-                                                            <Text style={{ color: colors.primary_normal, marginLeft: -10 }}>{items.name}</Text>
+                                                                />
+                                                                <Text style={{ color: colors.primary_normal, marginLeft: -10 }}>{items.name}</Text>
+                                                            </View>
+                                                            <Text style={styles.text6}>R{items.price.toFixed(2)}</Text>
                                                         </View>
-                                                        <Text style={styles.text6}>R{items.price.toFixed(2)}</Text>
                                                     </View>
-                                                </View>
-                                        )
-                                    }
-                                </View>
+                                            )
+                                        }
+                                    </View>
 
-                            </View>)
+                                </View>)
 
                         }
                     </View>
@@ -295,10 +303,10 @@ const styles = StyleSheet.create({
 
     text5: {
         fontWeight: "bold",
-        marginLeft: -10 
+        marginLeft: -10
     },
 
-    text6: { 
+    text6: {
         fontSize: 16,
         fontWeight: "bold"
     },

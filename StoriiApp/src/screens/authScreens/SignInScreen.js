@@ -1,12 +1,14 @@
 import React, { useState, useRef } from "react";
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { Icon, Button, SocialIcon } from 'react-native-elements'
-import { Formik } from "formik";
+import { Formik } from "formik"
+import *as Animatable from 'react-native-animatable'
 import auth from '@react-native-firebase/auth'
+
 import { colors, parameters } from "../../global/styles"
 import Header from '../../components/Header'
-import *as Animatable from 'react-native-animatable'
-import { SignInContext } from '../../contexts/authContext';
+import { SignInContext } from '../../contexts/authContext'
+
 
 
 
@@ -42,6 +44,7 @@ export default function SignInScreen({ navigation }) {
 
 
 
+
     return (
         <View style={styles.container}>
 
@@ -70,7 +73,10 @@ export default function SignInScreen({ navigation }) {
             >
                 {(props) => (
                     <View>
+
                         <View style={{ marginTop: 20 }}>
+
+
                             <View>
                                 <TextInput
                                     style={styles.TextInput1}
@@ -83,6 +89,7 @@ export default function SignInScreen({ navigation }) {
 
 
                             <View style={styles.TextInput2}>
+
                                 <Animatable.View animation={textInput2Fossued ? "" : "fadeInLeft"} duration={400} >
                                     <Icon
                                         name="lock"
@@ -115,7 +122,10 @@ export default function SignInScreen({ navigation }) {
                                         style={{ marginRight: 10 }}
                                     />
                                 </Animatable.View>
+
                             </View>
+
+
                         </View>
 
 
@@ -127,6 +137,8 @@ export default function SignInScreen({ navigation }) {
                                 onPress={props.handleSubmit}
                             />
                         </View>
+
+
                     </View>
                 )}
             </Formik>
@@ -179,6 +191,7 @@ export default function SignInScreen({ navigation }) {
                     onPress={() => { navigation.navigate("SignUpScreen") }}
                 />
             </View>
+
 
         </View>
     )
