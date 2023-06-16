@@ -4,6 +4,7 @@ import { Formik } from 'formik'
 import { Icon, Button } from 'react-native-elements'
 import * as Animatable from 'react-native-animatable'
 import auth from '@react-native-firebase/auth'
+import {tSIndexSignature} from '@babel/types'
 
 import { colors } from '../../global/styles'
 import Header from '../../components/Header'
