@@ -1,27 +1,44 @@
-import React, { useState, useRef } from "react";
-import { View, Text, StyleSheet, Dimensions, TextInput, Image } from 'react-native'
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { View, Text, StyleSheet, Dimensions, TextInput, Image, ScrollView } from 'react-native'
 import { Icon, Button, SocialIcon } from 'react-native-elements'
 import *as Animatable from 'react-native-animatable'
 import Swiper from "react-native-swiper"
 
-import { colors, parameters } from "../../global/styles"
+import { colors, parameters, title } from "../../global/styles"
 import Header from '../../components/Header'
+import auth from '@react-native-firebase/auth'
 
 
 
 
 
-export default function SplashScreen({navigation}) {
+
+export default function SignInWelcomeScreen({ navigation }) {
+
+    const { dispatchSignedIn } = useContext(SignInContext)
+
+    useEffect(() => {
+        auth().onAuthStateChanged((user) => {
+            if (user) {
+                dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: "signed-in" } })
+            } else {
+                dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } })
+            }
+        })
+
+    }, [])
+
     return (
-        <View style={{ flex: 1 }}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }}>
 
-            <View style={{ flex: 3, justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
+            <View style={{ justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
                 <Text style={{ fontSize: 26, color: colors.primary_bold, fontWeight: ']bold' }}>DISCOVERY STORII</Text>
                 <Text style={{ fontSize: 26, color: colors.primary_bold, fontWeight: ']bold' }}>IN YOUR AREA</Text>
             </View>
 
-            <View style={{ flex: 4, justifyContent: 'center' }}>
-                <Swiper autoplay={true}>
+
+            <View style={{}}>
+                <Swiper autoplay={true} style={{ height: 250, }}>
                     <View style={styles.slide1}>
                         <Image
                             source={{ uri: "https://api.storii.vn/staticfiles/2021_12_25_StoNote.png" }}
@@ -43,7 +60,8 @@ export default function SplashScreen({navigation}) {
                 </Swiper>
             </View>
 
-            <View style={{ flex: 4, justifyContent: 'flex-end', marginBottom: 20 }}>
+
+            <View style={{ marginBottom: 20 }}>
                 <View style={{ marginHorizontal: 20, marginTop: 30 }}>
                     <Button
                         title="SIGN IN"
@@ -54,6 +72,7 @@ export default function SplashScreen({navigation}) {
                         }}
                     />
                 </View>
+
 
                 <View style={{ marginHorizontal: 20, marginTop: 10 }}>
                     <Button
@@ -66,7 +85,7 @@ export default function SplashScreen({navigation}) {
                     />
                 </View>
             </View>
-        </View>
+        </ScrollView>
     )
 }
 
