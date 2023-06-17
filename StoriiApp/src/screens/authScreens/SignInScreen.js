@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { Icon, Button, SocialIcon } from 'react-native-elements'
 import { Formik } from "formik"
 import *as Animatable from 'react-native-animatable'
 import auth from '@react-native-firebase/auth'
 
-import { colors, parameters } from "../../global/styles"
+import { colors, parameters, title } from "../../global/styles"
 import Header from '../../components/Header'
 import { SignInContext } from '../../contexts/authContext'
 
