@@ -36,14 +36,13 @@ export default function HomeScreen({ navigation }) {
                 stickyHeaderIndices={[0]}
                 showsVerticalScrollIndicator={true}>
 
-
                 <View style={{ backgroundColor: colors.cardbackground, paddingBottom: 5 }}>
                     <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "space-evenly" }}>
                         <TouchableOpacity
                             onPress={() => {
                                 setDelivery(true)
                             }}>
-                            <View style={{ ...styles.deliveryButton, backgroundColor: delivery ? colors.primary_bold : colors.primary_light }}>
+                            <View style={{ ...styles.deliveryButton, backgroundColor: delivery ? colors.cardSelected : colors.primary_normal }}>
                                 <Text style={styles.deliveryText}>Delivery</Text>
                             </View>
                         </TouchableOpacity>
@@ -52,7 +51,7 @@ export default function HomeScreen({ navigation }) {
                             onPress={() => {
                                 setDelivery(false)
                             }}>
-                            <View style={{ ...styles.deliveryButton, backgroundColor: delivery ? colors.primary_normal : colors.primary_light }}>
+                            <View style={{ ...styles.deliveryButton, backgroundColor: delivery ? colors.primary_normal : colors.cardSelected }}>
                                 <Text style={styles.deliveryText}>Pick Up</Text>
                             </View>
                         </TouchableOpacity>
@@ -268,6 +267,7 @@ const styles = StyleSheet.create({
     deliveryText: {
         marginLeft: 5,
         fontSize: 16,
+        color: colors.headerText
     },
 
     filterView: {
@@ -275,13 +275,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-evenly",
         marginHorizontal: 10,
-        marginVertical: 10
+        marginVertical: 10,
+        backgroundColor: colors.background,
+        marginBottom: 5
     },
 
     addressView: {
         flexDirection: "row",
         justifyContent: "space-between",
-        backgroundColor: colors.primary_light,
+        backgroundColor: colors.background,
         paddingHorizontal: 20,
         borderRadius: 15,
         paddingVertical: 3
@@ -291,7 +293,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         marginLeft: 20,
-        backgroundColor: colors.primary_light,
+        backgroundColor: colors.background,
         borderRadius: 15,
         paddingHorizontal: 5,
         marginRight: 20
@@ -299,13 +301,15 @@ const styles = StyleSheet.create({
 
     headerText: {
         color: colors.primary_bold,
-        fontSize: 24,
+        fontSize: 20,
         fontWeight: "bold",
         paddingLeft: 10
     },
 
     headerTextView: {
-        backgroundColor: colors.primary_light,
+        marginTop: 5,
+        marginBottom: 5,
+        backgroundColor: colors.primary_backgroud,
         paddingVertical: 2,
     },
 
@@ -324,7 +328,7 @@ const styles = StyleSheet.create({
 
     smallCardSelected: {
         borderRadius: 30,
-        backgroundColor: colors.primary_light,
+        backgroundColor: colors.cardSelected,
         borderColor: colors.primary_light,
         borderWidth: 1,
         justifyContent: "center",

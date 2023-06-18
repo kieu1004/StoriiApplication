@@ -1,15 +1,16 @@
 export const colors = {
-    primary_backgroud: "#F6F2EA",
-    primary_light: "#C8B6A6",
-    primary_normal: "#A4907C",
-    primary_bold: "#8D7B68",
+    primary_backgroud: "#E8E1D9",
+    primary_light: "#3E7C17",
+    primary_normal: "#F4A442",
+    primary_bold: "#125C13",
     heart_like: "#CB4646",
     heart_unlike: "#00000000",
     banner_sale: "#609966",
     statusbar: "#C8B6A6",
-    buttons: "#A4907C",
+    buttons: "#F4A442",
     CardComment: "#86939e",
     cardbackground: "white",
+    cardSelected: "#609966",
 
     headerText: "white",
 

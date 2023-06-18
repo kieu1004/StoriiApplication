@@ -31,17 +31,17 @@ export default function HomeHeader({navigation}){
                 <Icon
                     type="material-community"
                     name="menu"
-                    color={colors.primary_normal}
+                    color={colors.background}
                     size={32}
                     onPress={()=>{
-                        
+                        navigation.toggleDrawer()
                     }}
                 />
             </View>
 
 
             <View style={{alignItems:"center", justifyContent:"center"}}>
-                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII XpressFood</Text>
+                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII</Text>
             </View>
 
 
@@ -50,7 +50,7 @@ export default function HomeHeader({navigation}){
                     type="material-community"
                     name="cart"
                     size={35}
-                    color={colors.primary_light}
+                    color={colors.background}
                 />
             </View>
 

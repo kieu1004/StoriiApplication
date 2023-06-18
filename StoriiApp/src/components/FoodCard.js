@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 5,
         borderTopLeftRadius: 5,
         borderWidth: 1,
-        borderColor: colors.primary_normal,
+        borderColor: colors.primary_light,
         borderBottomLeftRadius: 5,
         borderBottomRightRadius: 5
     },

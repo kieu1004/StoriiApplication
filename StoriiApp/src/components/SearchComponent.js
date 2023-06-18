@@ -195,10 +195,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
         width: "94%",
         height: 50,
-        backgroundColor: colors.primary_backgroud,
+        backgroundColor: colors.cardbackground,
         borderRadius: 12,
         borderWidth: 1,
-        borderColor: colors.primary_light,
+        borderColor: colors.primary_bold,
         flexDirection: "row",
         alignItems: "center"
     },

@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
 
     listHeader: {
         fontSize: 16,
-        color: colors.primary_normal,
+        fontWeight: "bold",
+        color: colors.primary_bold,
         paddingBottom: 10,
         marginLeft: 12
 

@@ -1,146 +1,174 @@
 export const filterData = [
-    { name: "Album", image: require('../assets/album_cate.png'), id: "0" },
-    { name: "Merchandise", image: require('../assets/mechandise_cate.png'), id: "1" },
-    { name: "Ticket", image: require('../assets/ticket_cate.jpg'), id: "2" },
-    { name: "Card", image: require('../assets/card_cate.jpg'), id: "3" },
-    { name: "Lightstick", image: require('../assets/lightstick_cate.jpg'), id: "4" },
+    { name: "Pizza", image: require('../assets/pizza_cate.png'), id: "0" },
+    { name: "Starter", image: require('../assets/starter_cate.png'), id: "1" },
+    { name: "Noodle", image: require('../assets/noodle_cate.png'), id: "2" },
+    { name: "Salad", image: require('../assets/salad_cate.png'), id: "3" },
+    { name: "Drink", image: require('../assets/drink_cate.png'), id: "4" },
 ];
 
 export const filterData2 = [
-    { name: "Album", image: 'https://api.storii.vn/staticfiles/9512002b3f8045209c2883ed83ffa48d.png', id: "0" },
-    { name: "Mechandise", image: 'https://storii.vn/assets/images/about-us-cover.png', id: "1" },
-    { name: "Ticket", image: require('../assets/card_cate.jpg'), id: "2" },
-    { name: "Lightstick", image: require('../assets/lightstick_cate.jpg'), id: "3" }
+    { name: "Combo Tiện & Lợi 6", image: 'https://thepizzacompany.vn/images/thumbs/000/0003682_combo-tien-loi-6_300.png', id: "0" },
+    { name: "Combo Tiện & Lợi 3", image: 'https://thepizzacompany.vn/images/thumbs/000/0003679_combo-tien-loi-3_500.png', id: "1" },
+    { name: "Combo Chất Quá Chất", image: 'https://thepizzacompany.vn/images/thumbs/000/0003223_combo-chat-qua-chat-359k_500.png', id: "2" },
+    { name: "Combo Chất Quá", image: 'https://thepizzacompany.vn/images/thumbs/000/0003222_combo-chat-qua-219k_500.png', id: "3" },
+    { name: "Salad Gà Giòn Không Xương", image: 'https://thepizzacompany.vn/images/thumbs/000/0002600_chicken-strip-salad_500.png', id: "4" },
+    { name: "7up Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002363_7-up-can_500.jpeg', id: "5" },
+
+
+
+
+    // { name: "Pizza Hải Sản Pesto Xanh", image: 'https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png', id: "0" },
+    // { name: "Pizza Tôm Cocktail", image: 'https://thepizzacompany.vn/images/thumbs/000/0002216_shrimp-ctl_500.png', id: "1" },
+    // { name: "Pizza Hải Sản Cocktail", image: 'https://thepizzacompany.vn/images/thumbs/000/0002212_sf-cocktail_500.png', id: "2" },
+    // { name: "Pizza Bolalo Hibiscus", image: 'https://thepizzacompany.vn/images/thumbs/000/0003665_grilledbeefhibiscus_500.png', id: "3" },
+    // { name: "Salad Trái Cây Sốt Đào", image: 'https://thepizzacompany.vn/images/thumbs/000/0003668_fruitsaladbaconpeachsauce_500.png', id: "4" },
+    // { name: "Mì Ý Pesto", image: 'https://thepizzacompany.vn/images/thumbs/000/0003669_pasta-seafood-w-pesto-sauce_500.png', id: "5" },
+    // { name: "Mỳ Ý Truffle", image: 'https://thepizzacompany.vn/images/thumbs/000/0003667_ham-mushroom-w-cream-truffle-sause_500.png', id: "6" },
+    // { name: "Gà Giòn Xốt Hàn 2 miếng", image: 'https://thepizzacompany.vn/images/thumbs/000/0003280_crispy-chicken-with-k-sauce2pcs_500.png', id: "7" },
+    // { name: "Gà Giòn Xốt Hàn 5 miếng", image: 'https://thepizzacompany.vn/images/thumbs/000/0003282_crispy-chicken-with-k-sauce5pcs_500.png', id: "8" },
+    // { name: "Gà Giòn Xốt Tương Tỏi Hàn Quốc", image: 'https://thepizzacompany.vn/images/thumbs/000/0003284_crispy-chicken-with-sg-sauce2pcs_500.png', id: "9" },
+    // { name: "Mỳ Ý Cay Hải Sản", image: 'https://thepizzacompany.vn/images/thumbs/000/0002253_spaghetti-spicy-seafood_500.png', id: "10" },
+    // { name: "Mỳ Ý Tôm Sốt Kem Cà Chua", image: 'https://thepizzacompany.vn/images/thumbs/000/0002257_spaghetti-shrimp-rose_500.png', id: "11" },
+    // { name: "Mỳ Ý thịt bò bằm", image: 'https://thepizzacompany.vn/images/thumbs/000/0002258_spaghetti-bolognese_500.png', id: "12" },
+    // { name: "Mỳ Ý Cay Xúc Xích", image: 'https://thepizzacompany.vn/images/thumbs/000/0003669_pasta-seafood-w-pesto-sauce_500.png', id: "13" },
+    // { name: "Salad Gà Giòn Không Xương", image: 'https://thepizzacompany.vn/images/thumbs/000/0002600_chicken-strip-salad_500.png', id: "14" },
+    // { name: "Salad Da Cá Hồi Giòn", image: 'https://thepizzacompany.vn/images/thumbs/000/0002601_crispy-salmon-skin-salad_500.png', id: "15" },
+    // { name: "Salad Đặc Sắc", image: 'https://thepizzacompany.vn/images/thumbs/000/0002250_signature-salad_500.png', id: "16" },
+    // { name: "Salad Trộn Sốt Caesar", image: 'https://thepizzacompany.vn/images/thumbs/000/0002251_caesars-salad_500.png', id: "17" },
+    // { name: "Pepsi Black Lime Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002573_pepsi-lime-can_500.png', id: "18" },
+    // { name: "Pepsi Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002365_pepsi-can_500.jpeg', id: "19" },
+    // { name: "Mirinda Soda Kem Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002702_mirinda-soda-kem-can_500.png', id: "20" },
+    // { name: "Pepsi Balack Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002420_pepsi-black-can_500.jpeg', id: "21" },
 ];
 
 export const providerData = [
     {
-        providerName: "Storii",
+        providerName: "The Pizza Company",
         farAway: "21",
-        businessAddress: " VietVision, Ho Chi Minh",
-        images: "https://storii.vn/assets/images/about-us-cover.png",
+        businessAddress: " District 5, Ho Chi Minh",
+        images: "https://thepizzacompany.vn/images/thumbs/000/0003376_TPC_NYC_2022.jpeg",
         averageReview: 4.9,
         numberOfReview: 272,
         coordinates: { lat: -26.1888612, lng: 28.246325 },
         discount: 10,
         deliveryTimme: 15,
         collectTime: 5,
-        CategoryType: "Album",
+        CategoryType: "Pizza",
         productData: [
             {
-                name: "Album Truyen Ngan",
+                name: "Pizza Hải Sản Pesto Xanh",
                 price: 350.000,
-                image: "https://api.storii.vn/staticfiles/9512002b3f8045209c2883ed83ffa48d.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png"
 
             },
             {
-                name: "CD Nhung vet thuong lanh",
+                name: "Pizza Hải Sản Cocktail",
                 price: 100.000,
-                image: "https://api.storii.vn/staticfiles/c4274ef50231424ea143beb42f7468e7.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002212_sf-cocktail_500.png"
             },
             {
-                name: "CD Thu Phuong",
+                name: "Pizza Bolalo Hibiscus",
                 price: 100.000,
-                image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0003665_grilledbeefhibiscus_500.png"
             }
         ],
         id: 0
     },
 
     {
-        providerName: "VietVision",
-        farAway: "25",
-        businessAddress: " Storii, Ho Chi Minh",
-        images: "https://storii.vn/assets/images/about-us-cover.png",
+        providerName: "The Pizza Company",
+        farAway: "20",
+        businessAddress: " District 5, Ho Chi Minh",
+        images: "https://thepizzacompany.vn/images/thumbs/000/0003674_pizzavuonmyvi.jpeg",
         averageReview: 3.0,
         numberOfReview: 200,
         coordinates: { lat: -26.1888612, lng: 28.246325 },
         discount: 15,
         deliveryTimme: 25,
         collectTime: 75,
-        CategoryType: "Mechandise",
+        CategoryType: "Pizza",
         productData: [
             {
-                name: "Te Te Bong",
+                name: "Combo Tiện & Lợi 6",
                 price: 320.000,
-                image: "https://api.storii.vn/staticfiles/38517a7574cd46ca9cf63fbdbc9da847.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0003682_combo-tien-loi-6_300.png"
 
             },
             {
-                name: "Huy hieu RVN",
+                name: "Combo Chất Quá Chất",
                 price: 300.000,
-                image: "https://api.storii.vn/staticfiles/bcdeffd7c59f449dbae0eeaba2412833.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0003223_combo-chat-qua-chat-359k_500.png"
             },
             {
-                name: "Cay Tote",
+                name: "Combo Chất Quá",
                 price: 200.000,
-                image: "https://api.storii.vn/staticfiles/7cef887ba25c48ba9833f901aa223684.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0003222_combo-chat-qua-219k_500.png"
             }
         ],
         id: 1
     },
 
     {
-        providerName: "Storii",
+        providerName: "Domino Pizza",
         farAway: "21",
         businessAddress: " VietVision, Ho Chi Minh",
-        images: "https://storii.vn/assets/images/about-us-cover.png",
+        images: "https://cache.dominos.com/wam/prod/market/MY/_en/images/promo/dd113864-1b17-4630-bf69-064c0e4d5b3d.jpg",
         averageReview: 4.9,
         numberOfReview: 272,
         coordinates: { lat: -26.1888612, lng: 28.246325 },
         discount: 10,
         deliveryTimme: 15,
         collectTime: 5,
-        CategoryType: "Album",
+        CategoryType: "Pizza",
         productData: [
             {
-                name: "Album Truyen Ngan",
+                name: "Pizza Bangkok Cà Ri Xanh Gà - Bangkok Green Curry Chicken",
                 price: 350.000,
-                image: "https://api.storii.vn/staticfiles/9512002b3f8045209c2883ed83ffa48d.png"
+                image: "https://img.dominos.vn/Menu+BG+ful+ga.jpg"
 
             },
             {
-                name: "CD Nhung vet thuong lanh",
+                name: "Pizza Hải Sản Nhiệt Đới Xốt Tiêu - Pizzamin Sea",
                 price: 100.000,
-                image: "https://api.storii.vn/staticfiles/c4274ef50231424ea143beb42f7468e7.png"
+                image: "https://img.dominos.vn/Pizzaminsea-Hai-San-Nhiet-Doi-Xot-Tieu.jpg"
             },
             {
-                name: "CD Thu Phuong",
+                name: "Pizza Xúc Xích Ý Truyền Thống - Pepperoni Feast",
                 price: 100.000,
-                image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png"
+                image: "https://img.dominos.vn/Pepperoni-feast-Pizza-Xuc-Xich-Y.jpg"
             }
         ],
         id: 2
     },
 
     {
-        providerName: "VietVision",
+        providerName: "The Pizza Company",
         farAway: "25",
-        businessAddress: " Storii, Ho Chi Minh",
-        images: "https://storii.vn/assets/images/about-us-cover.png",
+        businessAddress: " District 5, Ho Chi Minh",
+        images: "https://thepizzacompany.vn/images/thumbs/000/0003448_Birthday_Party.jpeg",
         averageReview: 3.0,
         numberOfReview: 200,
         coordinates: { lat: -26.1888612, lng: 28.246325 },
         discount: 15,
         deliveryTimme: 25,
         collectTime: 75,
-        CategoryType: "Mechandise",
+        CategoryType: "Salad",
         productData: [
             {
-                name: "Te Te Bong",
+                name: "Salad Gà Giòn Không Xương",
                 price: 320.000,
-                image: "https://api.storii.vn/staticfiles/38517a7574cd46ca9cf63fbdbc9da847.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002600_chicken-strip-salad_500.png"
 
             },
             {
-                name: "Huy hieu RVN",
+                name: "Salad Đặc Sắc",
                 price: 300.000,
-                image: "https://api.storii.vn/staticfiles/bcdeffd7c59f449dbae0eeaba2412833.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002250_signature-salad_500.png"
             },
             {
-                name: "Cay Tote",
+                name: "Salad Trái Cây Sốt Đào",
                 price: 200.000,
-                image: "https://api.storii.vn/staticfiles/7cef887ba25c48ba9833f901aa223684.png"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0003668_fruitsaladbaconpeachsauce_500.png"
             }
         ],
         id: 3
@@ -148,65 +176,76 @@ export const providerData = [
 ];
 
 
-export const productData = [{
-    name: "CD Nhung vet thuong lanh", price: 29, image: "https://api.storii.vn/staticfiles/c4274ef50231424ea143beb42f7468e7.png",
-    details: "Tuyet voi", id: 0
-},
-{
-    name: "Te Te Bong", price: 80, image: "https://api.storii.vn/staticfiles/38517a7574cd46ca9cf63fbdbc9da847.png",
-    details: "Mem min", id: 1
-},
-{
-    name: "CD Thu Phuong", price: 20, image: "https://api.storii.vn/staticfiles/5706a5c7fb844f88b98558ef4a56e22e.png",
-    details: "", id: 2
-},
-
-{
-    name: "Huy hieu RVN", price: 29.30, image: "https://api.storii.vn/staticfiles/bcdeffd7c59f449dbae0eeaba2412833.png",
-    details: "Two 100% fresh beef burger patties that are hot,deliciously", id: 3
-}
+export const productData = [
+    { name: "Pizza Hải Sản Pesto Xanh", price: "10",image: 'https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png', detals:"Tôm, thanh cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh", id: "0" },
+    { name: "Pizza Tôm Cocktail", price: "89",image: 'https://thepizzacompany.vn/images/thumbs/000/0002216_shrimp-ctl_500.png', detals:"Tôm với nấm, dứa, cà chua và sốt Thousand Island.", id: "1" },
+    { name: "Pizza Hải Sản Cocktail", price: "20",image: 'https://thepizzacompany.vn/images/thumbs/000/0002212_sf-cocktail_500.png', detals:"Tôm, cua, giăm bông,... với sốt Thousand Island", id: "2" },
+    { name: "Pizza Bolalo Hibiscus", price: "16",image: 'https://thepizzacompany.vn/images/thumbs/000/0003665_grilledbeefhibiscus_500.png', detals:"Thịt bò cuộn lá lốt nướng thơm lừng kết hợp độc đáo cùng mứt Hibiscus chua chua ngọt ngọt & các loại rau củ trên nền sốt Bò bằm đậm vị mang lại trải nghiệm ẩm thực tuy lạ mà quen", id: "3" },
+    { name: "Salad Trái Cây Sốt Đào", price: "84",image: 'https://thepizzacompany.vn/images/thumbs/000/0003668_fruitsaladbaconpeachsauce_500.png', detals:"Các loại trái cây thanh mát: đào, thanh long, táo, dưa hấu, cà chua bi hoà quyện cùng xốt Đào chua ngọt đặc trưng dùng kèm thịt xông khói.", id: "4" },
+    { name: "Mì Ý Pesto", price: "62",image: 'https://thepizzacompany.vn/images/thumbs/000/0003669_pasta-seafood-w-pesto-sauce_500.png', detals:"Các loại nguyên liệu hải sản hảo hạng: Tôm, mực hoà quyện trên nền sốt Pesto xanh đậm vị, thơm hương đặc trưng từ lá húng tây – mang đậm nét truyền thống ẩm thực Ý.", id: "5" },
+    { name: "Mỳ Ý Truffle", price: "113",image: 'https://thepizzacompany.vn/images/thumbs/000/0003667_ham-mushroom-w-cream-truffle-sause_500.png', detals:"Nấm Truffle đen với hương thơm ngất ngây, phủ trên lớp sốt kem nấm beo béo đậm đà cùng thịt giăm bông mềm mại.", id: "6" },
+    { name: "Gà Giòn Xốt Hàn 2 miếng", price: "82",image: 'https://thepizzacompany.vn/images/thumbs/000/0003280_crispy-chicken-with-k-sauce2pcs_500.png', detals:"Ngon hơn khi dùng kèm xốt mù tạc mật ong và củ cải lên men.", id: "7" },
+    { name: "Gà Giòn Xốt Hàn 5 miếng", price: "81",image: 'https://thepizzacompany.vn/images/thumbs/000/0003282_crispy-chicken-with-k-sauce5pcs_500.png', detals:"Ngon hơn khi dùng kèm xốt mù tạc mật ong và củ cải lên men", id: "8" },
+    { name: "Gà Giòn Xốt Tương Tỏi Hàn Quốc", price: "39",image: 'https://thepizzacompany.vn/images/thumbs/000/0003284_crispy-chicken-with-sg-sauce2pcs_500.png', detals:"Công thức đặc biệt pha chút vị the nhè nhẹ và mùi thơm của gừng, tỏi mang đến cảm giác mới lạ khi thưởng thức.", id: "9" },
+    { name: "Mỳ Ý Cay Hải Sản", price: "50",image: 'https://thepizzacompany.vn/images/thumbs/000/0002253_spaghetti-spicy-seafood_500.png', detals:"Sự tươi ngon của tôm kết hợp với sốt kem cà chua", id: "10" },
+    { name: "Mỳ Ý Tôm Sốt Kem Cà Chua", price: "44",image: 'https://thepizzacompany.vn/images/thumbs/000/0002257_spaghetti-shrimp-rose_500.png', detals:"Sự tươi ngon của tôm kết hợp với sốt kem cà chua", id: "11" },
+    { name: "Mỳ Ý thịt bò bằm", price: "83",image: 'https://thepizzacompany.vn/images/thumbs/000/0002258_spaghetti-bolognese_500.png', detals:"Sốt thịt bò bằm đặc trưng kết hợp cùng mỳ Ý", id: "12" },
+    { name: "Mỳ Ý Cay Xúc Xích", price: "55",image: 'https://thepizzacompany.vn/images/thumbs/000/0003669_pasta-seafood-w-pesto-sauce_500.png', detals:"Mỳ Ý rán với xúc xích cay, thảo mộc, ngò gai và húng quế Ý", id: "13" },
+    { name: "Salad Gà Giòn Không Xương", price: "71",image: 'https://thepizzacompany.vn/images/thumbs/000/0002600_chicken-strip-salad_500.png', detals:"Salad Gà giòn với trứng cút, thịt xông khói, phô mai parmesan và sốt Thousand Island", id: "14" },
+    { name: "Salad Da Cá Hồi Giòn", price: "99",image: 'https://thepizzacompany.vn/images/thumbs/000/0002601_crispy-salmon-skin-salad_500.png', detals:"Salad với da cá hồi giòn với bắp cải đỏ, cà chua bi, ngô với sốt Yuzu", id: "15" },
+    { name: "Salad Đặc Sắc", price: "22",image: 'https://thepizzacompany.vn/images/thumbs/000/0002250_signature-salad_500.png', detals:"Salad rau và trái cây tươi dùng kèm xốt kem đặc biệt của The Pizza Company.", id: "16" },
+    { name: "Salad Trộn Sốt Caesar", price: "84",image: 'https://thepizzacompany.vn/images/thumbs/000/0002251_caesars-salad_500.png', detals:"Rau tươi trộn với sốt Caesar", id: "17" },
+    { name: "Pepsi Black Lime Lon", price: "15",image: 'https://thepizzacompany.vn/images/thumbs/000/0002573_pepsi-lime-can_500.png', detals:"", id: "18" },
+    { name: "Pepsi Lon", price: "12",image: 'https://thepizzacompany.vn/images/thumbs/000/0002365_pepsi-can_500.jpeg', detals:"", id: "19" },
+    { name: "Mirinda Soda Kem Lon", price: "22",image: 'https://thepizzacompany.vn/images/thumbs/000/0002702_mirinda-soda-kem-can_500.png', detals:"", id: "20" },
+    { name: "Pepsi Balack Lon", price: "8",image: 'https://thepizzacompany.vn/images/thumbs/000/0002420_pepsi-black-can_500.jpeg', detals:"", id: "21" },
 ];
 
 
 
 export const menuData = [
 
-    { title: "CD", special: false, key: 0, },
-    { title: "ALBUM", special: false, key: 1 },
-    { title: "LP", special: false, key: 2 },
-    { title: "CARD", special: false, key: 3 },
-    { title: "MERCHANDISE", special: false, key: 4 },
-    { title: "LIGHTSTICK", special: false, key: 5 },
+    { title: "Pizza", special: false, key: 0, },
+    { title: "Salad", special: false, key: 1 },
+    { title: "Noodle", special: false, key: 2 },
+    { title: "Combo", special: false, key: 3 },
+    { title: "Buger", special: false, key: 4 },
+    { title: "Drink", special: false, key: 5 },
 ];
 
 export const specialData = [
-    { title: "LIMITED PRODUCT", key: 0 },
-    { title: "GO CARD", key: 1 },
-    { title: "GO STICKER", key: 2 },
-    { title: "SPECIAL VIDEO", key: 3 },
+    { title: "LIMITED PIZZA", key: 0 },
+    { title: "GO DRINK", key: 1 },
+    { title: "SAURCE", key: 2 },
+    { title: "SPECIAL BUGER", key: 3 },
 ];
 
 export const menu = [
-    { key: 1, title: 'CD' },
-    { key: 2, title: 'ALBUM' },
-    { key: 3, title: 'LP BOX' },
-    { key: 4, title: 'SHARE BOX' },
+    { key: 1, title: 'PIZZA' },
+    { key: 2, title: 'BUGER' },
+    { key: 3, title: 'SALAD' },
+    { key: 4, title: 'DRINK' },
 ]
 
 
 export const menuDetailedData = [
     {
-        production: "VietVison",
+        production: "Pizza Hải Sản Pesto Xanh",
         price: 70.20,
-        image: "https://storii.vn/assets/images/about-us-cover.png",
-        details: "Enjoy the music",
+        image: "https://kenh14cdn.com/thumb_w/640/pr/2022/photo1670905734634-1670905734955368361495-63806530654716.jpg",
+        details: "Best Pizza For U",
         preferenceTitle: [
-            "Choose your 2 album",
-            "Choose your 1st LP",
-            "Choose your 2nd Card",
+            "Choose your 2 pizza",
+            "Choose your 1st drink",
+            "Choose your buger",
             "Would you like to add a side?",
-            "Would you Like any extra sticker?"
+            "Would you Like any extra salad?"
         ],
+
+
+
+
+        
         preferenceData: [
             [
                 { name: "Card Dip", price: 8.91, checked: false, id: 10 },
@@ -260,115 +299,4 @@ export const menuDetailedData = [
         required: [true, true, true, false, false],
         id: 0
     },
-
-    { 
-        production:"Hand cut chips", 
-        price:29.30,
-        image:"https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
-        details:"Two 100% fresh beef burger patties that are hot,deliciously",
-        preferenceTitle:["Choose your 2 dips","Choose your 1st drink flavour", "Choose your 2nd drink flavour","Would you like to add a side?","Would you Like any extra sauce?"  ],
-        preferenceData: [
-  
-          [{name:"Jalapeno Dip",price:8.91,checked:false,id:0},{name:"Sweet & Sour Dip",price:8.75,checked:false ,id:1},{name:'BBQ Dip',price:11.99 ,checked:false,id:2},
-          ],
-  
-          [{name:"Small Coke",price:8.90 ,checked:false,id:0 },{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95 ,checked:false,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},
-          ],
-  
-          [{name:"Small Coke",price:8.90,checked:false ,id:0},{name:"Small Fanta Orange",price:8.90,checked:false ,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95,checked:false ,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95 ,checked:false,id:8},
-            ],
-              
-          [{name:"debonairs sauce",price:8.90 ,checked:false,id:0},{name:"BBQ Sauce",price:8.90,checked:false ,id:1},{name:'Tikka Sauce',price:11.90,checked:false ,id:2},
-          ],
-  
-          [
-          {name:"Small Coke",price:8.90 ,checked:false,id:0},{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90 ,checked:false,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95,checked:false ,id:8},
-          ],
-          ],
-          minimum_quatity:[2,1,2,null,null],
-          counter:[0,0,0,0,0],
-          required: [true,true,true,false,false], 
-          id:1
-      },
-    
-      {
-        production:"Chicken Burger",
-        price:45.70,
-        image:"https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png",
-        details:"",
-        preferenceTitle:["Choose your 2 dips","Choose your 1st drink flavour", "Choose your 2nd drink flavour","Would you like to add a side?","Would you Like any extra sauce?"  ],
-        preferenceData: [
-  
-          [{name:"Jalapeno Dip",price:8.91,checked:false,id:0},{name:"Sweet & Sour Dip",price:8.75,checked:false ,id:1},{name:'BBQ Dip',price:11.99 ,checked:false,id:2},
-          ],
-  
-          [{name:"Small Coke",price:8.90 ,checked:false,id:0 },{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95 ,checked:false,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},
-          ],
-  
-          [{name:"Small Coke",price:8.90,checked:false ,id:0},{name:"Small Fanta Orange",price:8.90,checked:false ,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95,checked:false ,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95 ,checked:false,id:8},
-            ],
-              
-          [{name:"debonairs sauce",price:8.90 ,checked:false,id:0},{name:"BBQ Sauce",price:8.90,checked:false ,id:1},{name:'Tikka Sauce',price:11.90,checked:false ,id:2},
-          ],
-  
-          [
-          {name:"Small Coke",price:8.90 ,checked:false,id:0},{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90 ,checked:false,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95,checked:false ,id:8},
-          ],
-          ],
-  
-          minimum_quatity:[2,1,1,null,null],
-          counter:[0,0,0,0,0],
-          required: [true,true,true,false,false],   
-        id:2
-      },
-    
-      {
-        production:"Big Mac",
-        price:50.80,
-        image:"https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png",
-        details:"McFeast features two 100% fresh beef burger patties that are hot",
-        preferenceTitle:["Choose your 2 dips","Choose your 1st drink flavour", "Choose your 2nd drink flavour","Would you like to add a side?","Would you Like any extra sauce?"  ],
-        preferenceData: [
-  
-          [{name:"Jalapeno Dip",price:8.91,checked:false,id:0},{name:"Sweet & Sour Dip",price:8.75,checked:false ,id:1},{name:'BBQ Dip',price:11.99 ,checked:false,id:2},
-          ],
-  
-          [{name:"Small Coke",price:8.90 ,checked:false,id:0 },{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95 ,checked:false,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},
-          ],
-  
-          [{name:"Small Coke",price:8.90,checked:false ,id:0},{name:"Small Fanta Orange",price:8.90,checked:false ,id:1},{name:'Small Sprite',price:11.90,checked:false ,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95,checked:false ,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95 ,checked:false,id:8},
-            ],
-              
-          [{name:"debonairs sauce",price:8.90 ,checked:false,id:0},{name:"BBQ Sauce",price:8.90,checked:false ,id:1},{name:'Tikka Sauce',price:11.90,checked:false ,id:2},
-          ],
-  
-          [
-          {name:"Small Coke",price:8.90 ,checked:false,id:0},{name:"Small Fanta Orange",price:8.90 ,checked:false,id:1},{name:'Small Sprite',price:11.90 ,checked:false,id:2},
-          {name:'Small Coke Zero',price:3.95 ,checked:false,id:3},{name:'Small Syoney Zero',price:3.95 ,checked:false,id:4},{name:'Small Apple Juice',price:10.95 ,checked:false,id:5},
-          {name:'Small Strawberry Shake',price:16.95,checked:false ,id:6},{name:'Small Chocolate Shake',price:16.95 ,checked:false,id:7},{name:'Small Vanilla Shake',price:17.95,checked:false ,id:8},
-          ],
-          ],
-        
-          minimum_quatity:[2,1,1,null,null],
-          counter:[0,0,0,0,0],
-          required: [true,true,true,false,false],    
-        id:3
-      },
-
 ];
