@@ -3801,7 +3801,7 @@ for-own@^1.0.0:
   dependencies:
     for-in "^1.0.1"
 
-formik@^2.4.1:
+formik@^2.4.2:
   version "2.4.2"
   resolved "https://registry.npmjs.org/formik/-/formik-2.4.2.tgz"
   integrity sha512-C6nx0hifW2uENP3M6HpPmnAE6HFWCcd8/sqBZEOHZY6lpHJ5qehsfAy43ktpFLEmkBmhiZDei726utcUB9leqg==
@@ -6380,7 +6380,7 @@ react-native-elements@^3.4.3:
     react-native-ratings "8.0.4"
     react-native-size-matters "^0.3.1"
 
-react-native-gesture-handler@^2.11.0, "react-native-gesture-handler@>= 1.0.0":
+react-native-gesture-handler@^2.12.0, "react-native-gesture-handler@>= 1.0.0":
   version "2.12.0"
   resolved "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.12.0.tgz"
   integrity sha512-rr+XwVzXAVpY8co25ukvyI38fKCxTQjz7WajeZktl8qUPdh1twnSExgpT47DqDi4n+m+OiJPAnHfZOkqqAQMOg==

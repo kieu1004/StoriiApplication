@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DrawerContent, createDrawerNavigator } from '@react-navigation/drawer'
 import { Icon } from 'react-native-elements'
+
 import { colors, parameters } from "../global/styles"
 import RootClientTabs from './ClientTabs'
 import BusinessConsoleScreen from '../screens/BusinessConsoleScreen'

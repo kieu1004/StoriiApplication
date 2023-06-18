@@ -207,7 +207,7 @@ export default function HomeScreen({ navigation }) {
                     {
                         providerData.map(item => (
                             <View key={item.id} style={{ paddingBottom: 20 }}>
-                                <ProductCard
+                                <FoodCard
                                     screenWidth={SCREEN_WIDTH * 0.95}
                                     images={item.images}
                                     providerName={item.providerName}
