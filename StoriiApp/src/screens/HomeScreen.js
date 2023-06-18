@@ -5,8 +5,9 @@ import { colors, parameters } from '../global/styles'
 import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
-import { filterData, providerData } from '../global/Data'
+import { filterData, providerData, productData } from '../global/Data'
 import FoodCard from "../components/FoodCard"
+import ProductCard from "../components/ProductCard"
 
 
 
@@ -168,37 +169,10 @@ export default function HomeScreen({ navigation }) {
                 </View>
 
 
-                <View style={styles.headerTextView}>
-                    <Text style={styles.headerText}>Promotion available</Text>
-                </View>
-
-
-                <View>
-                    <FlatList
-                        style={{ marginTop: 10, marginBottom: 10 }}
-                        horizontal={true}
-                        data={providerData}
-                        keyExtractor={(item, index) => index.toString()}
-                        showsHorizontalScrollIndicator={false}
-
-                        renderItem={({ item }) => (
-                            <View style={{ marginRight: 5 }}>
-                                <FoodCard
-                                    screenWidth={SCREEN_WIDTH * 0.8}
-                                    images={item.images}
-                                    providerName={item.providerName}
-                                    farAway={item.farAway}
-                                    businessAddress={item.businessAddress}
-                                    averageReview={item.averageReview}
-                                />
-                            </View>
-                        )}
-                    />
-                </View>
 
 
                 <View style={styles.headerTextView}>
-                    <Text style={styles.headerText}>Provider in your area</Text>
+                    <Text style={styles.headerText}>In your area</Text>
                 </View>
 
 
@@ -213,6 +187,23 @@ export default function HomeScreen({ navigation }) {
                                     farAway={item.farAway}
                                     businessAddress={item.businessAddress}
                                     averageReview={item.averageReview}
+                                />
+                            </View>
+                        ))
+                    }
+                </View>
+
+
+
+                <View style={{ width: SCREEN_WIDTH, paddingTop: 10 }}>
+                    {
+                        productData.map(item => (
+                            <View key={item.id} style={{ paddingBottom: 20 }}>
+                                <ProductCard
+                                    screenWidth={SCREEN_WIDTH * 0.95}
+                                    source={{ uri: item.image }}
+                                    productName={item.name}
+                                    price={item.price}
                                 />
                             </View>
                         ))
