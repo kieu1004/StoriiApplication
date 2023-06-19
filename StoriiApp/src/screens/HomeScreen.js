@@ -150,17 +150,17 @@ const HomeScreen = ({ navigation }) => {
 
                 <View style={{height:150, width:400}}>
 
-                    <Swiper autoplay={true} style={{ height: 250, }}>
+                    <Swiper autoplay={true} style={{ height: 250, marginTop: 10}}>
                         <View style={styles.slide1}>
                             <Image
-                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png" }}
+                                source={{ uri: "https://thepizzacompany.vn/images/thumbs/000/0003716_Banner-H%C3%A8-real-deal-x%E1%BB%8Bn_1200x480.jpeg" }}
                                 style={{ height: "100%", width: "100%" }}
                             />
                         </View>
 
                         <View style={styles.slide2}>
                             <Image
-                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png" }}
+                                source={{ uri: "https://thepizzacompany.vn/images/thumbs/000/0003699_Website-banner-BOGO_NewGuideline_(1200x480)px.png" }}
                                 style={{ height: "100%", width: "100%" }}
                             />
                         </View>
@@ -168,14 +168,14 @@ const HomeScreen = ({ navigation }) => {
 
                         <View style={styles.slide3}>
                             <Image
-                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png" }}
+                                source={{ uri: "https://thepizzacompany.vn/images/thumbs/000/0003207_BannerSlider_CHICKEN%20KOREAN%20STYLE_1200x480px-opt2%20copy.jpeg" }}
                                 style={{ height: "100%", width: "100%" }}
                             />
                         </View>
 
                         <View style={styles.slide3}>
                             <Image
-                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png" }}
+                                source={{ uri: "https://thepizzacompany.vn/images/thumbs/000/0003683_combotienloi.jpeg" }}
                                 style={{ height: "100%", width: "100%" }}
                             />
                         </View>
@@ -384,7 +384,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 10,
         marginVertical: 10,
         backgroundColor: colors.background,
-        marginBottom: 5
     },
 
     addressView: {
@@ -414,7 +413,7 @@ const styles = StyleSheet.create({
     },
 
     headerTextView: {
-        marginTop: 5,
+        marginTop: 10,
         marginBottom: 5,
         backgroundColor: colors.primary_backgroud,
         paddingVertical: 2,
