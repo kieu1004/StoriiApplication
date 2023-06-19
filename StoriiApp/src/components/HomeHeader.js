@@ -51,6 +51,7 @@ export default function HomeHeader({navigation}){
                     name="cart"
                     size={35}
                     color={colors.background}
+                    onPress={() => navigation.navigate('CartScreen')}
                 />
             </View>
 

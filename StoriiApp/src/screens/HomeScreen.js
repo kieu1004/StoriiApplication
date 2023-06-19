@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions, StatusBar } from 'react-native'
 import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
+import Swiper from 'react-native-swiper'
 import { colors, fonts, parameters } from '../global/styles'
 import Countdown from 'react-native-countdown-component'
 
@@ -25,30 +26,30 @@ const HomeScreen = ({ navigation }) => {
 
 
 
-    const Card = ({ productData}) => {
+    const Card = ({ productData }) => {
         return (
             <TouchableHighlight
                 underlayColor={colors.cardbackground}
                 activeOpacity={0.9}
                 onPress={() => navigation.navigate('DetailsScreen', productData)}>
                 <View style={styles.cardProduct}>
-                    <View style={{ alignItems: 'center', marginTop:20 }}>
+                    <View style={{ alignItems: 'center', marginTop: 20 }}>
                         <Image source={{ uri: productData.image }} style={{ height: 100, width: 120 }} />
                     </View>
                     <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-                        <Text style={{ fontSize: 15, fontWeight:"bold"}}>{productData.name}</Text>
+                        <Text style={{ fontSize: 15, fontWeight: "bold" }}>{productData.name}</Text>
                     </View>
                     <View
                         style={{
-                            marginTop:10,
-                            flex:1,
+                            marginTop: 10,
+                            flex: 1,
                             marginHorizontal: 20,
                             flexDirection: 'row',
                             justifyContent: 'space-between',
-                            alignItems:"flex-end",
+                            alignItems: "flex-end",
                             marginBottom: 15
                         }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', color:colors.primary_bold }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colors.primary_bold }}>
                             $ {productData.price}
                         </Text>
                         <View style={styles.addToCartBtn}>
@@ -141,6 +142,51 @@ const HomeScreen = ({ navigation }) => {
                     </View>
 
                 </View>
+
+
+
+
+
+
+                <View style={{height:150, width:400}}>
+
+                    <Swiper autoplay={true} style={{ height: 250, }}>
+                        <View style={styles.slide1}>
+                            <Image
+                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png" }}
+                                style={{ height: "100%", width: "100%" }}
+                            />
+                        </View>
+
+                        <View style={styles.slide2}>
+                            <Image
+                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png" }}
+                                style={{ height: "100%", width: "100%" }}
+                            />
+                        </View>
+
+
+                        <View style={styles.slide3}>
+                            <Image
+                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png" }}
+                                style={{ height: "100%", width: "100%" }}
+                            />
+                        </View>
+
+                        <View style={styles.slide3}>
+                            <Image
+                                source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png" }}
+                                style={{ height: "100%", width: "100%" }}
+                            />
+                        </View>
+
+                    </Swiper>
+                </View>
+
+
+
+
+
 
 
                 <View style={styles.headerTextView}>
@@ -239,7 +285,7 @@ const HomeScreen = ({ navigation }) => {
                     }
                 </View>
 
-                <View style={{alignItems:"center", marginTop:20}}>
+                <View style={{ alignItems: "center", marginTop: 20 }}>
                     <Text style={styles.headerText}>Best for you</Text>
                 </View>
 
@@ -293,6 +339,27 @@ const HomeScreen = ({ navigation }) => {
 
 
 const styles = StyleSheet.create({
+    slide1: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#9dd6eb'
+    },
+
+    slide2: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#97cae5'
+    },
+
+    slide3: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#92bb09'
+    },
+
     container: {
         flex: 1,
         paddingTop: 20

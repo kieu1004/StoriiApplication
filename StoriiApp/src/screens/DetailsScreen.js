@@ -4,7 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
 import { colors } from '../global/styles'
-import { SecondaryButton } from '../components/Button'
+import { PrimaryButton } from '../components/Button'
 
 
 
@@ -58,7 +58,7 @@ const DetailsScreen = ({ navigation, route }) => {
           
 
           <View style={{ marginTop: 40, marginBottom: 40}}>
-            <SecondaryButton title="Add To Cart" />
+            <PrimaryButton title="Add To Cart" />
           </View>
         </View>
       </ScrollView>

@@ -4,6 +4,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import DrawerNavigator from './DrawerNavigator'
 import ProviderMapScreen from '../screens/ProviderMapScreen'
 import DetailsScreen from '../screens/DetailsScreen'
+import CartScreen from '../screens/CartScreen'
 
 
 
@@ -36,6 +37,15 @@ export default function AppStackNavigator() {
       <AppStack.Screen
         name="DetailsScreen"
         component={DetailsScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid,
+        }}
+      />
+
+      <AppStack.Screen
+        name="CartScreen"
+        component={CartScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid,

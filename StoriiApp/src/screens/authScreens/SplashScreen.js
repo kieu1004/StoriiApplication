@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect, useContext } from 'react';
-import { View, Text, StyleSheet, Dimensions, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Dimensions, Image, ScrollView, ImageBackground, SafeAreaView } from 'react-native'
 import auth from '@react-native-firebase/auth'
 import Swiper from 'react-native-swiper'
 import { Icon, Button, SocialIcon } from 'react-native-elements'
 import { colors, parameters, title } from "../../global/styles"
 
 import { SignInContext } from '../../contexts/authContext'
+import { PrimaryButton, SecondaryButton } from '../../components/Button';
 
 
 
@@ -26,77 +27,58 @@ export default function SplashScreen({ navigation }) {
     }, [])
 
     return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'space-between' }} >
-
-
-            <View style={{ justifyContent: 'flex-start', alignItems: 'center', paddingTop: 20 }}>
-                <Text style={{ fontSize: 26, color: colors.buttons, fontWeight: 'bold' }}>DISCOVER RESTAURANTS</Text>
-                <Text style={{ fontSize: 26, color: colors.buttons, fontWeight: 'bold' }}>IN YOUR AREA</Text>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+            <View style={{ height: 400}}>
+                <Image
+                    style={{
+                        width: '100%',
+                        resizeMode: 'contain',
+                        top: -150,
+                    }}
+                    source={require('../../assets/logo.png')}
+                />
             </View>
-
-
-            <View style={{}}>
-
-                <Swiper autoplay={true} style={{ height: 250, }}>
-                    <View style={styles.slide1}>
-                        <Image
-                            source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate4.png" }}
-                            style={{ height: "100%", width: "100%" }}
-                        />
-                    </View>
-
-                    <View style={styles.slide2}>
-                        <Image
-                            source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate3.png" }}
-                            style={{ height: "100%", width: "100%" }}
-                        />
-                    </View>
-
-
-                    <View style={styles.slide3}>
-                        <Image
-                            source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate5.png" }}
-                            style={{ height: "100%", width: "100%" }}
-                        />
-                    </View>
-
-                    <View style={styles.slide3}>
-                        <Image
-                            source={{ uri: "https://bukasapics.s3.us-east-2.amazonaws.com/plate1.png" }}
-                            style={{ height: "100%", width: "100%" }}
-                        />
-                    </View>
-
-                </Swiper>
-            </View>
-
-
-            <View style={{ marginBottom: 20 }}>
+            <View style={styles.textContainer}>
+                <View>
+                    <Text style={{ fontSize: 32, fontWeight: 'bold', textAlign: 'center' }}>
+                        Delicious Food
+                    </Text>
+                    <Text
+                        style={{
+                            marginTop: 20,
+                            fontSize: 18,
+                            textAlign: 'center',
+                            color: colors.text_fuzz3,
+                        }}>
+                        We help you to find best and delicious food
+                    </Text>
+                </View>
+                <View style={styles.indicatorContainer}>
+                    <View style={styles.currentIndicator} />
+                    <View style={styles.indicator} />
+                    <View style={styles.indicator} />
+                </View>
 
                 <View style={{ marginHorizontal: 20, marginTop: 30 }}>
-                    <Button
+                    <PrimaryButton
                         title="SIGN IN"
-                        buttonStyle={parameters.styledButton}
-                        titleStyle={parameters.buttonTitle}
                         onPress={() => {
                             navigation.navigate("SignInScreen")
                         }}
                     />
                 </View>
 
-                <View style={{ marginHorizontal: 20, marginTop: 30 }}>
-                    <Button
+
+                <View style={{ marginHorizontal: 20, marginTop: 10 }}>
+                    <SecondaryButton
                         title="Create an account"
-                        buttonStyle={styles.createButton}
-                        titleStyle={styles.createButtonTitle}
                         onPress={() => { navigation.navigate("SignUpScreen") }}
                     />
                 </View>
 
+
             </View>
-
-
-        </ScrollView>
+        </SafeAreaView>
     )
 }
 
@@ -105,42 +87,34 @@ export default function SplashScreen({ navigation }) {
 
 
 const styles = StyleSheet.create({
-    slide1: {
+    textContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#9dd6eb'
-    },
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97cae5'
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92bb09'
+        paddingHorizontal: 50,
+        justifyContent: 'space-between',
+        paddingBottom: 40,
     },
 
-    createButton: {
-        backgroundColor: "white",
-        alignContent: "center",
-        justifyContent: "center",
-        borderRadius: 12,
-        borderWidth: 1,
-        borderColor: colors.primary_bold,
+    indicatorContainer: {
         height: 50,
-        paddingHorizontal: 20,
-        borderColor: colors.primary_normal
+        flex: 1,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
     },
-    createButtonTitle: {
-        color: colors.primary_normal,
-        fontSize: 20,
-        fontWeight: "bold",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: -3
-    }
+
+    currentIndicator: {
+        height: 12,
+        width: 30,
+        borderRadius: 10,
+        backgroundColor: colors.primary_normal,
+        marginHorizontal: 5,
+    },
+
+    indicator: {
+        height: 12,
+        width: 12,
+        borderRadius: 6,
+        backgroundColor: colors.text_fuzz3,
+        marginHorizontal: 5,
+    },
 })

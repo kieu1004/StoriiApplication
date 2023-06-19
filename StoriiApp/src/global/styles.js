@@ -11,6 +11,7 @@ export const colors = {
     CardComment: "#86939e",
     cardbackground: "white",
     cardSelected: "#609966",
+    background: "#A8B297",
 
     headerText: "white",
     text_white: "white",
