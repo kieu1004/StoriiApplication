@@ -129,13 +129,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: "bold",
         paddingTop: 5,
-        color: colors.primary_normal
+        color: colors.text_fuzz3
     },
 
     address: {
         fontSize: 12,
         paddingTop: 5,
-        color: colors.primary_normal,
+        color: colors.text_fuzz3,
         paddingHorizontal: 10
     },
 

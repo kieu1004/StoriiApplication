@@ -13,6 +13,7 @@ export const colors = {
     cardSelected: "#609966",
 
     headerText: "white",
+    text_white: "white",
 
     transparent: "#00000000",
     background: "#f5f5f5",

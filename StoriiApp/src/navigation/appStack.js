@@ -3,6 +3,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 
 import DrawerNavigator from './DrawerNavigator'
 import ProviderMapScreen from '../screens/ProviderMapScreen'
+import DetailsScreen from '../screens/DetailsScreen'
 
 
 
@@ -22,6 +23,7 @@ export default function AppStackNavigator() {
           ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
+
       <AppStack.Screen
         name="ProviderMapScreen"
         component={ProviderMapScreen}
@@ -30,6 +32,16 @@ export default function AppStackNavigator() {
           ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
+
+      <AppStack.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid,
+        }}
+      />
+
     </AppStack.Navigator>
   )
 }

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions, StatusBar } from 'react-native'
+import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
-import { colors, parameters } from '../global/styles'
+import { colors, fonts, parameters } from '../global/styles'
 import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
@@ -12,11 +13,56 @@ import ProductCard from "../components/ProductCard"
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width
+// const { width } = Dimensions.get('screen')
+const cardWidth = SCREEN_WIDTH / 2 - 20;
 
-export default function HomeScreen({ navigation }) {
+const HomeScreen = ({ navigation }) => {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
+
+
+
+
+
+    const Card = ({ productData}) => {
+        return (
+            <TouchableHighlight
+                underlayColor={colors.cardbackground}
+                activeOpacity={0.9}
+                onPress={() => navigation.navigate('DetailsScreen', productData)}>
+                <View style={styles.cardProduct}>
+                    <View style={{ alignItems: 'center', marginTop:20 }}>
+                        <Image source={{ uri: productData.image }} style={{ height: 100, width: 120 }} />
+                    </View>
+                    <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                        <Text style={{ fontSize: 15, fontWeight:"bold"}}>{productData.name}</Text>
+                    </View>
+                    <View
+                        style={{
+                            marginTop:10,
+                            flex:1,
+                            marginHorizontal: 20,
+                            flexDirection: 'row',
+                            justifyContent: 'space-between',
+                            alignItems:"flex-end",
+                            marginBottom: 15
+                        }}>
+                        <Text style={{ fontSize: 20, fontWeight: 'bold', color:colors.primary_bold }}>
+                            $ {productData.price}
+                        </Text>
+                        <View style={styles.addToCartBtn}>
+                            <Icon name="add" size={20} color={colors.cardbackground} />
+                        </View>
+                    </View>
+                </View>
+            </TouchableHighlight>
+        )
+    }
+
+
+
+
 
 
     return (
@@ -193,25 +239,27 @@ export default function HomeScreen({ navigation }) {
                     }
                 </View>
 
-
-
-                <View style={{ width: SCREEN_WIDTH, paddingTop: 10 }}>
-                    {
-                        productData.map(item => (
-                            <View key={item.id} style={{ paddingBottom: 20 }}>
-                                <ProductCard
-                                    screenWidth={SCREEN_WIDTH * 0.95}
-                                    source={{ uri: item.image }}
-                                    productName={item.name}
-                                    price={item.price}
-                                />
-                            </View>
-                        ))
-                    }
+                <View style={{alignItems:"center", marginTop:20}}>
+                    <Text style={styles.headerText}>Best for you</Text>
                 </View>
 
+                <View style={styles.listProduct} >
+                    <View style={{ flex: 1 }}>
+                        <FlatList
+                            showsVerticalScrollIndicator={false}
+                            numColumns={2}
+                            data={productData}
+                            renderItem={({ item }) => <Card productData={item} />}
+                        />
+                    </View>
+                </View>
 
             </ScrollView>
+
+
+
+
+
 
 
             {delivery &&
@@ -238,6 +286,7 @@ export default function HomeScreen({ navigation }) {
         </View>
     )
 }
+
 
 
 
@@ -350,6 +399,33 @@ const styles = StyleSheet.create({
         width: 60, height: 60,
         borderRadius: 30,
         alignItems: 'center'
-    }
+    },
+
+    listProduct: {
+        flex: 1,
+        width: SCREEN_WIDTH,
+    },
+
+    cardProduct: {
+        height: 250,
+        width: cardWidth,
+        marginHorizontal: 10,
+        marginBottom: 20,
+        marginTop: 50,
+        borderRadius: 15,
+        elevation: 13,
+        backgroundColor: colors.cardbackground,
+    },
+
+    addToCartBtn: {
+        height: 30,
+        width: 30,
+        borderRadius: 20,
+        backgroundColor: colors.primary_bold,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
 })
+
+export default HomeScreen
