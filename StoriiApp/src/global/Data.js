@@ -212,10 +212,10 @@ export const productData = [
 
 
 export const cartData = [
-    { name: "Pizza Hải Sản Pesto Xanh", price: "10",image: 'https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png', detals:"Tôm, thanh cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh", id: "0" },
-    { name: "Salad Trái Cây Sốt Đào", price: "84",image: 'https://thepizzacompany.vn/images/thumbs/000/0003668_fruitsaladbaconpeachsauce_500.png', detals:"Các loại trái cây thanh mát: đào, thanh long, táo, dưa hấu, cà chua bi hoà quyện cùng xốt Đào chua ngọt đặc trưng dùng kèm thịt xông khói.", id: "1" },
-    { name: "Gà Giòn Xốt Hàn 5 miếng", price: "81",image: 'https://thepizzacompany.vn/images/thumbs/000/0003282_crispy-chicken-with-k-sauce5pcs_500.png', detals:"Ngon hơn khi dùng kèm xốt mù tạc mật ong và củ cải lên men", id: "2" },
-    { name: "Pepsi Black Lime Lon", price: "15",image: 'https://thepizzacompany.vn/images/thumbs/000/0002573_pepsi-lime-can_500.png', detals:"", id: "3" },
+    { name: "Pizza Hải Sản Pesto Xanh",quantity: 6, price: "10",image: 'https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png', detals:"Tôm, thanh cua, mực và bông cải xanh tươi ngon trên nền sốt Pesto Xanh", id: "0" },
+    { name: "Salad Trái Cây Sốt Đào",quantity: 6, price: "84",image: 'https://thepizzacompany.vn/images/thumbs/000/0003668_fruitsaladbaconpeachsauce_500.png', detals:"Các loại trái cây thanh mát: đào, thanh long, táo, dưa hấu, cà chua bi hoà quyện cùng xốt Đào chua ngọt đặc trưng dùng kèm thịt xông khói.", id: "1" },
+    { name: "Gà Giòn Xốt Hàn 5 miếng",quantity: 6, price: "81",image: 'https://thepizzacompany.vn/images/thumbs/000/0003282_crispy-chicken-with-k-sauce5pcs_500.png', detals:"Ngon hơn khi dùng kèm xốt mù tạc mật ong và củ cải lên men", id: "2" },
+    { name: "Pepsi Black Lime Lon",quantity: 6, price: "15",image: 'https://thepizzacompany.vn/images/thumbs/000/0002573_pepsi-lime-can_500.png', detals:"", id: "3" },
 ];
 
 
