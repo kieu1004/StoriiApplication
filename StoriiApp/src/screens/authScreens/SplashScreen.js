@@ -27,26 +27,25 @@ export default function SplashScreen({ navigation }) {
     }, [])
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
-            <View style={{ height: 400}}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: colors.banner_sale }}>
+            <View>
                 <Image
                     style={{
                         width: '100%',
                         resizeMode: 'contain',
-                        top: -150,
                     }}
                     source={require('../../assets/logo.png')}
                 />
             </View>
             <View style={styles.textContainer}>
                 <View>
-                    <Text style={{ fontSize: 32, fontWeight: 'bold', textAlign: 'center' }}>
+                    <Text style={{ fontSize: 25, fontWeight: 'bold', textAlign: 'center' }}>
                         Delicious Food
                     </Text>
                     <Text
                         style={{
-                            marginTop: 20,
-                            fontSize: 18,
+                            marginTop: 10,
+                            fontSize: 15,
                             textAlign: 'center',
                             color: colors.text_fuzz3,
                         }}>
@@ -59,24 +58,24 @@ export default function SplashScreen({ navigation }) {
                     <View style={styles.indicator} />
                 </View>
 
-                <View style={{ marginHorizontal: 20, marginTop: 30 }}>
-                    <PrimaryButton
-                        title="SIGN IN"
-                        onPress={() => {
-                            navigation.navigate("SignInScreen")
-                        }}
-                    />
+                <View style={{marginTop:30}}>
+                    <View style={{ marginHorizontal: 20, marginTop: 30 }}>
+                        <PrimaryButton
+                            title="SIGN IN"
+                            onPress={() => {
+                                navigation.navigate("SignInScreen")
+                            }}
+                        />
+                    </View>
+
+
+                    <View style={{ marginHorizontal: 20, marginTop: 10 }}>
+                        <SecondaryButton
+                            title="Create an account"
+                            onPress={() => { navigation.navigate("SignUpScreen") }}
+                        />
+                    </View>
                 </View>
-
-
-                <View style={{ marginHorizontal: 20, marginTop: 10 }}>
-                    <SecondaryButton
-                        title="Create an account"
-                        onPress={() => { navigation.navigate("SignUpScreen") }}
-                    />
-                </View>
-
-
             </View>
         </SafeAreaView>
     )
@@ -89,13 +88,14 @@ export default function SplashScreen({ navigation }) {
 const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
-        paddingHorizontal: 50,
+        paddingHorizontal: 20,
         justifyContent: 'space-between',
-        paddingBottom: 40,
+        paddingBottom: 20,
+        top: -30
     },
 
     indicatorContainer: {
-        height: 50,
+        marginTop: 20,
         flex: 1,
         justifyContent: 'center',
         flexDirection: 'row',
@@ -116,5 +116,5 @@ const styles = StyleSheet.create({
         borderRadius: 6,
         backgroundColor: colors.text_fuzz3,
         marginHorizontal: 5,
-    },
+    }
 })

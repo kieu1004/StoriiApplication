@@ -4,10 +4,11 @@ import { Formik } from 'formik'
 import { Icon, Button } from 'react-native-elements'
 import * as Animatable from 'react-native-animatable'
 import auth from '@react-native-firebase/auth'
-import {tSIndexSignature} from '@babel/types'
+import { tSIndexSignature } from '@babel/types'
 
 import { colors } from '../../global/styles'
 import Header from '../../components/Header'
+import { PrimaryButton, SecondaryButton } from '../../components/Button'
 
 
 
@@ -52,13 +53,13 @@ const SignUpScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
 
-            <Header title="MY ACCOUNT" type="arrow-left" navigation={navigation} />
+            <Header type="arrow-left" navigation={navigation} />
 
-            <ScrollView keyboardShouldPersistTaps="always">
+            <ScrollView keyboardShouldPersistTaps="always" style={styles.details}>
 
 
                 <View style={styles.view1}>
-                    <Text style={styles.text1}>Sign-Up</Text>
+                    <Text style={styles.text1}>SIGN UP</Text>
                 </View>
 
 
@@ -66,8 +67,7 @@ const SignUpScreen = ({ navigation }) => {
                     {(props) => (
                         <View style={styles.view2}>
 
-
-                            <View>
+                            <View style={{ alignItems: 'center', marginBottom: 10 }}>
                                 <Text style={styles.text2}>New on STORII ?</Text>
                             </View>
 
@@ -107,7 +107,7 @@ const SignUpScreen = ({ navigation }) => {
                                     <Icon
                                         name='email'
                                         style={styles.email}
-                                        color={colors.primary_normal}
+                                        color={colors.text_fuzz3}
                                         type="material"
                                     />
                                 </View>
@@ -124,7 +124,7 @@ const SignUpScreen = ({ navigation }) => {
 
                             <View style={styles.view14}>
                                 <Animatable.View animation={passwordFocussed ? "fadeInRight" : "fadeInLeft"} duration={400}>
-                                    <Icon name="lock" color={colors.primary_normal} type="material" />
+                                    <Icon name="lock" color={colors.text_fuzz3} type="material" />
                                 </Animatable.View>
                                 <TextInput
                                     placeholder="Password"
@@ -136,7 +136,7 @@ const SignUpScreen = ({ navigation }) => {
                                     onBlur={() => { setPasswordBlured(true) }}
                                 />
                                 <Animatable.View animation={passwordBlured ? "fadeInLeft" : "fadeInRight"} duration={400}>
-                                    <Icon name="visibility-off" color={colors.primary_normal} type="material" style={{ marginRight: 10 }} />
+                                    <Icon name="visibility-off" color={colors.text_fuzz3} type="material" style={{ marginRight: 10 }} />
                                 </Animatable.View>
                             </View>
 
@@ -151,10 +151,8 @@ const SignUpScreen = ({ navigation }) => {
                             </View>
 
                             <View style={styles.view17}>
-                                <Button
+                                <PrimaryButton
                                     title="Create my account"
-                                    buttonStyle={styles.button1}
-                                    titleStyle={styles.title1}
                                     onPress={props.handleSubmit}
                                 />
                             </View>
@@ -169,24 +167,17 @@ const SignUpScreen = ({ navigation }) => {
                 <View style={styles.view18}>
                     <Text style={styles.text5}>OR</Text>
                 </View>
-                <View style={styles.view19}>
-                    <View style={styles.view20}>
-                        <Text style={styles.text6}>Already have an account with XpressFood ?</Text>
-                    </View>
-                    <View style={styles.view21}>
-                        <Button
-                            title="Sign-In"
-                            buttonStyle={styles.button2}
-                            titleStyle={styles.title2}
-                            onPress={() => { navigation.navigate('SignInScreen') }}
-                        />
-                    </View>
+                <View style={styles.view21}>
+                    <SecondaryButton
+                        title="SIGN IN"
+                        onPress={() => { navigation.navigate('SignInScreen') }}
+                    />
                 </View>
 
 
             </ScrollView>
 
-            
+
         </View>
     )
 }
@@ -209,23 +200,29 @@ const styles = StyleSheet.create(
             backgroundColor: 'white'
         },
 
+        details: {
+            paddingHorizontal: 20,
+            paddingBottom: "100%",
+            backgroundColor: colors.banner_sale,
+            borderTopRightRadius: 40,
+            borderTopLeftRadius: 40,
+        },
+
         view1: {
-            justifyContent: 'center',
-            alignItems: 'flex-start',
-            marginTop: 10,
+            alignItems: "center",
+            marginTop: 20,
             marginBottom: 10,
             paddingHorizontal: 15
         },
 
         text1: {
-            fontSize: 22,
-            color: colors.buttons,
+            fontSize: 28,
+            color: colors.primary_normal,
             fontWeight: 'bold'
         },
 
         view2: {
             justifyContent: 'flex-start',
-            backgroundColor: 'white',
             paddingHorizontal: 15
         },
 
@@ -236,13 +233,13 @@ const styles = StyleSheet.create(
 
         text2: {
             fontSize: 15,
-            color: colors.primary_normal
+            color: colors.text_fuzz3
         },
 
         view4: {
             flexDirection: 'row',
             borderWidth: 1,
-            borderColor: colors.primary_light,
+            borderColor: colors.text_fuzz3,
             borderRadius: 12,
             paddingLeft: 5
 
@@ -260,7 +257,7 @@ const styles = StyleSheet.create(
         view6: {
             flexDirection: 'row',
             borderWidth: 1,
-            borderColor: colors.primary_light,
+            borderColor: colors.text_fuzz3,
             borderRadius: 12,
             paddingLeft: 5,
             marginTop: 20,
@@ -281,7 +278,7 @@ const styles = StyleSheet.create(
         view8: {
             flexDirection: 'row',
             borderWidth: 1,
-            borderColor: colors.primary_light,
+            borderColor: colors.text_fuzz3,
             borderRadius: 12,
             paddingLeft: 5,
             marginTop: 20,
@@ -302,7 +299,7 @@ const styles = StyleSheet.create(
         view10: {
             flexDirection: 'row',
             borderWidth: 1,
-            borderColor: colors.primary_light,
+            borderColor: colors.text_fuzz3,
             borderRadius: 12,
             paddingLeft: 5,
             marginTop: 20,
@@ -336,7 +333,7 @@ const styles = StyleSheet.create(
         view14: {
             borderWidth: 1,
             borderRadius: 12,
-            borderColor: colors.primary_light,
+            borderColor: colors.text_fuzz3,
             flexDirection: "row",
             justifyContent: "space-between",
             alignContent: "center",
@@ -352,7 +349,7 @@ const styles = StyleSheet.create(
         },
 
         text3: {
-            fontSize: 13
+            fontSize: 12
         },
 
         view16: { flexDirection: 'row' },
@@ -360,20 +357,8 @@ const styles = StyleSheet.create(
         text4: {
             textDecorationLine: 'underline',
             color: 'green',
-            fontSize: 13
-        },
-
-        button1: {
-            backgroundColor: colors.buttons,
-            alignContent: "center",
-            justifyContent: "center",
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: colors.buttons,
-            height: 50,
-            paddingHorizontal: 20,
-            width: '100%'
-
+            fontWeight: 'bold',
+            fontSize: 12
         },
 
         title1: {
@@ -388,14 +373,13 @@ const styles = StyleSheet.create(
 
         view17: {
             marginVertical: 10,
-            marginTop: 30
+            marginTop: 15
         },
 
         view18: {
             flex: 1,
             justifyContent: 'flex-start',
             alignItems: 'center',
-            paddingTop: 15
         },
 
         text5: {
@@ -404,38 +388,16 @@ const styles = StyleSheet.create(
         },
 
         view19: {
-            backgroundColor: 'white',
             paddingHorizontal: 15
 
         },
 
         view20: {
-            marginTop: 5
+            marginTop: 5,
+            alignItems: 'center'
         },
 
         view21: {
-            marginTop: 5,
-            alignItems: 'flex-end'
+            marginTop: 10
         },
-
-        button2: {
-            backgroundColor: colors.primary_normal,
-            alignContent: "center",
-            justifyContent: "center",
-            borderRadius: 12,
-            borderWidth: 1,
-            borderColor: colors.primary_light,
-            height: 40,
-            paddingHorizontal: 20
-        },
-
-        title2: {
-            color: colors.buttons,
-            fontSize: 16,
-            fontWeight: "bold",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: -3
-        }
-
     })

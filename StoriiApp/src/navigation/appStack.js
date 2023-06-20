@@ -1,57 +1,52 @@
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-
-import DrawerNavigator from './DrawerNavigator'
 import ProviderMapScreen from '../screens/ProviderMapScreen'
+import DrawerNavigator from './DrawerNavigator'
 import DetailsScreen from '../screens/DetailsScreen'
 import CartScreen from '../screens/CartScreen'
 
+const App = createStackNavigator();
 
+export function AppStack() {
 
-
-
-
-const AppStack = createStackNavigator();
-
-export default function AppStackNavigator() {
   return (
-    <AppStack.Navigator>
-      <AppStack.Screen
+    <App.Navigator>
+      <App.Screen
         name="App"
         component={DrawerNavigator}
         options={{
           headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.RevealFromBottomAndroid
         }}
       />
 
-      <AppStack.Screen
+      <App.Screen
         name="ProviderMapScreen"
         component={ProviderMapScreen}
         options={{
           headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.RevealFromBottomAndroid
         }}
       />
 
-      <AppStack.Screen
+      <App.Screen
         name="DetailsScreen"
         component={DetailsScreen}
         options={{
           headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.RevealFromBottomAndroid
         }}
       />
 
-      <AppStack.Screen
+      <App.Screen
         name="CartScreen"
         component={CartScreen}
         options={{
           headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid,
+          ...TransitionPresets.RevealFromBottomAndroid
         }}
       />
 
-    </AppStack.Navigator>
+    </App.Navigator>
   )
 }

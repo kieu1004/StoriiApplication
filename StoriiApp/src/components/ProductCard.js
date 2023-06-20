@@ -13,7 +13,7 @@ const ProductCard = ({ productName, price, image }) => {
             <View style={styles.view2}>
                 <View style={styles.view3}>
                     <Text style={styles.text1}>{productName}</Text>
-                    <Text style={styles.text1}>${price}</Text>
+                    <Text style={styles.text2}>${price}</Text>
                 </View>
                 <View style={styles.view4}>
                     <Image style={styles.image} source={{ uri: image }} />
@@ -57,7 +57,14 @@ const styles = StyleSheet.create({
 
     text1: {
         fontSize: 15,
-        color: colors.primary_bold,
+        color: colors.text_fuzz3,
+        fontWeight:"bold"
+    },
+
+    text2: {
+        fontSize: 15,
+        color: colors.text_fuzz6,
+        fontWeight:"400"
     },
 
     view4: {

@@ -41,6 +41,15 @@ export const filterData2 = [
     // { name: "Pepsi Balack Lon", image: 'https://thepizzacompany.vn/images/thumbs/000/0002420_pepsi-black-can_500.jpeg', id: "21" },
 ];
 
+export const filterData3 = [
+    { name: "Pizza", image: 'https://thepizzacompany.vn/images/thumbs/000/0002624_seafood-pesto_500.png', id: "0" },
+    { name: "Starter", image: 'https://thepizzacompany.vn/images/thumbs/000/0003280_crispy-chicken-with-k-sauce2pcs_500.png', id: "1" },
+    { name: "Noodle", image: 'https://thepizzacompany.vn/images/thumbs/000/0003669_pasta-seafood-w-pesto-sauce_500.png', id: "2" },
+    { name: "Salad", image: 'https://thepizzacompany.vn/images/thumbs/000/0002601_crispy-salmon-skin-salad_500.png', id: "3" },
+    { name: "Drink", image: 'https://thepizzacompany.vn/images/thumbs/000/0002702_mirinda-soda-kem-can_500.png', id: "4" },
+];
+
+
 export const providerData = [
     {
         providerName: "The Pizza Company",
@@ -78,7 +87,7 @@ export const providerData = [
     {
         providerName: "The Pizza Company",
         farAway: "20",
-        businessAddress: " District 5, Ho Chi Minh",
+        businessAddress: " District 7, Ho Chi Minh",
         images: "https://thepizzacompany.vn/images/thumbs/000/0003674_pizzavuonmyvi.jpeg",
         averageReview: 3.0,
         numberOfReview: 200,
@@ -111,7 +120,7 @@ export const providerData = [
     {
         providerName: "Domino Pizza",
         farAway: "21",
-        businessAddress: " VietVision, Ho Chi Minh",
+        businessAddress: " District 11, Ho Chi Minh",
         images: "https://cache.dominos.com/wam/prod/market/MY/_en/images/promo/dd113864-1b17-4630-bf69-064c0e4d5b3d.jpg",
         averageReview: 4.9,
         numberOfReview: 272,
@@ -122,20 +131,20 @@ export const providerData = [
         CategoryType: "Pizza",
         productData: [
             {
-                name: "Pizza Bangkok Cà Ri Xanh Gà - Bangkok Green Curry Chicken",
+                name: "Pizza Bangkok Cà Ri Xanh Gà",
                 price: 350.000,
-                image: "https://img.dominos.vn/Menu+BG+ful+ga.jpg"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002212_sf-cocktail_500.png"
 
             },
             {
-                name: "Pizza Hải Sản Nhiệt Đới Xốt Tiêu - Pizzamin Sea",
+                name: "Pizza Hải Sản Nhiệt Đới Xốt Tiêu",
                 price: 100.000,
-                image: "https://img.dominos.vn/Pizzaminsea-Hai-San-Nhiet-Doi-Xot-Tieu.jpg"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002223_ck-trio_500.png"
             },
             {
-                name: "Pizza Xúc Xích Ý Truyền Thống - Pepperoni Feast",
+                name: "Pizza Xúc Xích Ý Truyền Thống",
                 price: 100.000,
-                image: "https://img.dominos.vn/Pepperoni-feast-Pizza-Xuc-Xich-Y.jpg"
+                image: "https://thepizzacompany.vn/images/thumbs/000/0002228_ck-caldo_500.png"
             }
         ],
         id: 2
@@ -144,7 +153,7 @@ export const providerData = [
     {
         providerName: "The Pizza Company",
         farAway: "25",
-        businessAddress: " District 5, Ho Chi Minh",
+        businessAddress: " District Tan Binh, Ho Chi Minh",
         images: "https://thepizzacompany.vn/images/thumbs/000/0003448_Birthday_Party.jpeg",
         averageReview: 3.0,
         numberOfReview: 200,

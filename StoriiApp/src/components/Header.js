@@ -25,19 +25,17 @@ export default function Header({ title, type, navigation }) {
         <View style={styles.header}>
 
 
-            <View style={{ marginLeft: 20 }}>
+            <View style={{ marginLeft: 20, marginTop: 10 }}>
                 <Icon
                     type="material-community"
                     name={type}
-                    color={colors.headerText}
-                    size={28}
+                    color={colors.primary_bold}
+                    size={30}
                     onPress={() => {
                         navigation.goBack() //trở lại trang trước đó.
                     }}
                 />
             </View>
-
-
 
 
             <View>
@@ -55,13 +53,12 @@ export default function Header({ title, type, navigation }) {
 
 const styles = StyleSheet.create({
     header: {
+        marginTop: 10,
         flexDirection: "row",
-        backgroundColor: colors.primary_backgroud,
-        height: parameters.headerHeight
+        marginBottom: 30
     },
 
     headerText: {
-        color: colors.headerText,
         fontSize: 22,
         fontWeight: "bold",
         marginLeft: 30

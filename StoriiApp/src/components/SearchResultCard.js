@@ -64,7 +64,7 @@ const SearchResultCard = ({
                                     iconStyle={{ marginTop: 3, marginLeft: -3 }}
                                 />
 
-                                <Text style={styles.view5}>{farAway}Min</Text>
+                                <Text style={styles.view5}>{farAway} Min</Text>
                             </View>
                             <View style={{ flex: 9 }}>
                                 <Text style={styles.text6}>{businessAddress}</Text>
@@ -193,13 +193,13 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
         paddingTop: 5,
-        color: colors.primary_light
+        color: colors.text_fuzz3
     },
 
     text6: {
         fontSize: 12,
         paddingTop: 5,
-        color: colors.primary_normal,
+        color: colors.text_fuzz3,
         paddingHorizontal: 10,
 
     }

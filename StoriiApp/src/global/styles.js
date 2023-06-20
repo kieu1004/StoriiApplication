@@ -1,8 +1,8 @@
 export const colors = {
-    primary_backgroud: "#E8E1D9",
+    primary_backgroud: "#00000000",
     primary_light: "#3E7C17",
     primary_normal: "#F4A442",
-    primary_bold: "#125C13",
+    primary_bold: "rgb(40, 145, 71)",
     heart_like: "#CB4646",
     heart_unlike: "#00000000",
     banner_sale: "#609966",
@@ -52,8 +52,8 @@ export const parameters = {
 }
 
 export const title = {
-    color: colors.primary_bold,
-    fontSize: 20,
+    color: colors.text_white,
+    fontSize: 30,
     fontWeight: "bold"
 }
 

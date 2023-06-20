@@ -15,7 +15,7 @@ import { filterData } from '../global/Data'
 export default function SearchComponent() {
 
 
-    const navigation = useNavigation();
+    const navigation = useNavigation()
 
     const [data, setData] = useState([...filterData])
     const [modalVisible, setModalVisible] = useState(false)

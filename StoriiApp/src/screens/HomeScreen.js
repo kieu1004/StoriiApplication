@@ -14,7 +14,6 @@ import ProductCard from "../components/ProductCard"
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width
-// const { width } = Dimensions.get('screen')
 const cardWidth = SCREEN_WIDTH / 2 - 20;
 
 const HomeScreen = ({ navigation }) => {
@@ -73,7 +72,7 @@ const HomeScreen = ({ navigation }) => {
             <StatusBar
                 translucent
                 barStyle="light-content"
-                backgroundColor="rgb(234, 221, 202)"
+                backgroundColor="rgb(40, 145, 71)"
             />
 
 
@@ -84,7 +83,7 @@ const HomeScreen = ({ navigation }) => {
                 stickyHeaderIndices={[0]}
                 showsVerticalScrollIndicator={true}>
 
-                <View style={{ backgroundColor: colors.cardbackground, paddingBottom: 5 }}>
+                <View style={{ backgroundColor: colors.background, paddingBottom: 5 }}>
                     <View style={{ marginTop: 10, flexDirection: "row", justifyContent: "space-evenly" }}>
                         <TouchableOpacity
                             onPress={() => {
@@ -420,10 +419,10 @@ const styles = StyleSheet.create({
     },
 
     smallCard: {
-        borderRadius: 30,
+        borderRadius: 20,
         backgroundColor: colors.cardbackground,
-        borderColor: colors.primary_light,
-        borderWidth: 1,
+        // borderColor: colors.primary_light,
+        // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 5,
@@ -433,10 +432,10 @@ const styles = StyleSheet.create({
     },
 
     smallCardSelected: {
-        borderRadius: 30,
+        borderRadius:20,
         backgroundColor: colors.cardSelected,
-        borderColor: colors.primary_light,
-        borderWidth: 1,
+        // borderColor: colors.primary_light,
+        // borderWidth: 1,
         justifyContent: "center",
         alignItems: "center",
         padding: 5,

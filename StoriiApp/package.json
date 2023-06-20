@@ -19,6 +19,7 @@
     "@react-navigation/stack": "^6.3.16",
     "@rneui/themed": "github:react-native-elements/react-native-elements#themed",
     "formik": "^2.4.2",
+    "lodash.filter": "^4.6.0",
     "react": "18.2.0",
     "react-native": "0.71.10",
     "react-native-animatable": "^1.3.3",

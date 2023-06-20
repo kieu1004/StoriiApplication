@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, FlatList, ImageBackground, Dimensions, Touchabl
 import { colors } from "../global/styles"
 
 import SearchComponent from '../components/SearchComponent'
-import { filterData2 } from "../global/Data"
+import { filterData3 } from "../global/Data"
 
 
 
@@ -23,7 +23,7 @@ export default function SearchScreen({ navigation }) {
                 <View>
                     <FlatList
                         style={{}}
-                        data={filterData2}
+                        data={filterData3}
                         keyExtractor={item => item.id}
                         renderItem={({ item, index }) => (
                             <TouchableWithoutFeedback
@@ -71,7 +71,7 @@ const Footer = () => {
             <View style={{}}>
                 <FlatList
                     style={{ marginBottom: 10 }}
-                    data={filterData2}
+                    data={filterData3}
                     keyExtractor={item => item.id}
                     renderItem={({ item, index }) => (
                         <TouchableWithoutFeedback
