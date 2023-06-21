@@ -4,7 +4,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 import SplashScreen from '../screens/authScreens/SplashScreen'
 import SignInScreen from '../screens/authScreens/SignInScreen'
 import SignUpScreen from '../screens/authScreens/SignUpScreen'
-import AdminScreen from '../screens/AdminScreen'
+import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
 
 
 
@@ -44,8 +44,8 @@ export function AuthStack() {
             />
 
             <Auth.Screen
-                name="AdminScreen"
-                component={AdminScreen}
+                name="AdminDashboardScreen"
+                component={AdminDashboardScreen}
                 options={{
                     headerShown: false,
                     ...TransitionPresets.RevealFromBottomAndroid

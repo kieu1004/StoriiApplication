@@ -53,13 +53,13 @@ const SignUpScreen = ({ navigation }) => {
         // }
 
         try {
-            const { email, password } = values
+            const { fullName, phoneNumber, email, password } = values
             const user = {
-                fullName: '',
-                phoneNumber: '',
+                fullName: values.fullName,
+                phoneNumber: values.phoneNumber,
                 email,
                 password,
-                role: 1
+                role: "user"
             }
 
             const response = await UserController.registerUser(user)

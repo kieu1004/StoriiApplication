@@ -3,6 +3,7 @@ import auth from '@react-native-firebase/auth'
 import { View, Text, Linking, Pressable, Alert, Switch, StyleSheet, TouchableOpacity } from 'react-native'
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
 import { Avatar, Button, Icon } from 'react-native-elements'
+import { useNavigation } from '@react-navigation/native'
 import { colors } from '../global/styles'
 
 import { SignInContext } from '../contexts/authContext'
@@ -30,28 +31,26 @@ import { SignInContext } from '../contexts/authContext'
 export default function DrawerContent(props) {
 
     const { dispatchSignedIn } = useContext(SignInContext)
+    const navigation = useNavigation()
 
     async function signOut() {
-
         try {
             auth()
-                //Đăng xuất
                 .signOut()
-                //Xử lý kết quả trả về từ Firebase
-                .then(
-                    () => {
-                        console.log("USER SUCCESSFULLY SIGNED OUT")
-
-                        //Cập nhật trạng thái đăng nhập
-                        dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } })
-                    })
-
-        } catch (errot) {
-            Alert.alert(error.code)
+                .then(() => {
+                    console.log("Đăng xuất thành công");
+                    dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } });
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: 'SplashScreen' }],
+                    });
+                });
+        } catch (error) {
+            Alert.alert(error.code);
         }
     }
 
-    
+
 
 
     //Tạo giao diện điều hướng

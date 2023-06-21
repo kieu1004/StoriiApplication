@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, Image, Alert, ToastAndroid } from 'r
 import { Icon, Button, SocialIcon } from 'react-native-elements'
 import { Formik } from "formik"
 import *as Animatable from 'react-native-animatable'
+// import auth from '@react-native-firebase/auth'
 
 import { colors, parameters, title } from "../../global/styles"
 import Header from '../../components/Header'
@@ -28,56 +29,37 @@ export default function SignInScreen({ navigation }) {
 
     async function signIn(data) {
 
-        // try {
-        //     const { password, email } = data
-        //     const user = await auth().signInWithEmailAndPassword(email, password)
-        //     if (user) {
-        //         dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: "signed-in" } })
-        //     }
-        // }
-        // catch (error) {
-        //     Alert.alert(
-        //         error.name,
-        //         error.message
-        //     )
-        // }
-
-
         try {
-            const { password, email } = data
+            const { password, email } = data;
             const response = await UserController.loginUser(email, password);
             const { success, user } = response;
+
+            
             if (success) {
-                // Kiểm tra role và chuyển đến màn hình tương ứng
-                if (user.role === 1) {
-                    navigation.navigate("HomeScreen");
-                } else if (user.role === 0) {
-                    navigation.navigate("AdminScreen");
+                if (user && user.role === "user") {
+                    dispatchSignedIn({ type: 'UPDATE_SIGN_IN', payload: { userToken: 'signed-in', role: 'user' } });
+                    navigation.navigate('AppStack');
+                } else if (user &&  user.role === "admin") {
+                    dispatchSignedIn({ type: 'UPDATE_SIGN_IN', payload: { userToken: 'signed-in', role: 'admin' } });
+                    navigation.navigate('AdminStack');
                 }
-                dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: "signed-in" } })
-                ToastAndroid.show("Đăng nhập thành công!", ToastAndroid.SHORT);   
+                ToastAndroid.show('Đăng nhập thành công!', ToastAndroid.SHORT);
             } else {
-                Alert.alert(
-                    "Đăng nhập không thành công",
-                    response.message
-                )
+                Alert.alert('Đăng nhập không thành công', response.message);
             }
         } catch (error) {
-            if (error.code === "auth/wrong-password") {
+            if (error.code === 'auth/wrong-password') {
                 Alert.alert(
-                    "Đăng nhập không thành công",
-                    "Mật khẩu không chính xác. Vui lòng kiểm tra lại."
-                )
-            } else if (error.code === "auth/user-not-found") {
+                    'Đăng nhập không thành công',
+                    'Mật khẩu không chính xác. Vui lòng kiểm tra lại.'
+                );
+            } else if (error.code === 'auth/user-not-found') {
                 Alert.alert(
-                    "Đăng nhập không thành công",
-                    "Tài khoản không tồn tại. Vui lòng kiểm tra lại."
-                )
+                    'Đăng nhập không thành công',
+                    'Tài khoản không tồn tại. Vui lòng kiểm tra lại.'
+                );
             } else {
-                Alert.alert(
-                    "Đăng nhập không thành công",
-                    error.message
-                )
+                Alert.alert('Đăng nhập không thành công', error.message);
             }
         }
 
@@ -163,7 +145,7 @@ export default function SignInScreen({ navigation }) {
                             </View>
 
                             <View style={{ alignItems: "flex-end", marginTop: 10, marginRight: 20 }}>
-                                <Text style={{ ...colors.text_fuzz3, textDecorationLine: "underline" }}
+                                <Text style={{textDecorationLine: "underline" }}
                                     onPress={() => { navigation.navigate("SignUpScreen") }}>Forgot Password ?</Text>
                             </View>
 

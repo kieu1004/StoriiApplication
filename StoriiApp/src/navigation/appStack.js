@@ -4,7 +4,8 @@ import ProviderMapScreen from '../screens/ProviderMapScreen'
 import DrawerNavigator from './DrawerNavigator'
 import DetailsScreen from '../screens/DetailsScreen'
 import CartScreen from '../screens/CartScreen'
-import AdminScreen from '../screens/AdminScreen'
+import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
+import HomeScreen from '../screens/HomeScreen'
 
 const App = createStackNavigator();
 

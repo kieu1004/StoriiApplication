@@ -4,7 +4,7 @@ import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
 import Swiper from 'react-native-swiper'
 import { colors, fonts, parameters } from '../global/styles'
-import Countdown from 'react-native-countdown-component'
+// import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
 import { filterData, providerData, productData } from '../global/Data'
@@ -225,7 +225,7 @@ const HomeScreen = ({ navigation }) => {
 
 
                 <View style={{ marginTop: 5 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                    {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                         <Text style={{ marginLeft: 15, fontSize: 16, marginTop: -10, marginRight: 5 }}>Options changing in</Text>
                         <Countdown
                             until={3600}
@@ -235,7 +235,7 @@ const HomeScreen = ({ navigation }) => {
                             timeToShow={['M', 'S']}
                             timeLabels={{ m: 'Min', s: 'Sec' }}
                         />
-                    </View>
+                    </View> */}
 
                     <FlatList
                         style={{ marginTop: 10, marginBottom: 10 }}

@@ -9,19 +9,41 @@ import auth from '@react-native-firebase/auth'
 
 
 class UserController {
-    // Phương thức đăng nhập realtime database
     static loginUser = async (email, password) => {
         try {
-            const response = await auth().signInWithEmailAndPassword(email, password);
-            const uid = response.user.uid;
-            const snapshot = await database().ref('Users').child(uid).once('value');
+            // Đăng nhập qua Authentication
+            const authResponse = await auth().signInWithEmailAndPassword(email, password);
+            const uid = authResponse.user.uid;
+
+            // Lấy thông tin người dùng từ Realtime Database
+            const snapshot = await database().ref('Users').orderByChild('_email').equalTo(email).once('value');
             const userData = snapshot.val();
-            const user = new UserModel(userData.email, userData.password, userData.role, userData.fullName, userData.dateOfBirth, userData.address, userData.avatar, userData.phoneNumber, uid);
-            return { success: true, user };
+
+            if (userData) {
+                const userId = Object.keys(userData)[0]; // Lấy khóa người dùng đầu tiên trong danh sách kết quả truy vấn từ Realtime Database
+                const user = new UserModel(
+                    userData[userId]._email,
+                    userData[userId]._password,
+                    userData[userId]._role,
+                    userData[userId]._fullName,
+                    userData[userId]._dateOfBirth,
+                    userData[userId]._address,
+                    userData[userId]._avatar,
+                    userData[userId]._phoneNumber,
+                    userId
+                );
+
+                return { success: true, user };
+            } else {
+                return { success: false, message: 'Tài khoản không tồn tại' };
+            }
         } catch (error) {
             return { success: false, message: error.message };
         }
     };
+
+
+
 
     // Phương thức đăng ký realtime database
     static registerUser = async (user) => {
@@ -31,7 +53,17 @@ class UserController {
             const uid = response.user.uid;
             const userData = new UserModel(email, password, role, fullName, dateOfBirth, address, avatar, phoneNumber, uid);
             await database().ref('Users').child(uid).set(userData);
-            return { success: true, message: 'User registered successfully' };
+            return { success: true, message: 'Đăng ký thành công' };
+        } catch (error) {
+            return { success: false, message: error.message };
+        }
+    };
+
+    // Phương thức đăng xuất
+    static logoutUser = async () => {
+        try {
+            await auth().signOut();
+            return { success: true, message: 'Đăng xuất thành công' };
         } catch (error) {
             return { success: false, message: error.message };
         }
