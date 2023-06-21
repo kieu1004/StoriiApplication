@@ -9,12 +9,18 @@ import { tSIndexSignature } from '@babel/types'
 import { colors } from '../../global/styles'
 import Header from '../../components/Header'
 import { PrimaryButton, SecondaryButton } from '../../components/Button'
+import UserController from '../../backend/controllers/UserController'
 
 
 
 
 
-const initialValues = { phone_number: '', name: "", family_name: "", password: "", email: '', username: '' }
+const initialValues = {
+    fullName: '',
+    phoneNumber: '',
+    email: '',
+    password: '',
+};
 
 const SignUpScreen = ({ navigation }) => {
 
@@ -24,26 +30,62 @@ const SignUpScreen = ({ navigation }) => {
 
 
     async function signUp(values) {
-        const { email, password } = values
+
+        // const { email, password } = values
+
+        // try {
+        //     await auth().createUserWithEmailAndPassword(email, password)
+        //     console.log("USER ACCOUNT CREATED")
+        // } catch (error) {
+        //     if (error.code === 'auth/email-already-in-use') {
+        //         Alert.alert(
+        //             'That email address is already inuse'
+        //         )
+        //     }
+        //     if (error.code === 'auth/invalid-email') {
+        //         Alert.alert(
+        //             'That email address is invalid'
+        //         )
+        //     }
+        //     else {
+        //         Alert.alert(error.code)
+        //     }
+        // }
 
         try {
-            await auth().createUserWithEmailAndPassword(email, password)
-            console.log("USER ACCOUNT CREATED")
+            const { email, password } = values
+            const user = {
+                fullName: '',
+                phoneNumber: '',
+                email,
+                password,
+                role: 1
+            }
+
+            const response = await UserController.registerUser(user)
+
+            if (response.success) {
+                console.log('Tạo tài khoản thành công')
+            } else {
+                Alert.alert('Đã xảy ra lỗi')
+                Alert.alert(response.message)
+            }
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {
                 Alert.alert(
-                    'That email address is already inuse'
+                    'Email đã được sử dụng. Vui lòng,'
                 )
             }
             if (error.code === 'auth/invalid-email') {
                 Alert.alert(
-                    'That email address is invalid'
+                    'Email không hợp lệ'
                 )
             }
             else {
                 Alert.alert(error.code)
             }
         }
+
     }
 
 
@@ -73,32 +115,22 @@ const SignUpScreen = ({ navigation }) => {
 
                             <View style={styles.view6}>
                                 <TextInput
+                                    placeholder="Full Name"
+                                    style={styles.input1}
+                                    autoFocus={false}
+                                    onChangeText={props.handleChange('fullName')}
+                                    value={props.values.fullName}
+                                />
+                            </View>
+
+                            <View style={styles.view6}>
+                                <TextInput
                                     placeholder="Mobile Number"
                                     style={styles.input1}
                                     keyboardType="number-pad"
                                     autoFocus={true}
-                                    onChangeText={props.handleChange('phone_number')}
-                                    value={props.values.phone_number}
-                                />
-                            </View>
-
-                            <View style={styles.view6}>
-                                <TextInput
-                                    placeholder="Name"
-                                    style={styles.input1}
-                                    autoFocus={false}
-                                    onChangeText={props.handleChange('name')}
-                                    value={props.values.name}
-                                />
-                            </View>
-
-                            <View style={styles.view6}>
-                                <TextInput
-                                    placeholder="Family name"
-                                    style={styles.input1}
-                                    autoFocus={false}
-                                    onChangeText={props.handleChange('family_name')}
-                                    value={props.values.family_name}
+                                    onChangeText={props.handleChange('phoneNumber')}
+                                    value={props.values.phoneNumber}
                                 />
                             </View>
 

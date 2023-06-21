@@ -1,14 +1,15 @@
 import React, { useState, useRef, useContext } from "react";
-import { View, Text, StyleSheet, TextInput, Image } from 'react-native'
+import { View, Text, StyleSheet, TextInput, Image, Alert, ToastAndroid } from 'react-native'
 import { Icon, Button, SocialIcon } from 'react-native-elements'
 import { Formik } from "formik"
 import *as Animatable from 'react-native-animatable'
-import auth from '@react-native-firebase/auth'
 
 import { colors, parameters, title } from "../../global/styles"
 import Header from '../../components/Header'
 import { SignInContext } from '../../contexts/authContext'
-import { PrimaryButton, SecondaryButton } from "../../components/Button";
+import { PrimaryButton, SecondaryButton } from "../../components/Button"
+import UserController from "../../backend/controllers/UserController"
+
 
 
 
@@ -26,23 +27,61 @@ export default function SignInScreen({ navigation }) {
 
 
     async function signIn(data) {
+
+        // try {
+        //     const { password, email } = data
+        //     const user = await auth().signInWithEmailAndPassword(email, password)
+        //     if (user) {
+        //         dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: "signed-in" } })
+        //     }
+        // }
+        // catch (error) {
+        //     Alert.alert(
+        //         error.name,
+        //         error.message
+        //     )
+        // }
+
+
         try {
             const { password, email } = data
-            const user = await auth().signInWithEmailAndPassword(email, password)
-            if (user) {
+            const response = await UserController.loginUser(email, password);
+            const { success, user } = response;
+            if (success) {
+                // Kiểm tra role và chuyển đến màn hình tương ứng
+                if (user.role === 1) {
+                    navigation.navigate("HomeScreen");
+                } else if (user.role === 0) {
+                    navigation.navigate("AdminScreen");
+                }
                 dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: "signed-in" } })
+                ToastAndroid.show("Đăng nhập thành công!", ToastAndroid.SHORT);   
+            } else {
+                Alert.alert(
+                    "Đăng nhập không thành công",
+                    response.message
+                )
             }
-        }
-        catch (error) {
-            Alert.alert(
-                error.name,
-                error.message
-            )
+        } catch (error) {
+            if (error.code === "auth/wrong-password") {
+                Alert.alert(
+                    "Đăng nhập không thành công",
+                    "Mật khẩu không chính xác. Vui lòng kiểm tra lại."
+                )
+            } else if (error.code === "auth/user-not-found") {
+                Alert.alert(
+                    "Đăng nhập không thành công",
+                    "Tài khoản không tồn tại. Vui lòng kiểm tra lại."
+                )
+            } else {
+                Alert.alert(
+                    "Đăng nhập không thành công",
+                    error.message
+                )
+            }
         }
 
     }
-
-
 
 
 
@@ -52,7 +91,7 @@ export default function SignInScreen({ navigation }) {
             <Header type="arrow-left" navigation={navigation} />
 
             <View style={styles.details}>
-                <View style={{ alignItems: 'center'}}>
+                <View style={{ alignItems: 'center' }}>
                     <Image
                         style={{ width: "30%", resizeMode: 'contain' }}
                         source={require('../../assets/storii.png')}
