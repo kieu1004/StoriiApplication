@@ -1,9 +1,10 @@
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 
-import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen';
+import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
+import EditUserScreen from '../screens/adminScreen/EditInfoScreen'
 
-const App = createStackNavigator();
+const App = createStackNavigator()
 
 export function AdminStack() {
   return (
@@ -16,6 +17,16 @@ export function AdminStack() {
           ...TransitionPresets.RevealFromBottomAndroid,
         }}
       />
+
+      <App.Screen
+        name="EditUserScreen"
+        component={EditUserScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
     </App.Navigator>
   );
 }

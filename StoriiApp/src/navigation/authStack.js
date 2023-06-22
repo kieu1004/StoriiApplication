@@ -42,16 +42,6 @@ export function AuthStack() {
                     ...TransitionPresets.RevealFromBottomAndroid
                 }}
             />
-
-            <Auth.Screen
-                name="AdminDashboardScreen"
-                component={AdminDashboardScreen}
-                options={{
-                    headerShown: false,
-                    ...TransitionPresets.RevealFromBottomAndroid
-                }}
-            />
-
         </Auth.Navigator>
     )
 }

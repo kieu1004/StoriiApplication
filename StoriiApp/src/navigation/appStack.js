@@ -7,7 +7,7 @@ import CartScreen from '../screens/CartScreen'
 import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
 import HomeScreen from '../screens/HomeScreen'
 
-const App = createStackNavigator();
+const App = createStackNavigator()
 
 export function AppStack() {
 

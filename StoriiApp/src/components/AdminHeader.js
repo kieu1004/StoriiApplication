@@ -24,7 +24,7 @@ export default function AdminHeader({navigation}){
 
 
             <View style={{alignItems:"center", marginLeft: 50}}>
-                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>Admin Dashboard</Text>
+                <Text style={{color:colors.text_white, fontSize:25, fontWeight:'bold'}}></Text>
             </View>
 
         </View>
