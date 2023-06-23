@@ -10,6 +10,7 @@ import com.facebook.react.defaults.DefaultReactNativeHost;
 import com.facebook.soloader.SoLoader;
 import java.util.List;
 import com.imagepicker.ImagePickerPackage;
+// import com.reactnativeimagecroppicker.RNImageCropPickerPackage;
 
 
 public class MainApplication extends Application implements ReactApplication {
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
 
           // Add this line
           // packages.add(new ImagePickerPackage());
+          // packages.add(new RNImageCropPickerPackage());
           return packages;
         }
 
