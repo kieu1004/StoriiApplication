@@ -128,6 +128,37 @@ class UserController {
         const userRef = database().ref(`/Users/${userId}`);
         return userRef.remove();
     }
+
+    //Phương thức lấy ra người dùng đang đăng nhập
+    static getCurrentUser = async () => {
+        const currentUser = auth().currentUser;
+
+        if (!currentUser) {
+            return null;
+        }
+
+        const snapshot = await database().ref('Users').orderByChild('_email').equalTo(currentUser.email).once('value');
+        const userData = snapshot.val();
+
+        if (userData) {
+            const userId = Object.keys(userData)[0];
+            const user = new UserModel(
+                userData[userId]._email,
+                userData[userId]._password,
+                userData[userId]._role,
+                userData[userId]._fullName,
+                userData[userId]._dateOfBirth,
+                userData[userId]._address,
+                userData[userId]._avatar,
+                userData[userId]._phoneNumber,
+                userId
+            );
+
+            return user;
+        }
+
+        return null;
+    };
 }
 
 export default UserController;
