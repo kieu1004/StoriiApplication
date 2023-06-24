@@ -11,7 +11,8 @@ import {
     StyleSheet,
 } from 'react-native';
 import ModalDropdown from 'react-native-modal-dropdown';
-import ImagePicker from 'react-native-image-picker';
+import ImagePicker from 'react-native-image-crop-picker';
+
 
 import FoodController from '../../backend/controllers/FoodController';
 import CategoryController from '../../backend/controllers/CategoryController';
@@ -31,7 +32,6 @@ const ManageProduct = () => {
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
 
-
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -47,25 +47,38 @@ const ManageProduct = () => {
         }
     };
 
-    const fetchCategories = async () => {
-        try {
-            const categoryList = await CategoryController.getCategoryList();
-            setCategories(categoryList);
-        } catch (error) {
-            console.error('Error fetching categories:', error);
-        }
-    };
-
-    const handleSelectImage = () => {
-        ImagePicker.showImagePicker({}, (response) => {
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else {
-                setFoodImage(response.uri);
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const categoryList = await CategoryController.getCategoryList();
+                setCategories(categoryList);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
             }
-        });
+        };
+
+        fetchCategories();
+    }, []);
+
+    const handleSelectImage = async () => {
+        try {
+            const image = await ImagePicker.openPicker({
+                width: 300,
+                height: 300,
+                cropping: true,
+                includeBase64: true,
+                // Add the following line to enable image selection from Google Drive
+                multiple: false,
+                // Add the following line to specify the source type (gallery or Google Drive)
+                mediaType: 'photo',
+                // Add the following line to enable image selection from Google Drive
+                useFrontCamera: false,
+            });
+
+            setFoodImage(`data:${image.mime};base64,${image.data}`);
+        } catch (error) {
+            console.log('ImagePicker Error:', error);
+        }
     };
 
     const handleAddProduct = async () => {
@@ -236,7 +249,6 @@ const ManageProduct = () => {
                             dropdownStyle={styles.dropdownContainer}
                             dropdownTextStyle={styles.dropdownItemText}
                         />
-
                         <TouchableOpacity style={styles.confirmButton} onPress={handleSubmit}>
                             <Text style={styles.buttonText}>Xác nhận</Text>
                         </TouchableOpacity>

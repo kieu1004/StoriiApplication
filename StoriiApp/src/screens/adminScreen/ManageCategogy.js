@@ -10,7 +10,9 @@ import {
     Modal,
     StyleSheet,
 } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+
+import ImagePicker from 'react-native-image-crop-picker';
+
 
 import CategoryController from '../../backend/controllers/CategoryController';
 import CategoryModel from '../../backend/models/CategoryModel';
@@ -31,7 +33,7 @@ const ManageCategory = () => {
     const fetchCategorys = async () => {
         try {
             const categories = await CategoryController.getCategoryList();
-            setFoods(categories);
+            setCategories(categories);
         } catch (error) {
             console.error('Error fetching categories:', error);
         }
@@ -44,6 +46,12 @@ const ManageCategory = () => {
                 height: 300,
                 cropping: true,
                 includeBase64: true,
+                // Add the following line to enable image selection from Google Drive
+                multiple: false,
+                // Add the following line to specify the source type (gallery or Google Drive)
+                mediaType: 'photo',
+                // Add the following line to enable image selection from Google Drive
+                useFrontCamera: false,
             });
 
             setCategoryImage(`data:${image.mime};base64,${image.data}`);
@@ -86,7 +94,7 @@ const ManageCategory = () => {
 
     const handleDeleteCategory = async (categoryId) => {
         try {
-            await CategoryController.deleteCategory(category);
+            await CategoryController.deleteCategory(categoryId);
             fetchCategorys();
         } catch (error) {
             console.error('Error deleting category:', error);
