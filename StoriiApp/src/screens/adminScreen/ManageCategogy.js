@@ -87,9 +87,8 @@ const ManageCategory = () => {
 
     const handleEditCategory = (category) => {
         setModalVisible(true);
-        setSelectedCategory(category);
         setCategoryName(category.name);
-        setCategoryImage(food.img);
+        setCategoryImage(category.img);
     };
 
     const handleDeleteCategory = async (categoryId) => {
@@ -233,6 +232,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 5,
     },
+    editButton: {
+        backgroundColor: 'blue',
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 3,
+        marginLeft: 10,
+    },
     editButtonText: {
         color: 'white',
         fontSize: 14,
@@ -305,4 +311,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ManageCategory;
+export default ManageCategory
