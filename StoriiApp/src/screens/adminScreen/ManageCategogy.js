@@ -74,8 +74,8 @@ const ManageCategory = () => {
         );
 
         try {
-            const foodId = await FoodController.addFood(newFood);
-            Alert.alert('Thành công', 'Thêm danh ngày sản phẩm thành công');
+            const categoryId = await CategoryController.addCategory(newCategory);
+            Alert.alert('Thành công', 'Thêm danh danh sách sản phẩm thành công');
             setCategoryName('');
             setCategoryImage(null);
             setModalVisible(false);
@@ -89,7 +89,7 @@ const ManageCategory = () => {
         setModalVisible(true);
         setSelectedCategory(category);
         setCategoryName(category.name);
-        setCategoryImage(food.img);
+        setCategoryImage(category.img);
     };
 
     const handleDeleteCategory = async (categoryId) => {
@@ -232,6 +232,18 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 5,
+    },
+    editButtonText: {
+        color: 'white',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
+    editButton: {
+        backgroundColor: 'blue',
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 3,
+        marginLeft: 10,
     },
     editButtonText: {
         color: 'white',
