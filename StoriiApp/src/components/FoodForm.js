@@ -37,8 +37,8 @@ const CategoryDropdown = ({ title, options, defaultValue, onSelect }) => (
 );
 
 const FoodForm = (props) => {
-  const [subIngredients, setSubIngredients] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [subIngredients, setSubIngredients] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
   useEffect(() => {
@@ -82,7 +82,7 @@ const FoodForm = (props) => {
         />
         <CategoryDropdown
           title="Category"
-          options={categories}
+          options={categories.map(category => category.name)}
           defaultValue="Select Category"
           onSelect={handleCategorySelect}
         />
