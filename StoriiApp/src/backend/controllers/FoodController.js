@@ -1,4 +1,5 @@
-import firebase from '@react-native-firebase/database'
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/storage';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import FoodModel from '../models/FoodModel';

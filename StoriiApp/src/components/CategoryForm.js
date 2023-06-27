@@ -56,7 +56,7 @@ const CategoryForm = (props) => {
           />
         </View>
 
-        {/* <GridList items={subIngredients} /> */}
+        <GridList items={subIngredients} />
 
       </ScrollView>
 

@@ -3,7 +3,7 @@ export const filterData = [
     { name: "Starter", image: require('../assets/starter_cate.png'), id: "1" },
     { name: "Noodle", image: require('../assets/noodle_cate.png'), id: "2" },
     { name: "Salad", image: require('../assets/salad_cate.png'), id: "3" },
-    { name: "Drink", image: require('../assets/drink_cate.png'), id: "4" },
+    { name: "Drink", image: require('../assets/drink_cate.png'), id: "4" }
 ];
 
 export const filterData2 = [

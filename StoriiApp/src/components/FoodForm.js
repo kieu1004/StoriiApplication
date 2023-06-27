@@ -63,13 +63,17 @@ const FoodForm = (props) => {
     props.setFieldValue('category', categories[index]);
   }
 
+  const handleAddSubIngredient = () => {
+    if (props.values.subIngredient) {
+      setSubIngredients([...subIngredients, props.values.subIngredient]);
+      props.setFieldValue('subIngredient', '');
+    }
+  }
+
   return (
     <View style={styles.container}>
-
       <ScrollView keyboardShouldPersistTaps="always" style={styles.details}>
-
         <CurryImagePicker image={props.values.imageUri} onImagePicked={setFoodImage} />
-
         <FormInput
           title="Name"
           value={props.values.name}
@@ -114,21 +118,13 @@ const FoodForm = (props) => {
           />
           <Button
             title='Add'
-            onPress={() => {
-              setSubIngredients([...subIngredients, props.values.subIngredient]);
-              props.setFieldValue('subIngredient', '');
-            }}
+            onPress={handleAddSubIngredient}
           />
         </View>
-
-        {/* <GridList items={subIngredients} /> */}
-
       </ScrollView>
-
       <View style={styles.btnSubmit}>
         <PrimaryButton title='Submit' onPress={() => props.handleSubmit()} />
       </View>
-
     </View>
   );
 }
@@ -231,7 +227,7 @@ export default withFormik({
     description: yup.string().max(100).required('Description is required'),
   }),
   handleSubmit: (values, { props }) => {
-    values.subIngredients = props.food ? props.food.subIngredients || [] : [];
+    values.subIngredients = subIngredients;
 
     if (props.food && props.food.id) {
       values.id = props.food.id;

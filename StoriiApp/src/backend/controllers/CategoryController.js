@@ -1,16 +1,17 @@
-import firebase from '@react-native-firebase/database'
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/storage';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import CategoryModel from '../models/CategoryModel';
 
 class CategoryController {
 
-  static async getCategoryList(categoriesRetrieved) {
+  static async getCategoryList() {
     try {
       const categoryList = [];
 
       const snapshot = await firebase.database()
-        .ref('Categorys')
+        .ref('Categories')
         .orderByChild('createdAt')
         .once('value');
 
@@ -25,12 +26,13 @@ class CategoryController {
         categoryList.push(category);
       });
 
-      categoriesRetrieved(categoryList);
+      return categoryList;
     } catch (error) {
       console.error('Error getting category list:', error);
       throw error;
     }
   }
+
 
   static async addCategory(category, addComplete) {
     try {
@@ -50,7 +52,7 @@ class CategoryController {
 
   static async updateCategory(category, updateComplete) {
     try {
-        category.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+      category.updatedAt = firebase.database.ServerValue.TIMESTAMP;
       await firebase.database()
         .ref(`Categories/${category.id}`)
         .set(category);
