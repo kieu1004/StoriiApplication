@@ -5,7 +5,7 @@ import { Icon } from 'react-native-elements'
 
 import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
 import ManageCategory from '../screens/adminScreen/ManageCategogy'
-import ManageProduct from '../screens/adminScreen/ManageProduct'
+import FoodList from '../screens/adminScreen/FoodListScreen'
 
 
 
@@ -59,8 +59,8 @@ export default function RootAdminTabs() {
       />
 
       <AdminTabs.Screen
-        name="ManageProduct"
-        component={ManageProduct}
+        name="FoodList"
+        component={FoodList}
         options={
           {
             tabBarLabel: "Product",
