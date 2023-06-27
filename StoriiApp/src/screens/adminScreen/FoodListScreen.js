@@ -81,7 +81,7 @@ class FoodList extends Component {
               <ListItem
                 containerStyle={styles.listItem}
                 title={item.name}
-                subtitle={`Category: ${item.category}`}
+                subtitle={`Category: ${item.category}\nQuantity: ${item.quantity}\nPrice: ${item.price}`}
                 titleStyle={styles.titleStyle}
                 subtitleStyle={styles.subtitleStyle}
                 leftAvatar={{

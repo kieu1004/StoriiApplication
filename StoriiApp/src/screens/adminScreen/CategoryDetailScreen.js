@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
-import FoodController from '../../backend/controllers/FoodController';
+import CategoryController from '../../backend/controllers/CategoryController';
 
-class FoodDetailScreen extends Component {
+class CategoryDetailScreen extends Component {
 
   static navigationOptions = () => {
     return {
-      title: 'Food Details'
+      title: 'Category Details'
     }
   };
 
-  deleteFood = (food) => {
-    FoodController.deleteFood(food, () => {
-      const onFoodDeleted = this.props.navigation.getParam('foodDeletedCallback');
-      onFoodDeleted();
+  deleteCategory = (category) => {
+    CategoryController.deleteCategory(category, () => {
+      const onCategoryDeleted = this.props.navigation.getParam('categoryDeletedCallback');
+      onCategoryDeleted();
       this.props.navigation.goBack();
     });
   }
 
   render() {
-    const food = this.props.navigation.getParam('food');
-    const onFoodDeleted = this.props.navigation.getParam('foodDeletedCallback');
+    const category = this.props.navigation.getParam('category');
+    const onCategoryDeleted = this.props.navigation.getParam('categoryDeletedCallback');
 
     return (
       <View style={styles.container}>
@@ -31,8 +31,8 @@ class FoodDetailScreen extends Component {
             name='ios-create'
             type='ionicon'
             onPress={() =>
-              this.props.navigation.navigate('FoodForm', {
-                food: food
+              this.props.navigation.navigate('CategoryForm', {
+                category: category
               })
             }
           />
@@ -47,26 +47,21 @@ class FoodDetailScreen extends Component {
                 'Cannot be undone',
                 [
                   { text: 'Cancel' },
-                  { text: 'OK', onPress: () => { this.deleteFood(food) } }
+                  { text: 'OK', onPress: () => { this.deleteCategory(category) } }
                 ],
                 { cancelable: false },
               )
             }
           />
         </View>
-        <Image style={styles.image} source={food.image && { uri: food.image }} />
-        <Text style={styles.headerText}>{food.name}</Text>
-        <Text style={styles.categoryText}>Category: {food.category}</Text>
-        <Text style={styles.quantityText}>Quantity: {food.quantity}</Text>
-        <Text style={styles.priceText}>Price: {food.price}</Text>
-        <Text style={styles.providerText}>Provider: {food.provider}</Text>
-        <Text style={styles.descriptionText}>{food.description}</Text>
 
+        <Image style={styles.image} source={category.image && { uri: category.image }} />
+        <Text style={styles.headerText}>{category.name}</Text>
         <Text style={styles.ingredientText}>Ingredients</Text>
         {
-          food.subIngredients === undefined || food.subIngredients.length == 0 ?
+          category.subIngredients === undefined || category.subIngredients.length == 0 ?
             <Text>None</Text> : <FlatList
-              data={food.subIngredients}
+              data={category.subIngredients}
               contentContainerStyle={styles.listContainer}
               ItemSeparatorComponent={() =>
                 <Divider style={{ backgroundColor: 'black' }} />}
@@ -142,4 +137,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FoodDetailScreen;
+export default CategoryDetailScreen;

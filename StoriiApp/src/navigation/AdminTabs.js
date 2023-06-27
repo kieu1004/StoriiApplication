@@ -4,7 +4,7 @@ import { colors } from '../global/styles'
 import { Icon } from 'react-native-elements'
 
 import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
-import ManageCategory from '../screens/adminScreen/ManageCategogy'
+import CategoryList from '../screens/adminScreen/CategoryListScreen'
 import FoodList from '../screens/adminScreen/FoodListScreen'
 
 
@@ -41,8 +41,8 @@ export default function RootAdminTabs() {
       />
 
       <AdminTabs.Screen
-        name="ManageCategory"
-        component={ManageCategory}
+        name="CategoryList"
+        component={CategoryList}
         options={
           {
             tabBarLabel: "Category",
