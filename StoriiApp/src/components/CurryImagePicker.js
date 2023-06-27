@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Button, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'react-native-image-picker';
+import { colors } from '../global/styles';
 
 const CurryImagePicker = ({ image, onImagePicked }) => {
   const [selectedImage, setSelectedImage] = useState();
@@ -32,7 +33,7 @@ const CurryImagePicker = ({ image, onImagePicked }) => {
         <Image source={selectedImage} style={styles.previewImage} />
       </View>
       <View style={styles.button}>
-        <Button title="Pick Image" onPress={pickImageHandler} />
+        <Button style={styles.button} title="Pick Image" onPress={pickImageHandler} />
       </View>
     </View>
   );
@@ -47,11 +48,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'black',
     backgroundColor: '#eee',
-    width: '80%',
-    height: 150,
+    width: '50%',
+    height: 120,
   },
   button: {
     margin: 8,
+    backgroundColor: colors.primary_normal
   },
   previewImage: {
     width: '100%',
