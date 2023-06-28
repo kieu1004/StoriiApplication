@@ -58,7 +58,7 @@ class CategoryDetail extends Component {
           />
         </View>
 
-        <Image style={styles.image} source={category.image && { uri: category.image }} />
+        <Image style={styles.image} source={category._img && { uri: category._img }} />
         <Text style={styles.headerText}>{category.name}</Text>
         <Text style={styles.ingredientText}>Ingredients</Text>
         {
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
   image: {
     width: '100%',
     aspectRatio: 2,
-    marginBottom: 16
+    marginBottom: 16,
+    resizeMode: 'contain'
   },
   row: {
     flexDirection: 'row',
