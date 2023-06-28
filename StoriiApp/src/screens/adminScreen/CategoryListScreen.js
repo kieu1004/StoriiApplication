@@ -3,6 +3,7 @@ import { StyleSheet, Button, FlatList, SafeAreaView, Text, View, Image } from 'r
 import CategoryController from '../../backend/controllers/CategoryController';
 import { ListItem, Divider } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
+import { colors } from '../../global/styles';
 
 const CategoryList = ({ navigation }) => {
     const [categoryList, setCategoryList] = useState([]);
@@ -62,7 +63,7 @@ const CategoryList = ({ navigation }) => {
     );
 
     const renderActionButton = () => (
-        <ActionButton buttonColor='blue' onPress={navigateToCategoryForm} />
+        <ActionButton buttonColor={colors.primary_normal} onPress={navigateToCategoryForm} />
     );
 
     const renderItem = ({ item }) => {

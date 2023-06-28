@@ -3,6 +3,7 @@ import { StyleSheet, Button, FlatList, SafeAreaView, Text, View, Image } from 'r
 import FoodController from '../../backend/controllers/FoodController';
 import { ListItem, Divider } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
+import { colors } from '../../global/styles';
 
 const FoodList = ({ navigation }) => {
 
@@ -63,7 +64,7 @@ const FoodList = ({ navigation }) => {
   );
 
   const renderActionButton = () => (
-    <ActionButton buttonColor='blue' onPress={navigateToFoodForm} />
+    <ActionButton buttonColor={colors.primary_normal} onPress={navigateToFoodForm} />
   );
 
   const renderItem = ({ item }) => {
