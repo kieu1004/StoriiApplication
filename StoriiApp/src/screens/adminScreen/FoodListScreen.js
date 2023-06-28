@@ -47,13 +47,13 @@ const FoodList = ({ navigation }) => {
   }
 
   const navigateToFoodForm = () => {
-    this.props.navigation.navigate('FoodForm', { foodAddedCallback: onFoodAdded });
-  }
+    navigation.navigate('FoodForm', { foodAddedCallback: onFoodAdded });
+  };
 
   const navigateToFoodDetail = (item, index) => {
     setSelectedIndex(index);
     navigation.navigate('FoodDetail', { food: item, foodDeletedCallback: onFoodDeleted });
-  }
+  };
 
   const renderEmptyState = () => (
     <View style={styles.textContainer}>
@@ -119,10 +119,10 @@ const styles = StyleSheet.create({
   subtitleStyle: {
     fontSize: 18
   },
-  foodImage:{
+  foodImage: {
     width: 50,
     height: 50
-},
+  },
   emptyTitle: {
     fontSize: 32,
     marginBottom: 16
