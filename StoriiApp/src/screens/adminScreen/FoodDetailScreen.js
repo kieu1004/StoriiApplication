@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, Alert, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 import FoodController from '../../backend/controllers/FoodController';
 
-class FoodDetailScreen extends Component {
+class FoodDetail extends Component {
 
   static navigationOptions = () => {
     return {
@@ -20,8 +20,10 @@ class FoodDetailScreen extends Component {
   }
 
   render() {
-    const food = this.props.navigation.getParam('food');
-    const onFoodDeleted = this.props.navigation.getParam('foodDeletedCallback');
+    // const food = this.props.navigation.getParam('food');
+    // const onFoodDeleted = this.props.navigation.getParam('foodDeletedCallback');
+
+    const { food, foodDeletedCallback } = this.props.route.params;
 
     return (
       <View style={styles.container}>
@@ -140,4 +142,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default FoodDetailScreen;
+export default FoodDetail;

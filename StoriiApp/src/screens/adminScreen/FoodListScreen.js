@@ -52,7 +52,7 @@ const FoodList = ({ navigation }) => {
 
   const navigateToFoodDetail = (item, index) => {
     setSelectedIndex(index);
-    navigation.navigate('FoodDetail', { food: item, categoryDeletedCallback: onCategoryDeleted });
+    navigation.navigate('FoodDetail', { food: item, foodDeletedCallback: onFoodDeleted });
   }
 
   const renderEmptyState = () => (

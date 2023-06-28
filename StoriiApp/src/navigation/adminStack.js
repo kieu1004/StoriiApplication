@@ -7,6 +7,7 @@ import CategoryDetail from '../screens/adminScreen/CategoryDetailScreen'
 import CategoryForm from '../components/CategoryForm'
 import RootAdminTabs from './AdminTabs'
 import DrawerAdminNavigator from './DrawerAdminNavigation'
+import FoodDetail from '../screens/adminScreen/FoodDetailScreen'
 
 
 
@@ -58,6 +59,15 @@ export function AdminStack() {
       <App.Screen
         name="CategoryDetail"
         component={CategoryDetail}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="FoodDetail"
+        component={FoodDetail}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid
