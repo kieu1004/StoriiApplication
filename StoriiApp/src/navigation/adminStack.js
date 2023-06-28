@@ -3,6 +3,7 @@ import { createStackNavigator, TransitionPresets } from '@react-navigation/stack
 
 import EditUserScreen from '../screens/adminScreen/EditInfoScreen'
 import FoodForm from '../components/FoodForm'
+import CategoryDetail from '../screens/adminScreen/CategoryDetailScreen'
 import CategoryForm from '../components/CategoryForm'
 import RootAdminTabs from './AdminTabs'
 import DrawerAdminNavigator from './DrawerAdminNavigation'
@@ -48,6 +49,15 @@ export function AdminStack() {
       <App.Screen
         name="CategoryForm"
         component={CategoryForm}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="CategoryDetail"
+        component={CategoryDetail}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid

@@ -1,111 +1,110 @@
-import React, { Component } from 'react';
-import { StyleSheet, Button, FlatList, SafeAreaView, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Button, FlatList, SafeAreaView, Text, View, Image } from 'react-native';
 import CategoryController from '../../backend/controllers/CategoryController';
 import { ListItem, Divider } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
 
-class CategoryList extends Component {
-    state = {
-        categoryList: [],
-        selectedIndex: 0
-    }
+const CategoryList = ({ navigation }) => {
+    const [categoryList, setCategoryList] = useState([]);
+    const [selectedIndex, setSelectedIndex] = useState(0);
 
-    componentDidMount() {
-        this.loadCategoryList();
-    }
+    const loadCategoryList = async () => {
+        try {
+            const categories = await CategoryController.getCategoryList();
+            setCategoryList(categories);
+            return categories;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 
-    loadCategoryList = () => {
-        CategoryController.getCategoryList(this.onCategoriesReceived);
-    }
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const result = await loadCategoryList();
+                console.log(result); // Log the categories data
+            } catch (error) {
+                console.log(error); // Log any errors that occurred
+            }
+        };
 
-    onCategoryAdded = (category) => {
-        this.setState(prevState => ({
-            categoryList: [...prevState.categoryList, category]
-        }));
-        this.props.navigation.popToTop();
-    }
+        loadData();
+    }, []);
 
-    onCategoryDeleted = () => {
-        const { selectedIndex, categoryList } = this.state;
+    const onCategoryAdded = (category) => {
+        setCategoryList((prevCategoryList) => [...prevCategoryList, category]);
+        navigation.popToTop();
+    };
+
+    const onCategoryDeleted = () => {
         const newCategoryList = [...categoryList];
         newCategoryList.splice(selectedIndex, 1);
+        setCategoryList(newCategoryList);
+        navigation.popToTop();
+    };
 
-        this.setState({
-            categoryList: newCategoryList
-        });
+    const navigateToCategoryForm = () => {
+        navigation.navigate('CategoryForm', { categoryAddedCallback: onCategoryAdded });
+    };
 
-        this.props.navigation.popToTop();
-    }
+    const navigateToCategoryDetail = (item, index) => {
+        setSelectedIndex(index);
+        navigation.navigate('CategoryDetail', { category: item, categoryDeletedCallback: onCategoryDeleted });
+    };
 
-    onCategoriesReceived = (categoryList) => {
-        this.setState({
-            categoryList: categoryList
-        });
-    }
-
-    navigateToCategoryForm = () => {
-        this.props.navigation.navigate('CategoryForm', { categoryAddedCallback: this.onCategoryAdded });
-    }
-
-    navigateToCategoryDetail = (item, index) => {
-        this.setState({ selectedIndex: index });
-        this.props.navigation.navigate('CategoryDetail', { category: item, categoryDeletedCallback: this.onCategoryDeleted });
-    }
-
-    renderEmptyState = () => (
+    const renderEmptyState = () => (
         <View style={styles.textContainer}>
-            <Text style={styles.emptyTitle}>No Categorys found</Text>
+            <Text style={styles.emptyTitle}>No Categories found</Text>
             <Text style={styles.emptySubtitle}>Add a new category using the + button below</Text>
-            {this.renderActionButton()}
+            {renderActionButton()}
         </View>
     );
 
-    renderActionButton = () => (
-        <ActionButton
-            buttonColor='blue'
-            onPress={this.navigateToCategoryForm}
-        />
+    const renderActionButton = () => (
+        <ActionButton buttonColor='blue' onPress={navigateToCategoryForm} />
     );
 
-    render() {
-        const { categoryList } = this.state;
-
+    const renderItem = ({ item }) => {
         return (
-            <SafeAreaView style={styles.container}>
-                {categoryList.length > 0 ? (
-                    <FlatList
-                        data={categoryList}
-                        ItemSeparatorComponent={() => <Divider style={{ backgroundColor: 'black' }} />}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item, index }) => (
-                            <ListItem
-                                containerStyle={styles.listItem}
-                                title={item.name}
-                                titleStyle={styles.titleStyle}
-                                subtitleStyle={styles.subtitleStyle}
-                                leftAvatar={{
-                                    size: 'large',
-                                    rounded: false,
-                                    source: item.image && { uri: item.image }
-                                }}
-                                onPress={() => this.navigateToCategoryDetail(item, index)}
-                            />
-                        )}
-                    />
-                ) : this.renderEmptyState()}
-                {this.renderActionButton()}
-            </SafeAreaView>
+            <ListItem
+                containerStyle={styles.listItem}
+                onPress={() => navigateToCategoryDetail(item, categoryList.indexOf(item))}
+            >
+                <Image source={{ uri: item._img }} style={styles.categoryImage} />
+                <ListItem.Content>
+                    <ListItem.Title>{item.name}</ListItem.Title>
+                </ListItem.Content>
+                <ListItem.Chevron />
+            </ListItem>
         );
-    }
-}
+    };
+
+    return (
+        <SafeAreaView style={styles.container}>
+            {categoryList.length > 0 ? (
+                <FlatList
+                    data={categoryList}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    ItemSeparatorComponent={Divider}
+                />
+
+            ) : (
+                renderEmptyState()
+            )}
+            {renderActionButton()}
+        </SafeAreaView>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     listItem: {
-        marginTop: 8,
-        marginBottom: 8
+        marginTop: 15,
+        marginBottom: 15,
     },
     textContainer: {
         flex: 1,
@@ -113,19 +112,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     titleStyle: {
-        fontSize: 30
+        fontSize: 30,
     },
     subtitleStyle: {
-        fontSize: 18
+        fontSize: 18,
+    },
+    categoryImage:{
+        width: 50,
+        height: 50
     },
     emptyTitle: {
         fontSize: 32,
-        marginBottom: 16
+        marginBottom: 16,
     },
     emptySubtitle: {
         fontSize: 18,
-        fontStyle: 'italic'
-    }
+        fontStyle: 'italic',
+    },
 });
 
 export default CategoryList;

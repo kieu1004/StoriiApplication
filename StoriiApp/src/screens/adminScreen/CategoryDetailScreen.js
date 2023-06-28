@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet, Alert, Image } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 import CategoryController from '../../backend/controllers/CategoryController';
 
-class CategoryDetailScreen extends Component {
+class CategoryDetail extends Component {
 
   static navigationOptions = () => {
     return {
@@ -20,8 +20,11 @@ class CategoryDetailScreen extends Component {
   }
 
   render() {
-    const category = this.props.navigation.getParam('category');
-    const onCategoryDeleted = this.props.navigation.getParam('categoryDeletedCallback');
+    // const category = this.props.navigation.getParam('category');
+    // const onCategoryDeleted = this.props.navigation.getParam('categoryDeletedCallback');
+
+    const { category, categoryDeletedCallback } = this.props.route.params;
+
 
     return (
       <View style={styles.container}>
@@ -137,4 +140,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CategoryDetailScreen;
+export default CategoryDetail;

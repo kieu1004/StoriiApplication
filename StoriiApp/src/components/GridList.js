@@ -10,7 +10,7 @@ const GridList = (props) => {
     <>
       <FlatList
         contentContainerStyle={styles.grid}
-        numColumns={3}
+        numColumns={5}
         data={props.items}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => {
