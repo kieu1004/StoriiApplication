@@ -6,6 +6,28 @@ import CategoryModel from '../models/CategoryModel';
 
 class CategoryController {
 
+  static async getCategoryByName(categoryName) {
+    try {
+      const snapshot = await firebase
+        .database()
+        .ref('Categories')
+        .orderByChild('name')
+        .equalTo(categoryName)
+        .once('value');
+
+      let categoryId = null;
+
+      snapshot.forEach((childSnapshot) => {
+        categoryId = childSnapshot.key;
+      });
+
+      return categoryId;
+    } catch (error) {
+      console.error('Error getting category by name:', error);
+      throw error;
+    }
+  }
+
   static async getCategoryList() {
     try {
       const categoryList = [];

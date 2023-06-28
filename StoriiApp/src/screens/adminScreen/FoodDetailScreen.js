@@ -56,10 +56,8 @@ class FoodDetailScreen extends Component {
         </View>
         <Image style={styles.image} source={food.image && { uri: food.image }} />
         <Text style={styles.headerText}>{food.name}</Text>
-        <Text style={styles.categoryText}>Category: {food.category}</Text>
-        <Text style={styles.quantityText}>Quantity: {food.quantity}</Text>
         <Text style={styles.priceText}>Price: {food.price}</Text>
-        <Text style={styles.providerText}>Provider: {food.provider}</Text>
+        <Text style={styles.quantityText}>Quantity: {food.quantity}</Text>
         <Text style={styles.descriptionText}>{food.description}</Text>
 
         <Text style={styles.ingredientText}>Ingredients</Text>

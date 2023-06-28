@@ -1,12 +1,11 @@
 class FoodModel {
-    constructor(id, name, price, img, description, statusFood, idProvider, idCategory) {
+    constructor(id, img, name, price, quantity, description, idCategory) {
         this._id = id;
+        this._img = img;
         this._name = name;
         this._price = price;
-        this._img = img;
+        this._quantity = quantity;
         this._description = description;
-        this._statusFood = statusFood;
-        this._idProvider = idProvider;
         this._idCategory = idCategory;
     }
 
@@ -17,6 +16,15 @@ class FoodModel {
 
     set id(value) {
         this._id = value;
+    }
+
+     // Getter và setter cho thuộc tính img
+    get img() {
+        return this._img;
+    }
+
+    set img(value) {
+        this._img = value;
     }
 
     // Getter và setter cho thuộc tính name
@@ -38,12 +46,12 @@ class FoodModel {
     }
 
     // Getter và setter cho thuộc tính img
-    get img() {
-        return this._img;
+    get quantity() {
+        return this._quantity;
     }
 
-    set img(value) {
-        this._img = value;
+    set quantity(value) {
+        this._quantity = value;
     }
 
     // Getter và setter cho thuộc tính description
@@ -53,24 +61,6 @@ class FoodModel {
 
     set description(value) {
         this._description = value;
-    }
-
-    // Getter và setter cho thuộc tính statusFood
-    get statusFood() {
-        return this._statusFood;
-    }
-
-    set statusFood(value) {
-        this._statusFood = value;
-    }
-
-    // Getter và setter cho thuộc tính idProvider
-    get idProvider() {
-        return this._idProvider;
-    }
-
-    set idProvider(value) {
-        this._idProvider = value;
     }
 
     // Getter và setter cho thuộc tính idCategory

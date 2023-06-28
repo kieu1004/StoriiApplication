@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TextInput, Text, Button, ScrollView } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 import { withFormik } from 'formik';
 import * as yup from 'yup';
+
+import { colors } from '../global/styles';
 import CurryImagePicker from './CurryImagePicker';
 import GridList from './GridList';
-import ModalDropdown from 'react-native-modal-dropdown';
-import { colors } from '../global/styles';
-import CategoryController from '../backend/controllers/CategoryController';
 import { PrimaryButton } from './Button';
+import FoodController from '../backend/controllers/FoodController';
+import CategoryController from '../backend/controllers/CategoryController';
 
 const FormInput = ({ title, value, onChangeText, error }) => (
   <View style={styles.inputContainer}>
@@ -21,54 +23,32 @@ const FormInput = ({ title, value, onChangeText, error }) => (
   </View>
 );
 
-const CategoryDropdown = ({ title, options, defaultValue, onSelect }) => (
-  <View style={styles.inputContainer}>
-    <Text style={styles.inputTitle}>{title}</Text>
-    <ModalDropdown
-      options={options}
-      defaultValue={defaultValue}
-      style={styles.dropdown}
-      textStyle={styles.dropdownText}
-      dropdownStyle={styles.dropdownStyle}
-      dropdownTextStyle={styles.dropdownTextStyle}
-      onSelect={onSelect}
-    />
-  </View>
-);
-
 const FoodForm = (props) => {
-  const [categories, setCategories] = useState([]);
+
   const [subIngredients, setSubIngredients] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [categoryList, setCategoryList] = useState([]);
+
 
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const categoryList = await CategoryController.getCategoryList();
-        setCategories(categoryList);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      }
-    };
-
-    fetchCategories();
+    getCategoryList();
   }, []);
+
+
+  const getCategoryList = async () => {
+    try {
+      const categories = await CategoryController.getCategoryList();
+      setCategoryList(categories);
+    } catch (error) {
+      console.error('Error getting category list:', error);
+    }
+  };
+
 
   const setFoodImage = (image) => {
     props.setFieldValue('imageUri', image.uri);
-  }
+  };
 
-  const handleCategorySelect = (index) => {
-    setSelectedCategory(categories[index]);
-    props.setFieldValue('category', categories[index]);
-  }
 
-  const handleAddSubIngredient = () => {
-    if (props.values.subIngredient) {
-      setSubIngredients([...subIngredients, props.values.subIngredient]);
-      props.setFieldValue('subIngredient', '');
-    }
-  }
 
   return (
     <View style={styles.container}>
@@ -80,11 +60,12 @@ const FoodForm = (props) => {
           onChangeText={text => { props.setFieldValue('name', text) }}
           error={props.touched.name && props.errors.name}
         />
-        <CategoryDropdown
-          title="Category"
-          options={categories.map(category => category.name)}
-          defaultValue="Select Category"
-          onSelect={handleCategorySelect}
+
+        <FormInput
+          title="Price"
+          value={props.values.price}
+          onChangeText={text => { props.setFieldValue('price', text) }}
+          error={props.touched.price && props.errors.price}
         />
         <FormInput
           title="Quantity"
@@ -93,23 +74,27 @@ const FoodForm = (props) => {
           error={props.touched.quantity && props.errors.quantity}
         />
         <FormInput
-          title="Price"
-          value={props.values.price}
-          onChangeText={text => { props.setFieldValue('price', text) }}
-          error={props.touched.price && props.errors.price}
-        />
-        <FormInput
-          title="Provider"
-          value={props.values.provider}
-          onChangeText={text => { props.setFieldValue('provider', text) }}
-          error={props.touched.provider && props.errors.provider}
-        />
-        <FormInput
           title="Description"
           value={props.values.description}
           onChangeText={text => { props.setFieldValue('description', text) }}
           error={props.touched.description && props.errors.description}
         />
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputTitle}>Category</Text>
+          <ModalDropdown
+            options={categoryList.map((category) => category.name)}
+            defaultValue="Select Category"
+            style={styles.dropdown}
+            textStyle={styles.dropdownText}
+            dropdownStyle={styles.dropdownStyle}
+            dropdownTextStyle={styles.dropdownTextStyle}
+            onSelect={(index) => {
+              props.setFieldValue('idCategory', categoryList[index].id);
+            }}
+          />
+        </View>
+
         <View style={styles.row}>
           <TextInput
             style={styles.formInput}
@@ -118,22 +103,28 @@ const FoodForm = (props) => {
           />
           <Button
             title='Add'
-            onPress={handleAddSubIngredient}
+            onPress={() => {
+              setSubIngredients([...subIngredients, props.values.subIngredient]);
+              props.setFieldValue('subIngredient', '');
+            }}
           />
         </View>
+
+        <GridList items={subIngredients} />
+
       </ScrollView>
       <View style={styles.btnSubmit}>
         <PrimaryButton title='Submit' onPress={() => props.handleSubmit()} />
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 40,
-    backgroundColor: colors.banner_sale
+    backgroundColor: colors.banner_sale,
   },
   details: {
     paddingHorizontal: 65,
@@ -142,7 +133,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 40,
   },
   containerInput: {
-    marginTop: 30
+    marginTop: 30,
   },
   inputContainer: {
     marginBottom: 20,
@@ -203,31 +194,29 @@ const styles = StyleSheet.create({
     marginTop: 50,
     marginBottom: 50,
     marginHorizontal: 80,
-  }
+  },
 });
 
 export default withFormik({
   mapPropsToValues: ({ food }) => ({
     name: food ? food.name || '' : '',
-    category: food ? food.category || '' : '',
     quantity: food ? food.quantity || '' : '',
     price: food ? food.price || '' : '',
-    provider: food ? food.provider || '' : '',
     description: food ? food.description || '' : '',
     imageUri: food ? food.image || null : null,
     subIngredient: '',
+    idCategory: food ? food.idCategory || null : null,
   }),
   enableReinitialize: true,
   validationSchema: yup.object().shape({
     name: yup.string().max(30).required('Name is required'),
-    category: yup.string().max(15).required('Category is required'),
     quantity: yup.string().max(10).required('Quantity is required'),
     price: yup.string().max(10).required('Price is required'),
-    provider: yup.string().max(30).required('Provider is required'),
     description: yup.string().max(100).required('Description is required'),
   }),
   handleSubmit: (values, { props }) => {
-    values.subIngredients = subIngredients;
+    values.subIngredients = props.food ? props.food.subIngredients || [] : [];
+    values.idCategory = values.idCategory || null;
 
     if (props.food && props.food.id) {
       values.id = props.food.id;

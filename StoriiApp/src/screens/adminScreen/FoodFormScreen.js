@@ -12,7 +12,9 @@ export default class FoodFormScreen extends Component {
   state = {
     food: {
       name: '',
-      category: '',
+      price:'',
+      quantity: '',
+      description: '',
       subIngredients: []
     },
     currentSubIngredient: null,

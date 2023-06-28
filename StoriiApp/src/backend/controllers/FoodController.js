@@ -6,7 +6,7 @@ import FoodModel from '../models/FoodModel';
 
 class FoodController {
 
-  static async getFoodList(foodsRetrieved) {
+  static async getFoodList() {
     try {
       const foodList = [];
 
@@ -19,19 +19,18 @@ class FoodController {
         const foodData = childSnapshot.val();
         const food = new FoodModel(
           childSnapshot.key,
+          foodData.img,
           foodData.name,
           foodData.price,
-          foodData.img,
+          foodData.quantity,
           foodData.description,
-          foodData.statusFood,
-          foodData.idProvider,
           foodData.idCategory
         );
 
         foodList.push(food);
       });
 
-      foodsRetrieved(foodList);
+      return foodList;
     } catch (error) {
       console.error('Error getting food list:', error);
       throw error;

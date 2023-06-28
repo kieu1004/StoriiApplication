@@ -20,6 +20,9 @@ const FormInput = ({ title, value, onChangeText, error }) => (
   </View>
 );
 
+
+
+
 const CategoryForm = (props) => {
   const [subIngredients, setSubIngredients] = useState([]);
 
@@ -40,7 +43,7 @@ const CategoryForm = (props) => {
           onChangeText={text => { props.setFieldValue('name', text) }}
           error={props.touched.name && props.errors.name}
         />
-        
+
         <View style={styles.row}>
           <TextInput
             style={styles.formInput}
