@@ -29,6 +29,7 @@ export function AdminStack() {
         }}
       />
 
+      {/* Edit user */}
       <App.Screen
         name="EditUserScreen"
         component={EditUserScreen}
@@ -38,6 +39,7 @@ export function AdminStack() {
         }}
       />
 
+      {/* Add */}
       <App.Screen
         name="FoodForm"
         component={FoodForm}
@@ -56,6 +58,8 @@ export function AdminStack() {
         }}
       />
 
+
+      {/* Detail */}
       <App.Screen
         name="CategoryDetail"
         component={CategoryDetail}
@@ -74,6 +78,7 @@ export function AdminStack() {
         }}
       />
 
+      {/* Bottom nav */}
       <App.Screen
         name="RootAdminTabs"
         component={RootAdminTabs}
