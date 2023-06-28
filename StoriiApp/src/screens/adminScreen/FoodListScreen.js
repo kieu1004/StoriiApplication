@@ -1,104 +1,103 @@
-import React, { Component } from 'react';
-import { StyleSheet, Button, FlatList, SafeAreaView, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Button, FlatList, SafeAreaView, Text, View, Image } from 'react-native';
 import FoodController from '../../backend/controllers/FoodController';
 import { ListItem, Divider } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
 
-class FoodList extends Component {
-  state = {
-    foodList: [],
-    selectedIndex: 0
-  }
+const FoodList = ({ navigation }) => {
 
-  componentDidMount() {
-    this.loadFoodList();
-  }
+  const [foodList, setFoodList] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  loadFoodList = () => {
-    FoodController.getFoodList(this.onFoodsReceived);
-  }
+  const loadFoodList = async () => {
+    try {
+      const foods = await FoodController.getFoodList();
+      setFoodList(foods);
+      return foods;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const result = await loadFoodList();
+        console.log(result); // Log the foods data
+      } catch (error) {
+        console.log(error); // Log any errors that occurred
+      }
+    };
+
+    loadData();
+  }, []);
 
   onFoodAdded = (food) => {
-    this.setState(prevState => ({
-      foodList: [...prevState.foodList, food]
-    }));
-    this.props.navigation.popToTop();
+    setFoodList((prevFoodList) => [...prevFoodList, food]);
+    navigation.popToTop();
   }
 
   onFoodDeleted = () => {
-    const { selectedIndex, foodList } = this.state;
     const newFoodList = [...foodList];
     newFoodList.splice(selectedIndex, 1);
-
-    this.setState({
-      foodList: newFoodList
-    });
-
-    this.props.navigation.popToTop();
+    setFoodList(newFoodList);
+    navigation.popToTop();
   }
 
-  onFoodsReceived = (foodList) => {
-    this.setState({
-      foodList: foodList
-    });
+  const navigateToFoodForm = () => {
+    this.props.navigation.navigate('FoodForm', { foodAddedCallback: onFoodAdded });
   }
 
-  navigateToFoodForm = () => {
-    this.props.navigation.navigate('FoodForm', { foodAddedCallback: this.onFoodAdded });
+  const navigateToFoodDetail = (item, index) => {
+    setSelectedIndex(index);
+    navigation.navigate('FoodDetail', { food: item, categoryDeletedCallback: onCategoryDeleted });
   }
 
-  navigateToFoodDetail = (item, index) => {
-    this.setState({ selectedIndex: index });
-    this.props.navigation.navigate('FoodDetail', { food: item, foodDeletedCallback: this.onFoodDeleted });
-  }
-
-  renderEmptyState = () => (
+  const renderEmptyState = () => (
     <View style={styles.textContainer}>
       <Text style={styles.emptyTitle}>No Foods found</Text>
       <Text style={styles.emptySubtitle}>Add a new food using the + button below</Text>
-      {this.renderActionButton()}
+      {renderActionButton()}
     </View>
   );
 
-  renderActionButton = () => (
-    <ActionButton
-      buttonColor='blue'
-      onPress={this.navigateToFoodForm}
-    />
+  const renderActionButton = () => (
+    <ActionButton buttonColor='blue' onPress={navigateToFoodForm} />
   );
 
-  render() {
-    const { foodList } = this.state;
-
+  const renderItem = ({ item }) => {
     return (
-      <SafeAreaView style={styles.container}>
-        {foodList.length > 0 ? (
-          <FlatList
-            data={foodList}
-            ItemSeparatorComponent={() => <Divider style={{ backgroundColor: 'black' }} />}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item, index }) => (
-              <ListItem
-                containerStyle={styles.listItem}
-                title={item.name}
-                subtitle={`Price: ${item.price}\nQuantity: ${item.quantity}`}
-                titleStyle={styles.titleStyle}
-                subtitleStyle={styles.subtitleStyle}
-                leftAvatar={{
-                  size: 'large',
-                  rounded: false,
-                  source: item.image && { uri: item.image }
-                }}
-                onPress={() => this.navigateToFoodDetail(item, index)}
-              />
-            )}
-          />
-        ) : this.renderEmptyState()}
-        {this.renderActionButton()}
-      </SafeAreaView>
+      <ListItem
+        containerStyle={styles.listItem}
+        onPress={() => navigateToFoodDetail(item, foodList.indexOf(item))}
+      >
+        <Image source={{ uri: item._img }} style={styles.foodImage} />
+        <ListItem.Content>
+          <ListItem.Title>{item.name}</ListItem.Title>
+        </ListItem.Content>
+        <ListItem.Chevron />
+      </ListItem>
     );
-  }
-}
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {foodList.length > 0 ? (
+        <FlatList
+          data={foodList}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={Divider}
+        />
+
+      ) : (
+        renderEmptyState()
+      )}
+      {renderActionButton()}
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -119,6 +118,10 @@ const styles = StyleSheet.create({
   subtitleStyle: {
     fontSize: 18
   },
+  foodImage:{
+    width: 50,
+    height: 50
+},
   emptyTitle: {
     fontSize: 32,
     marginBottom: 16
