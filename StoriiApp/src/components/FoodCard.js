@@ -7,19 +7,11 @@ import { colors, parameters } from '../global/styles'
 
 
 
-/** Định nghĩa thành phần FoodCard
- * 
- * Sử dụng Text, View, TouchableOpacity, Image, StyleSheet, Icon để tạo giao diện.
- */
 
 
 
-
-
-//Khai báo và định nghĩa FoodCard
 export default function FoodCard({
 
-    //props để hiển thị thông tin sản phẩm
     OnPressFoodCard,
     providerName,
     deliveryAvailable,
@@ -35,7 +27,6 @@ export default function FoodCard({
 }) {
     return (
 
-        //Tạo khu vực có thể nhấn click để chuyển đến trang chi tiết sản phẩm
         <TouchableOpacity>
 
 

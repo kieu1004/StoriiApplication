@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Modal, TextInput, FlatList, TouchableOpacity, Keyboard } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
@@ -6,7 +6,7 @@ import { Icon } from 'react-native-elements'
 import filter from 'lodash/filter'
 import { colors } from "../global/styles"
 
-import { filterData } from '../global/Data'
+import FoodController from '../backend/controllers/FoodController'
 
 
 
@@ -17,10 +17,36 @@ export default function SearchComponent() {
 
     const navigation = useNavigation()
 
-    const [data, setData] = useState([...filterData])
+    const [foodList, setFoodList] = useState([]);
     const [modalVisible, setModalVisible] = useState(false)
     const [textInputFossued, setTextInputFossued] = useState(true)
     const textInput = useRef(0)
+
+
+    const loadFoodList = async () => {
+        try {
+            const foods = await FoodController.getFoodList();
+            setFoodList(foods);
+            return foods;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const result = await loadFoodList();
+                console.log(result); // Log the foods data
+            } catch (error) {
+                console.log(error); // Log any errors that occurred
+            }
+        };
+
+        loadData();
+    }, []);
+
 
 
     const contains = ({ name }, query) => {
@@ -32,7 +58,7 @@ export default function SearchComponent() {
 
 
     const handleSearch = text => {
-        const dataS = filter(filterData, userSearch => {
+        const dataS = filter(categoryList, userSearch => {
             return contains(userSearch, text)
         })
 
@@ -139,21 +165,21 @@ export default function SearchComponent() {
 
                     {/* Danh sách kết quả tìm kiếm */}
                     <FlatList
-                        data={data}
+                        data={foodList}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 onPress={() => {
                                     Keyboard.dismiss
-                                    navigation.navigate("SearchResultScreen", { item: item.name })
+                                    navigation.navigate("SearchResultScreen", { item: item._name })
                                     setModalVisible(false)
                                     setTextInputFossued(true)
                                 }} >
                                 <View style={styles.view2}>
-                                    <Text style={{ color: colors.primary_normal, fontSize: 15 }}>{item.name}</Text>
+                                    <Text style={{ color: colors.primary_normal, fontSize: 15 }}>{item._name}</Text>
                                 </View>
                             </TouchableOpacity>
                         )}
-                        keyExtractor={item => item.id}
+                        keyExtractor={item => item._id}
                     />
 
                 </View>
