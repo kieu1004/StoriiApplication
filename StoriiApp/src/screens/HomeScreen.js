@@ -304,9 +304,10 @@ const HomeScreen = ({ navigation }) => {
                 <View style={styles.listProduct}>
                     <View style={{ flex: 1 }}>
                         <FlatList
+                            data={foodList} // Update the data prop here
                             showsVerticalScrollIndicator={false}
                             numColumns={2}
-                            data={foodList} // Update the data prop here
+                            keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
                                 <TouchableHighlight
                                     underlayColor={colors.cardbackground}

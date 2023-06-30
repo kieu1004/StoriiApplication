@@ -10,8 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const cardWidth = SCREEN_WIDTH / 2 - 20;
 
-export default function SearchScreen() {
-    const navigation = useNavigation();
+export default function SearchScreen({ navigation }) {
     const [foodList, setFoodList] = useState([]);
 
     const loadFoodList = async () => {
@@ -48,9 +47,7 @@ export default function SearchScreen() {
                         <TouchableOpacity
                             underlayColor={colors.cardbackground}
                             activeOpacity={0.9}
-                            onPress={() => {
-                                navigation.navigate("DetailScreen", { item: item.name });
-                            }}
+                            onPress={() => navigation.navigate('DetailsScreen', item)}
                         >
                             <View style={styles.cardProduct}>
                                 <View style={{ alignItems: 'center', marginTop: 20 }}>
@@ -86,7 +83,6 @@ export default function SearchScreen() {
                     showsVerticalScrollIndicator={false}
                     numColumns={2}
                     ListHeaderComponent={<Text style={styles.listHeader}>Best choice</Text>}
-                    ListFooterComponent={<Footer />}
                 />
             </View>
         </View>
@@ -150,103 +146,5 @@ export const styles = StyleSheet.create({
         color: colors.primary_bold,
         paddingBottom: 10,
         marginLeft: 12,
-    },
-});
-
-const Footer = () => {
-    const navigation = useNavigation();
-    const [foodList, setFoodList] = useState([]);
-
-    const loadFoodList = async () => {
-        try {
-            const foods = await FoodController.getFoodList();
-            setFoodList(foods);
-        } catch (error) {
-            console.log(error);
-            throw error;
-        }
-    };
-
-    useEffect(() => {
-        const loadData = async () => {
-            try {
-                await loadFoodList();
-            } catch (error) {
-                console.log(error);
-            }
-        };
-
-        loadData();
-    }, []);
-
-    return (
-        <View style={styles.footerContainer}>
-            <FlatList
-                style={styles.footerList}
-                data={foodList}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                    <TouchableWithoutFeedback
-                        onPress={() => navigation.navigate("DetailScreen", { item: item._name })}
-                    >
-                        <View style={styles.cardProduct}>
-                            <View style={styles.imageContainer}>
-                                <Image source={{ uri: item._img }} style={styles.productImage} />
-                            </View>
-                            <View style={styles.textContainer}>
-                                <Text style={styles.productName}>{item._name}</Text>
-                            </View>
-                            <View style={styles.priceContainer}>
-                                <Text style={styles.price}>{item._price}</Text>
-                            </View>
-                        </View>
-                    </TouchableWithoutFeedback>
-                )}
-                horizontal={false}
-                showsVerticalScrollIndicator={false}
-                numColumns={2}
-                ListHeaderComponent={<Text style={styles.listHeader}>More categories</Text>}
-            />
-        </View>
-    );
-};
-
-export const footerStyles = StyleSheet.create({
-    footerContainer: {
-        marginTop: 20,
-        marginBottom: 30,
-    },
-    footerList: {
-        marginBottom: 10,
-    },
-    imageContainer: {
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    productImage: {
-        height: 100,
-        width: 120,
-    },
-    textContainer: {
-        marginHorizontal: 20,
-        marginTop: 20,
-    },
-    productName: {
-        fontSize: 15,
-        fontWeight: "bold",
-    },
-    priceContainer: {
-        marginTop: 10,
-        flex: 1,
-        marginHorizontal: 20,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: "flex-end",
-        marginBottom: 15,
-    },
-    price: {
-        fontSize: 15,
-        fontWeight: 'bold',
-        color: colors.primary_bold,
     },
 });

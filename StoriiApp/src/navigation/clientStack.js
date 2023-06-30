@@ -1,13 +1,10 @@
 import React, { useLayoutEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 
 import SearchScreen from '../screens/SearchScreen'
-import MenuProductScreen from '../screens/MenuProductScreen'
 import SearchResultScreen from '../screens/SearchResultScreen'
-import ProviderHomeScreen from '../screens/ProviderHomeScreen'
-import PreferenceScreen from '../screens/PreferenceScreen'
+import DetailsScreen from '../screens/DetailsScreen'
 
 
 
@@ -52,33 +49,12 @@ export function ClientStack({ navigation, route }) {
             />
 
             <ClientSearch.Screen
-                name="ProviderHomeScreen"
-                component={ProviderHomeScreen}
-                options={
-                    () => ({
-                        headerShown: false
-                    })
-                }
-            />
-
-            <ClientSearch.Screen
-                name="MenuProductScreen"
-                component={MenuProductScreen}
-                options={
-                    () => ({
-                        headerShown: false
-                    })
-                }
-            />
-
-            <ClientSearch.Screen
-                name="PreferenceScreen"
-                component={PreferenceScreen}
-                options={
-                    () => ({
-                        headerShown: false
-                    })
-                }
+                name="DetailsScreen"
+                component={DetailsScreen}
+                options={{
+                    headerShown: false,
+                    ...TransitionPresets.RevealFromBottomAndroid
+                }}
             />
 
 
