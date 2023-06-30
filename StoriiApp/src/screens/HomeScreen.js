@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressable, Image, Dimensions, StatusBar } from 'react-native'
 import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
@@ -10,6 +10,8 @@ import HomeHeader from "../components/HomeHeader"
 import { filterData, providerData, productData } from '../global/Data'
 import FoodCard from "../components/FoodCard"
 import ProductCard from "../components/ProductCard"
+import CategoryController from "../backend/controllers/CategoryController";
+import FoodController from "../backend/controllers/FoodController";
 
 
 
@@ -20,46 +22,57 @@ const HomeScreen = ({ navigation }) => {
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
+    const [categoryList, setCategoryList] = useState([]);
+    const [foodList, setFoodList] = useState([]);
+
+    const loadCategoryList = async () => {
+        try {
+            const categories = await CategoryController.getCategoryList();
+            setCategoryList(categories);
+            return categories;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
+
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const result = await loadCategoryList();
+                console.log(result); // Log the categories data
+            } catch (error) {
+                console.log(error); // Log any errors that occurred
+            }
+        };
+
+        loadData();
+    }, []);
 
 
+    const loadFoodList = async () => {
+        try {
+            const foods = await FoodController.getFoodList();
+            setFoodList(foods);
+            return foods;
+        } catch (error) {
+            console.log(error);
+            throw error;
+        }
+    };
 
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const result = await loadFoodList();
+                console.log(result); // Log the foods data
+            } catch (error) {
+                console.log(error); // Log any errors that occurred
+            }
+        };
 
-
-    const Card = ({ productData }) => {
-        return (
-            <TouchableHighlight
-                underlayColor={colors.cardbackground}
-                activeOpacity={0.9}
-                onPress={() => navigation.navigate('DetailsScreen', productData)}>
-                <View style={styles.cardProduct}>
-                    <View style={{ alignItems: 'center', marginTop: 20 }}>
-                        <Image source={{ uri: productData.image }} style={{ height: 100, width: 120 }} />
-                    </View>
-                    <View style={{ marginHorizontal: 20, marginTop: 20 }}>
-                        <Text style={{ fontSize: 15, fontWeight: "bold" }}>{productData.name}</Text>
-                    </View>
-                    <View
-                        style={{
-                            marginTop: 10,
-                            flex: 1,
-                            marginHorizontal: 20,
-                            flexDirection: 'row',
-                            justifyContent: 'space-between',
-                            alignItems: "flex-end",
-                            marginBottom: 15
-                        }}>
-                        <Text style={{ fontSize: 20, fontWeight: 'bold', color: colors.primary_bold }}>
-                            $ {productData.price}
-                        </Text>
-                        <View style={styles.addToCartBtn}>
-                            <Icon name="add" size={20} color={colors.cardbackground} />
-                        </View>
-                    </View>
-                </View>
-            </TouchableHighlight>
-        )
-    }
-
+        loadData();
+    }, []);
 
 
 
@@ -147,9 +160,9 @@ const HomeScreen = ({ navigation }) => {
 
 
 
-                <View style={{height:150, width:400}}>
+                <View style={{ height: 150, width: 400 }}>
 
-                    <Swiper autoplay={true} style={{ height: 250, marginTop: 10}}>
+                    <Swiper autoplay={true} style={{ height: 250, marginTop: 10 }}>
                         <View style={styles.slide1}>
                             <Image
                                 source={{ uri: "https://thepizzacompany.vn/images/thumbs/000/0003716_Banner-H%C3%A8-real-deal-x%E1%BB%8Bn_1200x480.jpeg" }}
@@ -197,7 +210,7 @@ const HomeScreen = ({ navigation }) => {
                     <FlatList
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        data={filterData}
+                        data={categoryList}
                         keyExtractor={(item) => item.id}
                         extraData={indexCheck}
                         renderItem={({ item, index }) => (
@@ -207,7 +220,7 @@ const HomeScreen = ({ navigation }) => {
                                 <View style={indexCheck === item.id ? { ...styles.smallCardSelected } : { ...styles.smallCard }}>
                                     <Image
                                         style={{ height: 60, width: 60, borderRadius: 30 }}
-                                        source={item.image}
+                                        source={{ uri: item._img }}
                                     />
                                     <View>
                                         <Text style={indexCheck === item.id ? { ...styles.smallCardTextSelected } : { ...styles.smallCardText }}>{item.name}</Text>
@@ -288,16 +301,52 @@ const HomeScreen = ({ navigation }) => {
                     <Text style={styles.headerText}>Best for you</Text>
                 </View>
 
-                <View style={styles.listProduct} >
+                <View style={styles.listProduct}>
                     <View style={{ flex: 1 }}>
                         <FlatList
                             showsVerticalScrollIndicator={false}
                             numColumns={2}
-                            data={productData}
-                            renderItem={({ item }) => <Card productData={item} />}
+                            data={foodList} // Update the data prop here
+                            renderItem={({ item }) => (
+                                <TouchableHighlight
+                                    underlayColor={colors.cardbackground}
+                                    activeOpacity={0.9}
+                                    onPress={() => navigation.navigate('DetailsScreen', item)}
+                                >
+                                    <View style={styles.cardProduct}>
+                                        <View style={{ alignItems: 'center', marginTop: 20 }}>
+                                            <Image source={{ uri: item._img }} style={{ height: 100, width: 120 }} />
+                                        </View>
+                                        <View style={{ marginHorizontal: 20, marginTop: 20 }}>
+                                            <Text style={{ fontSize: 15, fontWeight: "bold" }}>{item._name}</Text>
+                                        </View>
+                                        <View
+                                            style={{
+                                                marginTop: 10,
+                                                flex: 1,
+                                                marginHorizontal: 20,
+                                                flexDirection: 'row',
+                                                justifyContent: 'space-between',
+                                                alignItems: "flex-end",
+                                                marginBottom: 15
+                                            }}
+                                        >
+                                            <Text style={{ fontSize: 15, fontWeight: 'bold', color: colors.primary_bold }}>
+                                                {item._price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+                                            </Text>
+
+
+                                            <View style={styles.addToCartBtn}>
+                                                <Icon name="add" size={20} color={colors.cardbackground} />
+                                            </View>
+                                        </View>
+                                    </View>
+                                </TouchableHighlight>
+                            )}
                         />
                     </View>
                 </View>
+
 
             </ScrollView>
 
@@ -432,7 +481,7 @@ const styles = StyleSheet.create({
     },
 
     smallCardSelected: {
-        borderRadius:20,
+        borderRadius: 20,
         backgroundColor: colors.cardSelected,
         // borderColor: colors.primary_light,
         // borderWidth: 1,

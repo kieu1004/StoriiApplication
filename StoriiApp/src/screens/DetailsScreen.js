@@ -19,7 +19,7 @@ const DetailsScreen = ({ navigation, route }) => {
 
 
       <View style={style.header}>
-        <Icon name="arrow-back-ios" size={28} marginTop={10}  onPress={navigation.goBack} />
+        <Icon name="arrow-back-ios" size={28} marginTop={10} onPress={navigation.goBack} />
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -29,7 +29,7 @@ const DetailsScreen = ({ navigation, route }) => {
             alignItems: 'center',
             height: 280,
           }}>
-          <Image source={{ uri: item.image }} style={{ height: 300, width: 300 }} />
+          <Image source={{ uri: item._img }} style={{ height: 300, width: 300 }} />
         </View>
         <View style={style.details}>
           <View
@@ -40,7 +40,7 @@ const DetailsScreen = ({ navigation, route }) => {
             }}>
             <Text
               style={{ fontSize: 25, fontWeight: 'bold', color: colors.text_white }}>
-              {item.name}
+              {item._name}
             </Text>
             <View style={style.iconContainer}>
               <Icon name="favorite-border" color={colors.primary_bold} size={25} />
@@ -48,16 +48,16 @@ const DetailsScreen = ({ navigation, route }) => {
           </View>
 
           <Text style={style.priceText}>
-            $ {item.price}
+            {item._price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
           </Text>
 
           <Text style={style.detailsText}>
             {item.detals}
           </Text>
 
-          
 
-          <View style={{ marginTop: 40, marginBottom: 40}}>
+
+          <View style={{ marginTop: 40, marginBottom: 40 }}>
             <PrimaryButton title="Add To Cart" />
           </View>
         </View>
@@ -84,7 +84,7 @@ const style = StyleSheet.create({
   details: {
     paddingHorizontal: 20,
     paddingTop: 40,
-    paddingBottom: 60,
+    paddingBottom: "100%",
     backgroundColor: colors.banner_sale,
     borderTopRightRadius: 40,
     borderTopLeftRadius: 40,
@@ -108,7 +108,7 @@ const style = StyleSheet.create({
     color: colors.text_white,
   },
 
-  priceText:{
+  priceText: {
     marginTop: 10,
     marginBottom: 10,
     fontSize: 35,
