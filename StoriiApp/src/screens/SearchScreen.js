@@ -68,7 +68,7 @@ export default function SearchScreen({ navigation }) {
                                     }}
                                 >
                                     <Text style={{ fontSize: 15, fontWeight: 'bold', color: colors.primary_bold }}>
-                                        {item.price}
+                                        {parseFloat(item.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
                                     </Text>
 
 

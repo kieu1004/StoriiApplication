@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Dimensions, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, FlatList, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FoodController from '../backend/controllers/FoodController';
 import { colors } from '../global/styles';
@@ -12,6 +12,7 @@ const FilterCategory = ({ route }) => {
   const { category } = route.params;
   const [foodList, setFoodList] = useState([]);
   const navigation = useNavigation();
+  
 
   const loadFoodList = async () => {
     try {
@@ -41,14 +42,14 @@ const FilterCategory = ({ route }) => {
           numColumns={2}
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item, index }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('DetailScreen', { item })}>
+            <TouchableHighlight onPress={() => navigation.navigate('DetailScreen', { item })}>
               <SearchResultCard
                 screenWidth={SCREEN_WIDTH}
                 name={item.name}
                 img={item.img}
                 price={item.price}
               />
-            </TouchableOpacity>
+            </TouchableHighlight>
           )}
           ListHeaderComponent={
             <View>

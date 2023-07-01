@@ -6,6 +6,7 @@ import DrawerNavigator from './DrawerNavigator'
 import DetailsScreen from '../screens/DetailsScreen'
 import CartScreen from '../screens/CartScreen'
 import FilterCategory from '../screens/FilterCategoryScreen'
+import SearchResultScreen from '../screens/SearchResultScreen'
 
 
 
@@ -35,15 +36,6 @@ export function AppStack() {
       />
 
       <App.Screen
-        name="DetailsScreen"
-        component={DetailsScreen}
-        options={{
-          headerShown: false,
-          ...TransitionPresets.RevealFromBottomAndroid
-        }}
-      />
-
-      <App.Screen
         name="CartScreen"
         component={CartScreen}
         options={{
@@ -55,6 +47,24 @@ export function AppStack() {
       <App.Screen
         name="FilterCategory"
         component={FilterCategory}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="SearchResultScreen"
+        component={SearchResultScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="DetailsScreen"
+        component={DetailsScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid

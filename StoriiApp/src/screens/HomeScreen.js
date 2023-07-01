@@ -26,6 +26,7 @@ const HomeScreen = () => {
     const [indexCheck, setIndexCheck] = useState("0")
     const [categoryList, setCategoryList] = useState([])
     const [foodList, setFoodList] = useState([])
+    
 
     const loadCategoryList = async () => {
         try {
@@ -338,7 +339,7 @@ const HomeScreen = () => {
                                             }}
                                         >
                                             <Text style={{ fontSize: 15, fontWeight: 'bold', color: colors.primary_bold }}>
-                                                {item._price.toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+                                                {parseFloat(item.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
                                             </Text>
 
 
