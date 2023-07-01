@@ -14,16 +14,6 @@ const ClientSearch = createStackNavigator()
 
 export function ClientStack({ navigation, route }) {
 
-    useLayoutEffect(() => {
-        const routeName = getFocusedRouteNameFromRoute(route);
-        if (routeName === "ProviderHomeScreen" || "MenuProductScreen") {
-            navigation.setOptions({ tabBarVisible: false })
-        } else {
-            navigation.setOptions({ tabBarVisible: true })
-        }
-    }, [navigation, route])
-
-
     return (
         <ClientSearch.Navigator>
 
