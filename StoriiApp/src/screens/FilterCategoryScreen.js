@@ -47,7 +47,7 @@ const FilterCategory = ({ route }) => {
                 screenWidth={SCREEN_WIDTH}
                 name={item.name}
                 img={item.img}
-                price={item.price}
+                price={parseFloat(item.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
               />
             </TouchableHighlight>
           )}

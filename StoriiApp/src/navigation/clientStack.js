@@ -48,16 +48,6 @@ export function ClientStack({ navigation, route }) {
                 }
             />
 
-            <ClientSearch.Screen
-                name="DetailsScreen"
-                component={DetailsScreen}
-                options={{
-                    headerShown: false,
-                    ...TransitionPresets.RevealFromBottomAndroid
-                }}
-            />
-
-
         </ClientSearch.Navigator>
     )
 }
