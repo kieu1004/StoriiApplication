@@ -4,6 +4,7 @@ import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
 import Swiper from 'react-native-swiper'
 import { colors, fonts, parameters } from '../global/styles'
+import { useNavigation } from '@react-navigation/native'
 // import Countdown from 'react-native-countdown-component'
 
 import HomeHeader from "../components/HomeHeader"
@@ -18,12 +19,13 @@ import FoodController from "../backend/controllers/FoodController";
 const SCREEN_WIDTH = Dimensions.get('window').width
 const cardWidth = SCREEN_WIDTH / 2 - 20;
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
+    const navigation = useNavigation()
 
     const [delivery, setDelivery] = useState(true)
     const [indexCheck, setIndexCheck] = useState("0")
-    const [categoryList, setCategoryList] = useState([]);
-    const [foodList, setFoodList] = useState([]);
+    const [categoryList, setCategoryList] = useState([])
+    const [foodList, setFoodList] = useState([])
 
     const loadCategoryList = async () => {
         try {
@@ -215,7 +217,10 @@ const HomeScreen = ({ navigation }) => {
                         extraData={indexCheck}
                         renderItem={({ item, index }) => (
                             <Pressable
-                                onPress={() => { setIndexCheck(item.id) }}
+                                onPress={() => {
+                                    setIndexCheck(item.id);
+                                    navigation.navigate('FilterCategory', { category: item })
+                                }}
                             >
                                 <View style={indexCheck === item.id ? { ...styles.smallCardSelected } : { ...styles.smallCard }}>
                                     <Image

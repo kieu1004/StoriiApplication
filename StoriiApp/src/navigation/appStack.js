@@ -2,12 +2,10 @@ import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 
 import ProviderMapScreen from '../screens/ProviderMapScreen'
-import DrawerAdminNavigator from './DrawerAdminNavigation'
 import DrawerNavigator from './DrawerNavigator'
 import DetailsScreen from '../screens/DetailsScreen'
 import CartScreen from '../screens/CartScreen'
-import HomeScreen from '../screens/HomeScreen'
-
+import FilterCategory from '../screens/FilterCategoryScreen'
 
 
 
@@ -48,6 +46,15 @@ export function AppStack() {
       <App.Screen
         name="CartScreen"
         component={CartScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="FilterCategory"
+        component={FilterCategory}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid
