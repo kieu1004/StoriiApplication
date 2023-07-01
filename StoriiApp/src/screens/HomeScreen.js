@@ -312,7 +312,7 @@ const HomeScreen = () => {
                         <FlatList
                             data={foodList} // Update the data prop here
                             showsVerticalScrollIndicator={false}
-                            numColumns={2}
+                            horizontal={true}
                             keyExtractor={(item) => item.id}
                             renderItem={({ item }) => (
                                 <TouchableHighlight
