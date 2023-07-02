@@ -1,51 +1,40 @@
 import React from "react"
-import {View, Text, StyleSheet} from 'react-native'
-import {Icon, withBadge} from 'react-native-elements'
-import {colors, parameters} from '../global/styles'
+import { View, Text, StyleSheet } from 'react-native'
+import { Icon, withBadge } from 'react-native-elements'
+import { colors, parameters } from '../global/styles'
+import UserController from "../backend/controllers/UserController"
 
 
 
 
 
-/** Định nghĩa thành phần HomeHeader:
- * Hiển thị tiêu đề trang chủ.
- * Nút mở menu, giỏ hàng.
- * 
- * Sử dụng View, Text, StyleSheet, withBadge Icon để tạo giao diện.
- */
-
-
-
-
-
-//Khai báo và định nghĩa hàm HomeHeader
-export default function HomeHeader({navigation}){
+export default function HomeHeader({ navigation }) {
 
     const BadgeIcon = withBadge(0)(Icon)
 
 
-    return(
+    return (
         <View style={styles.header}>
 
-            <View style={{alignItems:"center", justifyContent:"center", marginLeft:15}}>
+            <View style={{ alignItems: "center", justifyContent: "center", marginLeft: 15 }}>
                 <Icon
                     type="material-community"
                     name="menu"
                     color={colors.background}
                     size={32}
-                    onPress={()=>{
+                    onPress={() => {
                         navigation.toggleDrawer()
                     }}
                 />
             </View>
 
 
-            <View style={{alignItems:"center", justifyContent:"center"}}>
-                <Text style={{color:colors.primary_normal, fontSize:25, fontWeight:'bold'}}>STORII</Text>
+            <View style={{ alignItems: "center", justifyContent: "center" }}>
+                <Text style={{ color: colors.primary_normal, fontSize: 25, fontWeight: 'bold' }}>STORII</Text>
             </View>
 
 
-            <View style={{alignItems:"center", justifyContent:"center", marginRight:15}}>
+            <View style={{ alignItems: "center", justifyContent: "center", marginRight: 15 }}>
                 <BadgeIcon
                     type="material-community"
                     name="cart"
@@ -64,10 +53,10 @@ export default function HomeHeader({navigation}){
 
 
 const styles = StyleSheet.create({
-    header :{
-        flexDirection:"row",
+    header: {
+        flexDirection: "row",
         backgroundColor: colors.primary_bold,
         height: parameters.headerHeight,
-        justifyContent:"space-between"
+        justifyContent: "space-between"
     }
 })

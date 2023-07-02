@@ -1,5 +1,5 @@
 class UserModel {
-  constructor(email, password, role, fullName, dateOfBirth, address, avatar, phoneNumber, id) {
+  constructor(email, password, role, fullName, dateOfBirth, address, avatar, phoneNumber, id, cart) {
     this._email = email;
     this._password = password;
     this._role = role;
@@ -9,6 +9,7 @@ class UserModel {
     this._avatar = avatar;
     this._phoneNumber = phoneNumber;
     this._id = id;
+    this._cart = cart;
   }
 
   // Getter và setter cho thuộc tính email
@@ -90,6 +91,15 @@ class UserModel {
 
   set id(value) {
     this._id = value;
+  }
+
+  // Getter và setter cho thuộc tính cart
+  get cart() {
+    return this._cart;
+  }
+
+  set cart(value) {
+    this._cart = value;
   }
 }
 

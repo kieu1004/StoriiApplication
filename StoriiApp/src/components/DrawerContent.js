@@ -9,7 +9,7 @@ import UserController from '../backend/controllers/UserController'
 
 import { SignInContext } from '../contexts/authContext'
 
-// Khai báo và định nghĩa hàm DrawerContent
+
 export default function DrawerContent(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const { dispatchSignedIn } = useContext(SignInContext)
@@ -42,12 +42,9 @@ export default function DrawerContent(props) {
     }
   }
 
-  // Tạo giao diện điều hướng
   return (
     <View style={styles.container}>
-      {/* Tạo ScrollView cho thanh điều hướng */}
       <DrawerContentScrollView {...props}>
-        {/* User Info */}
         {currentUser ? (
           <View style={{ backgroundColor: colors.buttons }}>
             <View
@@ -89,9 +86,8 @@ export default function DrawerContent(props) {
             <Text style={styles.title}>Loading...</Text>
           </View>
         )}
-        {/* Hiển thị danh sách các mục trong thanh điều hướng */}
         <DrawerItemList {...props} />
-        {/* Tạo mục trong thanh điều hướng */}
+        
         <DrawerItem
           label="Payment"
           icon={({ color, size }) => (
@@ -136,7 +132,7 @@ export default function DrawerContent(props) {
             />
           )}
         />
-        {/* Dark mode */}
+        
         <View style={{ borderTopWidth: 1, borderTopColor: colors.grey5 }}>
           <Text style={styles.preferences}>Preferences</Text>
           <View style={styles.switchText}>
