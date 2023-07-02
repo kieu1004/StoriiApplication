@@ -21,6 +21,9 @@ const DetailsScreen = ({ navigation, route }) => {
       userId: userId,
       productId: item._id,
       quantity: 1,
+      price: item.price,
+      imageUrl: item._img, 
+      name: item._name
     };
   };
 
@@ -29,9 +32,9 @@ const DetailsScreen = ({ navigation, route }) => {
       const userResponse = await UserController.getCurrentUser();
       if (userResponse.success) {
         const user = userResponse.user;
-        const userId = user.id; // Lấy ID của người dùng
+        const userId = user.id;
 
-        console.log(user.cart); // Cart is empty
+        console.log(user.cart);
         let tempCart = user.cart || [];
         if (tempCart.length > 0) {
           let existing = false;

@@ -51,7 +51,7 @@ export default function SearchScreen({ navigation }) {
                         >
                             <View style={styles.cardProduct}>
                                 <View style={{ alignItems: 'center', marginTop: 20 }}>
-                                    <Image source={{ uri: item._img }} style={{ height: 100, width: 120 }} />
+                                    <Image source={{ uri: item._img }} style={{ height: 100, width: 120, resizeMode: 'contain' }} />
                                 </View>
                                 <View style={{ marginHorizontal: 20, marginTop: 20 }}>
                                     <Text style={{ fontSize: 15, fontWeight: "bold" }}>{item.name}</Text>
