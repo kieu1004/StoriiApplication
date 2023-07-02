@@ -36,24 +36,6 @@ export default function DrawerNavigator() {
                 }}
             />
 
-
-            <Drawer.Screen
-                name="Business consoleScreen"
-                component={BusinessConsoleScreen}
-                options={{
-                    title: 'Business console',
-                    drawerIcon: ({ focussed, size }) => (
-                        <Icon
-                            type="material"
-                            name="business"
-                            color={focussed ? '#7cc' : colors.primary_normal}
-                            size={size}
-                        />
-                    )
-                }}
-            />
-
-
         </Drawer.Navigator>
     )
 

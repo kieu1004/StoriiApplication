@@ -5,234 +5,194 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navi
 import { Avatar, Button, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from '../global/styles'
+import UserController from '../backend/controllers/UserController'
 
 import { SignInContext } from '../contexts/authContext'
 
-
-
-
-
-
-/** Thanh điều hướng Drawer:
- * Sử dụng thư viện và API để hiển thị các mục trong thanh điều hướng.
- * Thực hiện các chức năng như: đăng xuất, dark mode.
- * 
- * Sử dụng View, Text, Linking, Pressable, Alert, Switch, StyleSheet, TouchableOpacity, DrawerContentScrollView, DrawerItemList, DrawerItem, Avatar, Button, Icon để tạo giao diện.
- * Sử dụng useState, useContext, use Effect hooks để quản lý trạng thái và hiển thị thông tin người dùng.
- * Sử dụng thư viện @react-native-firebase/auth cho đăng xuất khi người dùng nhấn nút "Sign Out".
- * Xuất ra DrawerContent để sử dụng trong thanh điều hướng.
- */
-
-
-
-
-
-//Khai báo và định nghĩa hàm DrawerContent
+// Khai báo và định nghĩa hàm DrawerContent
 export default function DrawerContent(props) {
+  const [currentUser, setCurrentUser] = useState(null);
+  const { dispatchSignedIn } = useContext(SignInContext)
+  const navigation = useNavigation()
 
-    const { dispatchSignedIn } = useContext(SignInContext)
-    const navigation = useNavigation()
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
 
-    async function signOut() {
-        try {
-            auth()
-                .signOut()
-                .then(() => {
-                    console.log("Đăng xuất thành công");
-                    dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } });
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'SplashScreen' }],
-                    });
-                });
-        } catch (error) {
-            Alert.alert(error.code);
-        }
+  const fetchCurrentUser = async () => {
+    const response = await UserController.getCurrentUser();
+    if (response.success) {
+      setCurrentUser(response.user);
+    } else {
+      console.log(response.message);
     }
+  };
 
+  async function signOut() {
+    try {
+      await auth().signOut();
+      console.log("Đăng xuất thành công");
+      dispatchSignedIn({ type: "UPDATE_SIGN_IN", payload: { userToken: null } });
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'SplashScreen' }],
+      });
+    } catch (error) {
+      Alert.alert(error.code);
+    }
+  }
 
-
-
-    //Tạo giao diện điều hướng
-    return (
-        <View style={styles.container}>
-
-
-            {/* Tạo Scrollview cho thanh điều hướng */}
-            <DrawerContentScrollView {...props}>
-
-
-                {/*User Infor*/}
-                <View style={{ backgroundColor: colors.buttons }}>
-
-
-                    <View style={{
-                        flexDirection: 'row', alignItems: 'center',
-                        paddingLeft: 20, paddingVertical: 10
-                    }}>
-                        <Avatar
-                            rounded
-                            avatarStyle={styles.avatar}
-                            size={75}
-                            source={{ uri: "https://media.vov.vn/sites/default/files/styles/large/public/2022-12/ha_anh_tuan_1.jpg" }}
-                        />
-                        <View style={{ marginLeft: 10 }}>
-                            <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }} >Ha Anh Tuan</Text>
-                            <Text style={{ color: colors.cardbackground, fontSize: 14 }} > hatsaigon@gmail.com</Text>
-                        </View>
-                    </View>
-
-
-                    <View style={{ flexDirection: 'row', justifyContent: "space-evenly", paddingBottom: 5 }}>
-                        <View style={{ flexDirection: 'row', marginTop: 0, }}>
-                            <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center" }}  >
-                                <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>1</Text>
-                                <Text style={{ color: colors.cardbackground, fontSize: 14 }} >My Favorites</Text>
-                            </View>
-                        </View>
-
-
-                        <View style={{ flexDirection: 'row', marginTop: 0 }}>
-                            <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center" }}  >
-                                <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>0</Text>
-                                <Text style={{ color: colors.cardbackground, fontSize: 14 }} >My Cart</Text>
-                            </View>
-                        </View>
-                    </View>
-
-
+  // Tạo giao diện điều hướng
+  return (
+    <View style={styles.container}>
+      {/* Tạo ScrollView cho thanh điều hướng */}
+      <DrawerContentScrollView {...props}>
+        {/* User Info */}
+        {currentUser ? (
+          <View style={{ backgroundColor: colors.buttons }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingLeft: 20,
+                paddingVertical: 10
+              }}
+            >
+              <Avatar
+                rounded
+                avatarStyle={styles.avatar}
+                size={75}
+                source={{ uri: currentUser?.avatar }}
+              />
+              <View style={{ marginLeft: 10 }}>
+                <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>{currentUser?.fullName}</Text>
+                <Text style={{ color: colors.cardbackground, fontSize: 14 }}>{currentUser?.email}</Text>
+              </View>
+            </View>
+            <View style={{ flexDirection: 'row', justifyContent: "space-evenly", paddingBottom: 5 }}>
+              <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center" }}>
+                  <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>1</Text>
+                  <Text style={{ color: colors.cardbackground, fontSize: 14 }}>My Favorites</Text>
                 </View>
-
-
-                {/* Hiển thị danh sách các mục trong thanh điều hướng */}
-                <DrawerItemList {...props} />
-
-
-                {/* Tạo mục trong thanh điều hướng */}
-                <DrawerItem
-                    label="Payment"
-                    icon={({ color, size }) => (
-                        <Icon
-                            type="material-community"
-                            name="credit-card-outline"
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                />
-
-                <DrawerItem
-                    label="Promotions"
-                    icon={({ color, size }) => (
-                        <Icon
-                            type="material-community"
-                            name="tag-heart"
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                />
-
-                <DrawerItem
-                    label="Settings"
-                    icon={({ color, size }) => (
-                        <Icon
-                            type="material-community"
-                            name="cog-outline"
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                />
-
-                <DrawerItem
-                    label="Help"
-                    icon={({ color, size }) => (
-                        <Icon
-                            type="material-community"
-                            name="lifebuoy"
-                            color={color}
-                            size={size}
-                        />
-                    )}
-                />
-
-
-                {/* Dark mode */}
-                <View style={{ borderTopWidth: 1, borderTopColor: colors.grey5 }}>
-
-                    <Text style={styles.preferences}>Preferences</Text>
-
-                    <View style={styles.switchText}>
-                        <Text style={styles.darkthemeText}>Dark Theme</Text>
-                        <View style={{ paddingRight: 10 }}>
-                            <Switch
-                                trackColor={{ false: "#767577", true: "#81b0ff" }}
-                                thumbColor="#f4f3f4"
-                            />
-                        </View>
-                    </View>
-
+              </View>
+              <View style={{ flexDirection: 'row', marginTop: 0 }}>
+                <View style={{ marginLeft: 10, alignItems: "center", justifyContent: "center" }}>
+                  <Text style={{ fontWeight: 'bold', color: colors.cardbackground, fontSize: 18 }}>0</Text>
+                  <Text style={{ color: colors.cardbackground, fontSize: 14 }}>My Cart</Text>
                 </View>
-
-
-            </DrawerContentScrollView>
-
-
-            <DrawerItem
-                label="Sign Out"
-                icon={({ color, size }) => (
-                    <Icon
-                        type="material-community"
-                        name="logout-variant"
-                        color={color}
-                        size={size}
-                        onPress={() => { signOut() }}
-                    />
-                )}
+              </View>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>Loading...</Text>
+          </View>
+        )}
+        {/* Hiển thị danh sách các mục trong thanh điều hướng */}
+        <DrawerItemList {...props} />
+        {/* Tạo mục trong thanh điều hướng */}
+        <DrawerItem
+          label="Payment"
+          icon={({ color, size }) => (
+            <Icon
+              type="material-community"
+              name="credit-card-outline"
+              color={color}
+              size={size}
             />
-
+          )}
+        />
+        <DrawerItem
+          label="Promotions"
+          icon={({ color, size }) => (
+            <Icon
+              type="material-community"
+              name="tag-heart"
+              color={color}
+              size={size}
+            />
+          )}
+        />
+        <DrawerItem
+          label="Settings"
+          icon={({ color, size }) => (
+            <Icon
+              type="material-community"
+              name="cog-outline"
+              color={color}
+              size={size}
+            />
+          )}
+        />
+        <DrawerItem
+          label="Help"
+          icon={({ color, size }) => (
+            <Icon
+              type="material-community"
+              name="lifebuoy"
+              color={color}
+              size={size}
+            />
+          )}
+        />
+        {/* Dark mode */}
+        <View style={{ borderTopWidth: 1, borderTopColor: colors.grey5 }}>
+          <Text style={styles.preferences}>Preferences</Text>
+          <View style={styles.switchText}>
+            <Text style={styles.darkthemeText}>Dark Theme</Text>
+            <View style={{ paddingRight: 10 }}>
+              <Switch
+                trackColor={{ false: "#767577", true: "#81b0ff" }}
+                thumbColor="#f4f3f4"
+              />
+            </View>
+          </View>
         </View>
-    )
+      </DrawerContentScrollView>
+      <DrawerItem
+        label="Sign Out"
+        icon={({ color, size }) => (
+          <Icon
+            type="material-community"
+            name="logout-variant"
+            color={color}
+            size={size}
+            onPress={() => { signOut() }}
+          />
+        )}
+      />
+    </View>
+  )
 }
 
-
-
-
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-
-    avatar: {
-        borderWidth: 4,
-        borderColor: colors.primary_light
-
-    },
-
-    preferences: {
-        fontSize: 16,
-        color: colors.primary_bold,
-        paddingTop: 10,
-        paddingLeft: 20,
-    },
-
-    switchText: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        paddingLeft: 20,
-        paddingVertical: 5,
-        paddingRight: 10
-    },
-
-    darkthemeText: {
-        fontSize: 16,
-        color: colors.primary_normal,
-        paddingTop: 10,
-        paddingLeft: 0,
-        fontWeight: "bold"
-    }
-
+  container: {
+    flex: 1
+  },
+  avatar: {
+    borderWidth: 4,
+    borderColor: colors.primary_light
+  },
+  preferences: {
+    fontSize: 16,
+    color: colors.primary_bold,
+    paddingTop: 10,
+    paddingLeft: 20,
+  },
+  switchText: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingLeft: 20,
+    paddingVertical: 5,
+    paddingRight: 10
+  },
+  darkthemeText: {
+    fontSize: 16,
+    color: colors.primary_normal,
+    paddingTop: 10,
+    paddingLeft: 0,
+    fontWeight: "bold"
+  }
 })

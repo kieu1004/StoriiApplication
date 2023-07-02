@@ -6,20 +6,20 @@ import AdminHeader from "../../components/AdminHeader"
 import UserController from "../../backend/controllers/UserController"
 
 const AdminDashboardScreen = ({ navigation }) => {
-    const [adminInfo, setAdminInfo] = useState(null);
+    const [currentUser, setCurrentUser] = useState(null);
 
     useEffect(() => {
-        const getAdminInfo = async () => {
-            try {
-                const { user } = await UserController.loginUser('admin@gmail.com', '123456');
-                setAdminInfo(user);
-            } catch (error) {
-                console.log('Error fetching admin info:', error);
-            }
-        };
-
-        getAdminInfo();
+        fetchCurrentUser();
     }, []);
+
+    const fetchCurrentUser = async () => {
+        const response = await UserController.getCurrentUser();
+        if (response.success) {
+            setCurrentUser(response.user);
+        } else {
+            console.log(response.message);
+        }
+    };
 
     const handleEditInfo = () => {
         navigation.navigate("EditUserScreen");
@@ -31,11 +31,11 @@ const AdminDashboardScreen = ({ navigation }) => {
 
             <View style={styles.contentContainer}>
                 <View style={styles.imageContainer}>
-                    <Image source={{ uri: 'https://media.vov.vn/sites/default/files/styles/large/public/2022-12/ha_anh_tuan_1.jpg' }} style={styles.imgUser} />
+                    <Image source={{ uri: currentUser?.avatar }} style={styles.imgUser} />
                 </View>
 
                 <View style={styles.details}>
-                    {adminInfo ? (
+                    {currentUser ? (
                         <View style={styles.adminInfoContainer}>
                             <View style={styles.titleContainer}>
                                 <Text style={styles.title}>Admin Information</Text>
@@ -47,31 +47,31 @@ const AdminDashboardScreen = ({ navigation }) => {
                             <View style={styles.infoItem}>
                                 <Icon name="person" type="material" style={styles.icon} />
                                 <Text style={styles.label}>Full Name:</Text>
-                                <Text style={styles.value}> {adminInfo.fullName}</Text>
+                                <Text style={styles.value}> {currentUser.fullName}</Text>
                             </View>
 
                             <View style={styles.infoItem}>
                                 <Icon name="cake" type="material" style={styles.icon} />
                                 <Text style={styles.label}>Date of Birth:</Text>
-                                <Text style={styles.value}> {adminInfo.dateOfBirth}</Text>
+                                <Text style={styles.value}> {currentUser.dateOfBirth}</Text>
                             </View>
 
                             <View style={styles.infoItem}>
                                 <Icon name="phone" type="material" style={styles.icon} />
                                 <Text style={styles.label}>Phone Number:</Text>
-                                <Text style={styles.value}> {adminInfo.phoneNumber}</Text>
+                                <Text style={styles.value}> {currentUser.phoneNumber}</Text>
                             </View>
 
                             <View style={styles.infoItem}>
                                 <Icon name="email" type="material" style={styles.icon} />
                                 <Text style={styles.label}>Email:</Text>
-                                <Text style={styles.value}> {adminInfo.email}</Text>
+                                <Text style={styles.value}> {currentUser.email}</Text>
                             </View>
 
                             <View style={styles.infoItem}>
                                 <Icon name="location-on" type="material" style={styles.icon} />
                                 <Text style={styles.label}>Address:</Text>
-                                <Text style={styles.value}> {adminInfo.address}</Text>
+                                <Text style={styles.value}> {currentUser.address}</Text>
                             </View>
                         </View>
                     ) : (

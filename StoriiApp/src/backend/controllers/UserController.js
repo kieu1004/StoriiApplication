@@ -128,6 +128,42 @@ class UserController {
         const userRef = database().ref(`/Users/${userId}`);
         return userRef.remove();
     }
+
+    //Phương thức lấy thông tin người dùng hiện tại dựa trên uId của người dùng đã đăng nhâp
+    static getCurrentUser = async () => {
+        try {
+          const currentUser = auth().currentUser;
+          if (currentUser) {
+            const uid = currentUser.uid;
+            const snapshot = await database()
+              .ref('Users')
+              .child(uid)
+              .once('value');
+            const userData = snapshot.val();
+            if (userData) {
+              const user = new UserModel(
+                userData._email,
+                userData._password,
+                userData._role,
+                userData._fullName,
+                userData._dateOfBirth,
+                userData._address,
+                userData._avatar,
+                userData._phoneNumber,
+                uid
+              );
+              return { success: true, user };
+            } else {
+              return { success: false, message: 'Không tìm thấy thông tin người dùng' };
+            }
+          } else {
+            return { success: false, message: 'Người dùng chưa đăng nhập' };
+          }
+        } catch (error) {
+          return { success: false, message: error.message };
+        }
+      };
+      
 }
 
 export default UserController;
