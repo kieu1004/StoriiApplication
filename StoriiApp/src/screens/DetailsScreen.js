@@ -16,8 +16,9 @@ const DetailsScreen = ({ navigation, route }) => {
     currency: 'VND',
   });
 
-  const getProductDetails = () => {
+  const getProductDetails = (userId) => {
     return {
+      userId: userId,
       productId: item._id,
       quantity: 1,
     };
@@ -28,31 +29,29 @@ const DetailsScreen = ({ navigation, route }) => {
       const userResponse = await UserController.getCurrentUser();
       if (userResponse.success) {
         const user = userResponse.user;
+        const userId = user.id; // Lấy ID của người dùng
 
         console.log(user.cart); // Cart is empty
         let tempCart = user.cart || [];
         if (tempCart.length > 0) {
           let existing = false;
           tempCart.map((itm) => {
-            if (itm.id === item._id) {
+            if (itm.productId === item._id && itm.userId === userId) {
               existing = true;
-              itm.data.qty = itm.data.qty + 1;
+              itm.quantity = itm.quantity + 1;
             }
           });
           if (!existing) {
-            tempCart.push(item);
+            tempCart.push(getProductDetails(userId));
           }
         } else {
-          tempCart.push(item);
+          tempCart.push(getProductDetails(userId));
         }
 
-        user.cart = tempCart;
-        const uid = user.uid;
+        const userRef = database().ref('Users/' + userId);
 
         // Update cart in Realtime Database
-        await database().ref('Users/' + uid).update({
-          cart: tempCart,
-        });
+        userRef.child('cart').set(tempCart);
 
         console.log(tempCart);
         getCartItems();
@@ -63,6 +62,9 @@ const DetailsScreen = ({ navigation, route }) => {
       console.log(error.message);
     }
   };
+
+
+
 
   const getCartItems = async () => {
     try {
