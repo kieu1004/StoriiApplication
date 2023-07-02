@@ -97,7 +97,7 @@ const DetailsScreen = ({ navigation, route }) => {
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{ justifyContent: 'center', alignItems: 'center', height: 280 }}>
-          <Image source={{ uri: item._img }} style={{ height: 300, width: 300 }} />
+          <Image source={{ uri: item._img }} style={{ height: 300, width: 300, resizeMode: 'contain' }} />
         </View>
         <View style={styles.details}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>

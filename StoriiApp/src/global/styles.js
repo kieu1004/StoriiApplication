@@ -6,7 +6,7 @@ export const colors = {
     heart_like: "#CB4646",
     heart_unlike: "#00000000",
     banner_sale: "#609966",
-    statusbar: "#C8B6A6",
+    statusbar: "rgb(40, 145, 71)",
     buttons: "#F4A442",
     CardComment: "#86939e",
     cardbackground: "white",
