@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Text, Image, TouchableOpacity, Dimensions } from 'react-native'
 import { FlatList, ScrollView } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import { useIsFocused } from '@react-navigation/native'
@@ -249,14 +249,20 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginHorizontal: 25,
     },
+
     footer: {
+        position: 'absolute',
+        marginLeft: 20,
+        bottom: 0,
+        width: '100%',
         backgroundColor: colors.banner_sale,
         paddingHorizontal: 30,
-        borderBottomRightRadius: 20,
-        borderBottomLeftRadius: 20,
+        paddingVertical: 20,
+        borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        borderTopLeftRadius: 20
-    }
+        borderBottomLeftRadius: 20,
+        borderBottomRightRadius: 20,
+    },
 })
 
 export default CartScreen
