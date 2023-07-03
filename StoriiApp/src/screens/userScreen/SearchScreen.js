@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, ImageBackground, Dimensions, TouchableWithoutFeedback, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from "../global/styles";
+import { colors } from '../../global/styles';
 import { Icon } from 'react-native-elements'
-import SearchComponent from '../components/SearchComponent';
-import FoodController from '../backend/controllers/FoodController';
+import SearchComponent from '../../components/SearchComponent';
+import FoodController from '../../backend/controllers/FoodController';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;

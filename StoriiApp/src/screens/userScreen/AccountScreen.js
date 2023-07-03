@@ -11,7 +11,7 @@ const AccountScreen = () => {
 
                 <View style={styles.profilePicContainer}>
                     <Image
-                        source={require('../assets/user.jpg')}
+                        source={require('../../assets/user.jpg')}
                         style={styles.profilePic}
                     />
                 </View>

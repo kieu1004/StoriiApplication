@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, Text, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import UserController from '../backend/controllers/UserController';
+import UserController from '../../backend/controllers/UserController';
 import database from '@react-native-firebase/database';
 
-import { colors } from '../global/styles';
-import { PrimaryButton } from '../components/Button';
+import { colors } from '../../global/styles';
+import { PrimaryButton } from '../../components/Button';
 
 const DetailsScreen = ({ navigation, route }) => {
   const item = route.params;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
-import FoodController from '../backend/controllers/FoodController';
-import { colors } from '../global/styles';
-import SearchResultCard from '../components/SearchResultCard';
+import FoodController from '../../backend/controllers/FoodController';
+import { colors } from '../../global/styles';
+import SearchResultCard from '../../components/SearchResultCard';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 

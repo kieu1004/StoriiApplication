@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { colors } from '../global/styles'
 import { Icon } from 'react-native-elements'
 
-import HomeScreen from '../screens/HomeScreen'
-import OrdersScreen from '../screens/OrdersScreen'
-import AccountScreen from '../screens/AccountScreen'
+import HomeScreen from '../screens/userScreen/HomeScreen'
+import OrderScreen from '../screens/userScreen/OrdersScreen'
+import AccountScreen from '../screens/userScreen/AccountScreen'
 import { ClientStack } from './clientStack'
 
 
@@ -64,8 +64,8 @@ export default function RootClientTabs() {
 
 
             <ClientTabs.Screen
-                name="OrdersScreen"
-                component={OrdersScreen}
+                name="OrderScreen"
+                component={OrderScreen}
                 options={
                     {
                         tabBarLabel: "My Orders",

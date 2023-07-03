@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, Dimensions, FlatList, TouchableHighlight } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import FoodController from '../backend/controllers/FoodController';
-import { colors } from '../global/styles';
-import SearchResultCard from '../components/SearchResultCard';
-import SearchComponent from '../components/SearchComponent';
+import FoodController from '../../backend/controllers/FoodController';
+import { colors } from '../../global/styles';
+import SearchResultCard from '../../components/SearchResultCard';
+import SearchComponent from '../../components/SearchComponent';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 

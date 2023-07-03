@@ -7,8 +7,8 @@ import database from '@react-native-firebase/database'
 import auth from '@react-native-firebase/auth'
 
 
-import { colors } from '../global/styles'
-import { PrimaryButton } from '../components/Button'
+import { colors } from '../../global/styles'
+import { PrimaryButton } from '../../components/Button'
 
 
 

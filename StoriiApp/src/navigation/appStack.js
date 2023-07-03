@@ -1,12 +1,12 @@
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 
-import ProviderMapScreen from '../screens/ProviderMapScreen'
+import ProviderMapScreen from '../screens/userScreen/ProviderMapScreen'
 import DrawerNavigator from './DrawerNavigator'
-import DetailsScreen from '../screens/DetailsScreen'
-import CartScreen from '../screens/CartScreen'
-import FilterCategory from '../screens/FilterCategoryScreen'
-import SearchResultScreen from '../screens/SearchResultScreen'
+import DetailsScreen from '../screens/userScreen/DetailsScreen'
+import CartScreen from '../screens/userScreen/CartScreen'
+import FilterCategory from '../screens/userScreen/FilterCategoryScreen'
+import SearchResultScreen from '../screens/userScreen/SearchResultScreen'
 
 
 

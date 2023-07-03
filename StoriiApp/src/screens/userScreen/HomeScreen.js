@@ -3,16 +3,16 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView, FlatList, Pressab
 import { TouchableHighlight } from "react-native-gesture-handler"
 import { Icon } from 'react-native-elements'
 import Swiper from 'react-native-swiper'
-import { colors, fonts, parameters } from '../global/styles'
+import { colors, fonts, parameters } from '../../global/styles'
 import { useNavigation } from '@react-navigation/native'
 // import Countdown from 'react-native-countdown-component'
 
-import HomeHeader from "../components/HomeHeader"
-import { filterData, providerData, productData } from '../global/Data'
-import FoodCard from "../components/FoodCard"
-import ProductCard from "../components/ProductCard"
-import CategoryController from "../backend/controllers/CategoryController";
-import FoodController from "../backend/controllers/FoodController";
+import HomeHeader from "../../components/HomeHeader"
+import { providerData } from '../../global/Data'
+import FoodCard from "../../components/FoodCard";
+import ProductCard from "../../components/ProductCard";
+import CategoryController from "../../backend/controllers/CategoryController";
+import FoodController from "../../backend/controllers/FoodController";
 
 
 
