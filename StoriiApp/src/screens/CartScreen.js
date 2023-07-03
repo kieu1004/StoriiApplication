@@ -8,7 +8,6 @@ import auth from '@react-native-firebase/auth'
 
 
 import { colors } from '../global/styles'
-import { cartData } from '../global/Data'
 import { PrimaryButton } from '../components/Button'
 
 
