@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react'
 import auth from '@react-native-firebase/auth'
-import { View, Text, Linking, Pressable, Alert, Switch, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Alert, Switch, StyleSheet } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList, DrawerItem } from '@react-navigation/drawer'
-import { Avatar, Button, Icon } from 'react-native-elements'
+import { Avatar, Icon } from 'react-native-elements'
 import { useNavigation } from '@react-navigation/native'
 import { colors } from '../global/styles'
 import UserController from '../backend/controllers/UserController'
