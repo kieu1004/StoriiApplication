@@ -25,7 +25,7 @@ export default function RootClientTabs() {
 
 
             <ClientTabs.Screen
-                name="HomeScreen"
+                name="Home"
                 component={HomeScreen}
                 options={
                     {
@@ -44,7 +44,7 @@ export default function RootClientTabs() {
 
 
             <ClientTabs.Screen
-                name="SearchScreen"
+                name="Search"
                 component={ClientStack}
                 options={
                     {
@@ -64,7 +64,7 @@ export default function RootClientTabs() {
 
 
             <ClientTabs.Screen
-                name="OrderScreen"
+                name="Order"
                 component={OrderScreen}
                 options={
                     {
@@ -84,7 +84,7 @@ export default function RootClientTabs() {
 
 
             <ClientTabs.Screen
-                name="MyAccount"
+                name="Account"
                 component={AccountScreen}
                 options={
                     {
