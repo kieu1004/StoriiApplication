@@ -7,7 +7,7 @@ import { colors } from '../../global/styles';
 import UserController from '../../backend/controllers/UserController';
 import { SignInContext } from '../../contexts/authContext';
 
-const AccountScreen = ({navigation}) => {
+const AccountScreen = ({ navigation }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const { dispatchSignedIn } = useContext(SignInContext)
@@ -61,7 +61,11 @@ const AccountScreen = ({navigation}) => {
                         </View>
                         <View style={styles.headerInfo}>
                             <Text style={styles.name}>{currentUser?.fullName}</Text>
-                            <TouchableOpacity style={styles.editProfileButton}>
+                            <TouchableOpacity
+                                style={styles.editProfileButton}
+                                onPress={()=>{
+                                    navigation.navigate('EditProfile')
+                                }}>
                                 <Icon name="pencil" size={20} color={colors.text_fuzz3} />
                                 <Text style={styles.editProfileButtonText}>Edit Profile</Text>
                             </TouchableOpacity>

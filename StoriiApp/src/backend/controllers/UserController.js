@@ -1,6 +1,10 @@
 import UserModel from '../models/UserModel';
-import database from '@react-native-firebase/database';
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/storage';
+import 'react-native-get-random-values';
+import { v4 as uuidv4 } from 'uuid';
 import auth from '@react-native-firebase/auth';
+import database from '@react-native-firebase/database';
 
 class UserController {
   static loginUser = async (email, password) => {
@@ -60,35 +64,6 @@ class UserController {
     }
   };
 
-  static getUsers = async () => {
-    try {
-      const snapshot = await database().ref('Users').once('value');
-      const usersData = snapshot.val();
-      const users = [];
-      for (const uid in usersData) {
-        if (usersData.hasOwnProperty(uid)) {
-          const userData = usersData[uid];
-          const user = new UserModel(
-            userData._email,
-            userData._password,
-            userData._role,
-            userData._fullName,
-            userData._dateOfBirth,
-            userData._address,
-            userData._avatar,
-            userData._phoneNumber,
-            uid,
-            userData.cart
-          );
-          users.push(user);
-        }
-      }
-      return { success: true, users };
-    } catch (error) {
-      return { success: false, message: error.message };
-    }
-  };
-
   static getUser = async (userId) => {
     try {
       const snapshot = await database().ref('Users').child(userId).once('value');
@@ -115,21 +90,113 @@ class UserController {
     }
   };
 
-  static updateUser = async (userId, updatedUser) => {
+  static async updateUser(user, updateComplete) {
     try {
-      await database().ref('Users').child(userId).update(updatedUser);
-      return { success: true, message: 'Cập nhật người dùng thành công' };
+      user.updatedAt = firebase.database.ServerValue.TIMESTAMP;
+      await firebase.database()
+        .ref(`Users/${user.id}`)
+        .update(user);
+      updateComplete(user);
     } catch (error) {
-      return { success: false, message: error.message };
+      console.error('Error updating user:', error);
+      throw error;
     }
-  };
+  }
 
-  static deleteUser = async (userId) => {
+
+  static async uploadUser(user, onUserUploaded) {
     try {
-      await database().ref('Users').child(userId).remove();
-      return { success: true, message: 'Xóa người dùng thành công' };
+      if (user.imageUri) {
+        const fileExtension = user.imageUri.split('.').pop();
+        const uuid = uuidv4();
+        const fileName = `${uuid}.${fileExtension}`;
+        const storageRef = firebase.storage().ref(`Users/images/${fileName}`);
+
+        const uploadTask = storageRef.putFile(user.imageUri);
+
+        uploadTask.on(
+          firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log(`Upload progress: ${progress}%`);
+
+            if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+              console.log('Upload success');
+            }
+          },
+          (error) => {
+            console.log(`Image upload error: ${error}`);
+          },
+          () => {
+            uploadTask.snapshot.ref.getDownloadURL()
+              .then((downloadUrl) => {
+                console.log(`File available at: ${downloadUrl}`);
+
+                user.img = downloadUrl;
+                delete user.imageUri;
+
+                console.log('Updating...');
+                UserController.updateUser(user, onUserUploaded);
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          }
+        );
+      } else {
+        console.log('Skipping image upload');
+        delete user.imageUri;
+
+        console.log('Updating...');
+        UserController.updateUser(user, onUserUploaded);
+      }
     } catch (error) {
-      return { success: false, message: error.message };
+      console.error('Error uploading user:', error);
+      throw error;
+    }
+  }
+
+  static uploadImage = async (image) => {
+    try {
+      if (image == null) {
+        return null;
+      }
+
+      const fileExtension = image.split('.').pop();
+      const uuid = uuidv4();
+      const fileName = `${uuid}.${fileExtension}`;
+      const storageRef = firebase.storage().ref(`Photos/${fileName}`);
+
+      const uploadTask = storageRef.putFile(image);
+
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload progress: ${progress}%`);
+
+          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+            console.log('Upload success');
+          }
+        },
+        (error) => {
+          console.log(`Image upload error: ${error}`);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL()
+            .then((downloadUrl) => {
+              console.log(`File available at: ${downloadUrl}`);
+              return downloadUrl;
+            })
+            .catch((error) => {
+              console.log(error);
+              return null;
+            });
+        }
+      );
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      return null;
     }
   };
 
