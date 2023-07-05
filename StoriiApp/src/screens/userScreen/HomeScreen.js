@@ -307,7 +307,7 @@ const HomeScreen = () => {
                 <View style={styles.listProduct}>
                     <View style={{ flex: 1 }}>
                         <FlatList
-                            data={foodList} // Update the data prop here
+                            data={foodList}
                             showsVerticalScrollIndicator={false}
                             horizontal={true}
                             keyExtractor={(item) => item.id}

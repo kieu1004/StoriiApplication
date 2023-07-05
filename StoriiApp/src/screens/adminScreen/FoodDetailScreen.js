@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, Alert, Image } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert, Image,ScrollView } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
 import FoodController from '../../backend/controllers/FoodController';
+import { colors } from '../../global/styles';
 
 class FoodDetail extends Component {
 
@@ -56,11 +57,24 @@ class FoodDetail extends Component {
             }
           />
         </View>
-        <Image style={styles.image} source={food.image && { uri: food.image }} />
-        <Text style={styles.headerText}>{food.name}</Text>
-        <Text style={styles.priceText}>Price: {food.price}</Text>
-        <Text style={styles.quantityText}>Quantity: {food.quantity}</Text>
-        <Text style={styles.descriptionText}>{food.description}</Text>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={{ justifyContent: 'center', alignItems: 'center', height: 280 }}>
+            <Image source={{ uri: food._img }} style={{ height: 300, width: 300, resizeMode: 'contain' }} />
+          </View>
+          <View style={styles.details}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+              <Text style={{ fontSize: 25, fontWeight: 'bold', color: colors.text_white }}>{food._name}</Text>
+              <View style={styles.iconContainer}>
+                <Icon name="favorite-border" color={colors.primary_bold} size={25} />
+              </View>
+            </View>
+
+            <Text style={styles.priceText}>{parseFloat(food.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</Text>
+
+            <Text style={styles.detailsText}>{food._description}</Text>
+
+          </View>
+        </ScrollView>
 
         <Text style={styles.ingredientText}>Ingredients</Text>
         {
@@ -84,13 +98,14 @@ class FoodDetail extends Component {
 
 const styles = StyleSheet.create({
   headerText: {
-    fontSize: 32,
+    fontSize: 30,
     marginBottom: 16
   },
   image: {
     width: '100%',
     aspectRatio: 2,
-    marginBottom: 16
+    marginBottom: 16,
+    resizeMode: 'contain'
   },
   row: {
     flexDirection: 'row',
@@ -118,7 +133,7 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   descriptionText: {
-    fontSize: 20,
+    fontSize: 15,
     marginBottom: 32
   },
   ingredientText: {
@@ -139,7 +154,50 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     width: 200,
     borderColor: 'grey'
-  }
+  },
+
+
+  header: {
+    paddingVertical: 20,
+    paddingTop: 60,
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginHorizontal: 20,
+  },
+
+  details: {
+    paddingHorizontal: 20,
+    paddingTop: 40,
+    paddingBottom: '100%',
+    backgroundColor: colors.banner_sale,
+    borderTopRightRadius: 40,
+    borderTopLeftRadius: 40,
+    marginTop: 30,
+  },
+
+  iconContainer: {
+    backgroundColor: colors.text_white,
+    height: 50,
+    width: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 30,
+  },
+
+  detailsText: {
+    marginTop: 10,
+    marginBottom: 10,
+    lineHeight: 22,
+    fontSize: 15,
+    color: colors.text_white,
+  },
+
+  priceText: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 25,
+    color: colors.text_white,
+  },
 });
 
 export default FoodDetail;
