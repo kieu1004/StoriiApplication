@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import UserController from '../backend/controllers/UserController';
 import CurryImagePicker from '../components/CurryImagePicker';
@@ -34,35 +34,21 @@ const ProfileForm = () => {
 
   const saveProfile = async () => {
     if (user) {
-      const updatedUser = {
-        ...user,
-        _fullName: fullName,
-        _dateOfBirth: dateOfBirth,
-        _address: address,
-        _phoneNumber: phoneNumber
-      };
+      user.fullName = fullName;
+      user.dateOfBirth = dateOfBirth;
+      user.address = address;
+      user.phoneNumber = phoneNumber;
 
-      const imageUrl = await uploadImage(selectedImage);
-      updatedUser._avatar = imageUrl || updatedUser._avatar;
+      if (user.avatar !== selectedImage) {
+        user.avatar = selectedImage;
+      }
 
-      await UserController.updateUser(updatedUser, (updatedUser) => {
+      await UserController.updateUser(user, (updatedUser) => {
         console.log('User updated:', updatedUser);
       });
     }
   };
 
-
-  const uploadImage = async (imageUri) => {
-    try {
-      // Implement your image upload logic here and return the image URL
-      // For example:
-      const imageUrl = await UserController.uploadImage(imageUri);
-      return imageUrl;
-    } catch (error) {
-      console.log('Error uploading image:', error);
-      return null;
-    }
-  };
 
   const showDatePickerModal = () => {
     setShowDatePicker(true);
@@ -86,13 +72,10 @@ const ProfileForm = () => {
 
   const handleImagePicked = async (pickedImage) => {
     try {
-      const imageUrl = await uploadImage(pickedImage.uri);
+      const imageUrl = await UserController.uploadImage(pickedImage.uri);
       if (imageUrl) {
         setSelectedImage(imageUrl);
-        setUser((prevUser) => ({
-          ...prevUser,
-          _avatar: imageUrl
-        }));
+        user.avatar = imageUrl;
       } else {
         console.log('Failed to upload image');
       }
@@ -101,9 +84,12 @@ const ProfileForm = () => {
     }
   };
 
+
+
   return (
     <View style={styles.container}>
       <ScrollView keyboardShouldPersistTaps="always" style={styles.details}>
+
         <CurryImagePicker image={selectedImage} onImagePicked={handleImagePicked} />
 
         <Text style={styles.inputTitle}>Full Name</Text>
@@ -128,11 +114,13 @@ const ProfileForm = () => {
 
         <Text style={styles.inputTitle}>Address</Text>
         <TextInput value={address} onChangeText={setAddress} />
+
       </ScrollView>
 
       <View style={styles.btnSubmit}>
         <PrimaryButton title="Save Profile" onPress={saveProfile} />
       </View>
+
     </View>
   );
 };

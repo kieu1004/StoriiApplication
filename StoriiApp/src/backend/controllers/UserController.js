@@ -94,7 +94,7 @@ class UserController {
     try {
       user.updatedAt = firebase.database.ServerValue.TIMESTAMP;
       await firebase.database()
-        .ref(`Users/${user._id}`)
+        .ref(`Users/${user.id}`)
         .update(user);
       updateComplete(user);
     } catch (error) {
@@ -104,51 +104,101 @@ class UserController {
   }
 
 
+  // static async uploadUser(user, onUserUploaded) {
+  //   try {
+  //     if (user.imageUri) {
+  //       const fileExtension = user.imageUri.split('.').pop();
+  //       const uuid = uuidv4();
+  //       const fileName = `${uuid}.${fileExtension}`;
+  //       const storageRef = firebase.storage().ref(`Users/images/${fileName}`);
+
+  //       const uploadTask = storageRef.putFile(user.imageUri);
+
+  //       uploadTask.on(
+  //         firebase.storage.TaskEvent.STATE_CHANGED,
+  //         (snapshot) => {
+  //           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //           console.log(`Upload progress: ${progress}%`);
+
+  //           if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+  //             console.log('Upload success');
+  //           }
+  //         },
+  //         (error) => {
+  //           console.log(`Image upload error: ${error}`);
+  //         },
+  //         () => {
+  //           uploadTask.snapshot.ref.getDownloadURL()
+  //             .then((downloadUrl) => {
+  //               console.log(`File available at: ${downloadUrl}`);
+
+  //               user.img = downloadUrl;
+  //               delete user.imageUri;
+
+  //               console.log('Updating...');
+  //               UserController.updateUser(user, onUserUploaded);
+  //             })
+  //             .catch((error) => {
+  //               console.log(error);
+  //             });
+  //         }
+  //       );
+  //     } else {
+  //       console.log('Skipping image upload');
+  //       delete user.imageUri;
+
+  //       console.log('Updating...');
+  //       UserController.updateUser(user, onUserUploaded);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error uploading user:', error);
+  //     throw error;
+  //   }
+  // }
+
   static uploadImage = async (image) => {
     try {
       if (image == null) {
         return null;
       }
-  
+
       const fileExtension = image.split('.').pop();
       const uuid = uuidv4();
       const fileName = `${uuid}.${fileExtension}`;
       const storageRef = firebase.storage().ref(`Photos/${fileName}`);
-  
+
       const uploadTask = storageRef.putFile(image);
-  
-      return new Promise((resolve, reject) => {
-        uploadTask.on(
-          firebase.storage.TaskEvent.STATE_CHANGED,
-          (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(`Upload progress: ${progress}%`);
-  
-            if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
-              console.log('Upload success');
-            }
-          },
-          (error) => {
-            console.log(`Image upload error: ${error}`);
-            reject(error);
-          },
-          async () => {
-            try {
-              const downloadUrl = await uploadTask.snapshot.ref.getDownloadURL();
-              console.log(`File available at: ${downloadUrl}`);
-              resolve(downloadUrl);
-            } catch (error) {
-              console.log(error);
-              reject(error);
-            }
+
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log(`Upload progress: ${progress}%`);
+
+          if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+            console.log('Upload success');
           }
-        );
-      });
+        },
+        (error) => {
+          console.log(`Image upload error: ${error}`);
+        },
+        () => {
+          uploadTask.snapshot.ref.getDownloadURL()
+            .then((downloadUrl) => {
+              console.log(`File available at: ${downloadUrl}`);
+              return downloadUrl;
+            })
+            .catch((error) => {
+              console.log(error);
+              return null;
+            });
+        }
+      );
     } catch (error) {
       console.error('Error uploading image:', error);
       return null;
     }
-  };  
+  };
 
   // Phương thức lấy thông tin người dùng hiện tại
   static getCurrentUser = async () => {
