@@ -3,13 +3,17 @@ import { StyleSheet, Text, View, Dimensions, FlatList } from 'react-native';
 import FoodController from '../../backend/controllers/FoodController';
 import { colors } from '../../global/styles';
 import SearchResultCard from '../../components/SearchResultCard';
+import UserController from '../../backend/controllers/UserController';
+import database from '@react-native-firebase/database';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
 const SearchResultScreen = ({ navigation, route }) => {
+  const item = route.params;
+
   const [foodList, setFoodList] = useState([]);
-  
+
   const loadFoodList = async () => {
     try {
       const foods = await FoodController.getFoodList();
@@ -27,6 +31,79 @@ const SearchResultScreen = ({ navigation, route }) => {
     food.name.toLowerCase().includes(route.params.item.toLowerCase())
   );
 
+  const getProductDetails = (userId) => {
+    return {
+      userId: userId,
+      productId: item._id,
+      quantity: 1,
+      price: item.price,
+      imageUrl: item.img,
+      name: item.name
+    };
+  };
+
+
+
+  const onAddToCart = async (item) => {
+    try {
+      const userResponse = await UserController.getCurrentUser();
+      if (userResponse.success) {
+        const user = userResponse.user;
+        const userId = user.id;
+
+        console.log(user.cart);
+        let tempCart = user.cart || [];
+        if (tempCart.length > 0) {
+          let existing = false;
+          tempCart.map((itm) => {
+            if (itm.productId === item._id && itm.userId === userId) {
+              existing = true;
+              itm.quantity = itm.quantity + 1;
+            }
+          });
+          if (!existing) {
+            tempCart.push(getProductDetails(userId, item));
+          }
+        } else {
+          tempCart.push(getProductDetails(userId, item));
+        }
+
+        const userRef = database().ref('Users/' + userId);
+
+        userRef.child('cart').set(tempCart);
+
+        console.log(tempCart);
+        getCartItems();
+      } else {
+        console.log(userResponse.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+  const getCartItems = async () => {
+    try {
+      const userResponse = await UserController.getCurrentUser();
+      if (userResponse.success) {
+        const user = userResponse.user;
+        const cartItems = user.cart || [];
+        console.log(cartItems);
+
+      } else {
+        console.log(userResponse.message);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getCartItems();
+  }, []);
+
+
   return (
     <View style={styles.container}>
       <View>
@@ -43,7 +120,9 @@ const SearchResultScreen = ({ navigation, route }) => {
               OnPressFoodCard={() => {
                 navigation.navigate('DetailScreen');
               }}
+              onAddToCart={() => onAddToCart(item)}
             />
+
           )}
           ListHeaderComponent={
             <View>

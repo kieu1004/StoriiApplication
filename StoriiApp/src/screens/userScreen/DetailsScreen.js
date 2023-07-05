@@ -53,7 +53,6 @@ const DetailsScreen = ({ navigation, route }) => {
 
         const userRef = database().ref('Users/' + userId);
 
-        // Update cart in Realtime Database
         userRef.child('cart').set(tempCart);
 
         console.log(tempCart);
@@ -76,7 +75,7 @@ const DetailsScreen = ({ navigation, route }) => {
         const user = userResponse.user;
         const cartItems = user.cart || [];
         console.log(cartItems);
-        // Xử lý danh sách sản phẩm trong giỏ hàng ở đây
+
       } else {
         console.log(userResponse.message);
       }

@@ -6,7 +6,6 @@ import { colors } from '../global/styles'
 
 
 
-//Khai báo và định nghĩa ProductCard
 const ProductCard = ({ productName, price, image }) => {
     return (
         <View style={styles.view1}>
