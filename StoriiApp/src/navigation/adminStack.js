@@ -8,6 +8,7 @@ import CategoryForm from '../components/CategoryForm'
 import RootAdminTabs from './AdminTabs'
 import DrawerAdminNavigator from './DrawerAdminNavigation'
 import FoodDetail from '../screens/adminScreen/FoodDetailScreen'
+import SearchResulFoodtScreen from '../screens/adminScreen/SearchFoodResultScreen'
 
 
 
@@ -21,7 +22,7 @@ export function AdminStack() {
   return (
     <App.Navigator>
       <App.Screen
-        name="AdminDashboardScreen"
+        name="Admin Dashboard"
         component={DrawerAdminNavigator}
         options={{
           headerShown: false,
@@ -31,7 +32,7 @@ export function AdminStack() {
 
       {/* Edit user */}
       <App.Screen
-        name="EditUserScreen"
+        name="Edit User"
         component={EditUserScreen}
         options={{
           headerShown: false,
@@ -41,7 +42,7 @@ export function AdminStack() {
 
       {/* Add */}
       <App.Screen
-        name="FoodForm"
+        name="Food Form"
         component={FoodForm}
         options={{
           headerShown: false,
@@ -50,7 +51,7 @@ export function AdminStack() {
       />
 
       <App.Screen
-        name="CategoryForm"
+        name="Category Form"
         component={CategoryForm}
         options={{
           headerShown: false,
@@ -61,7 +62,7 @@ export function AdminStack() {
 
       {/* Detail */}
       <App.Screen
-        name="CategoryDetail"
+        name="Category Detail"
         component={CategoryDetail}
         options={{
           headerShown: false,
@@ -70,7 +71,7 @@ export function AdminStack() {
       />
 
       <App.Screen
-        name="FoodDetail"
+        name="Food Detail"
         component={FoodDetail}
         options={{
           headerShown: false,
