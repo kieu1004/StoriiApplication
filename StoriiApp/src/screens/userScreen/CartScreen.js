@@ -175,15 +175,12 @@ const CartScreen = ({ navigation }) => {
                                         {getTotal().toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
                                     </Text>
                                 </View>
-                                <View style={{ marginHorizontal: 20, marginBottom: 10 }}>
-                                    <PrimaryButton title="CHECKOUT" />
-                                </View>
+
                             </View>
                         )}
                     />
                 )}
             </ScrollView>
-
         </SafeAreaView>
     )
 }
@@ -231,32 +228,30 @@ const styles = StyleSheet.create({
     },
 
     actionBtn: {
-        width: 100,
         height: 30,
-        backgroundColor: colors.cardbackground,
-        borderRadius: 5,
         flexDirection: 'row',
-        justifyContent: 'center',
-        alignContent: 'center',
-        marginLeft: 12
-    },
-    qtybtn: {
-        width: 25,
-        height: 25,
-        backgroundColor: colors.banner_sale,
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 25,
+        marginTop: 5,
+        marginLeft: 5,
+    },
+    qtybtn: {
+        width: 30,
+        height: 30,
+        backgroundColor: colors.primary_bold,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginHorizontal: 10,
+        borderRadius: 5,
     },
 
     footer: {
-        position: 'absolute',
-        marginLeft: 20,
         bottom: 0,
+        marginBottom: "100%",
         width: '100%',
         backgroundColor: colors.banner_sale,
-        paddingHorizontal: 30,
-        paddingVertical: 20,
+        paddingHorizontal: 20,
+        paddingVertical: 8,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         borderBottomLeftRadius: 20,

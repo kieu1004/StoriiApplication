@@ -8,6 +8,7 @@ import CartScreen from '../screens/userScreen/CartScreen'
 import FilterCategory from '../screens/userScreen/FilterCategoryScreen'
 import SearchResultScreen from '../screens/userScreen/SearchResultScreen'
 import EditProfile from '../screens/userScreen/EditProfile'
+import CheckOutScreen from '../screens/userScreen/CheckOutScreen'
 
 
 
@@ -75,6 +76,15 @@ export function AppStack() {
       <App.Screen
         name="EditProfile"
         component={EditProfile}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="CheckOutScreen"
+        component={CheckOutScreen}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid

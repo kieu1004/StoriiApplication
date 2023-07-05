@@ -43,9 +43,9 @@ const HomeScreen = () => {
         const loadData = async () => {
             try {
                 const result = await loadCategoryList();
-                console.log(result); // Log the categories data
+                console.log(result);
             } catch (error) {
-                console.log(error); // Log any errors that occurred
+                console.log(error);
             }
         };
 
@@ -68,9 +68,9 @@ const HomeScreen = () => {
         const loadData = async () => {
             try {
                 const result = await loadFoodList();
-                console.log(result); // Log the foods data
+                console.log(result);
             } catch (error) {
-                console.log(error); // Log any errors that occurred
+                console.log(error);
             }
         };
 

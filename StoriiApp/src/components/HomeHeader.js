@@ -1,16 +1,13 @@
 import React from "react"
 import { View, Text, StyleSheet } from 'react-native'
-import { Icon, withBadge } from 'react-native-elements'
+import { Icon} from 'react-native-elements'
 import { colors, parameters } from '../global/styles'
-import UserController from "../backend/controllers/UserController"
 
 
 
 
 
 export default function HomeHeader({ navigation }) {
-
-    const BadgeIcon = withBadge(0)(Icon)
 
 
     return (
@@ -35,7 +32,7 @@ export default function HomeHeader({ navigation }) {
 
 
             <View style={{ alignItems: "center", justifyContent: "center", marginRight: 15 }}>
-                <BadgeIcon
+                <Icon
                     type="material-community"
                     name="cart"
                     size={35}

@@ -83,8 +83,8 @@ const OrderScreen = ({ navigation }) => {
                                 paddingVertical: 20,
                                 flex: 1,
                             }}>
-                                <Text style={{ fontSize: 16 }}>{item.name}</Text>
-                                <Text style={{ fontSize: 17, fontWeight: 'bold', marginTop: 10, color: colors.primary_bold }}>
+                                <Text style={{ fontSize: 13 }}>{item.name}</Text>
+                                <Text style={{ fontSize: 15, fontWeight: 'bold', marginTop: 10, color: colors.primary_bold }}>
                                     {parseFloat(item.price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
                                 </Text>
                             </View>
@@ -148,8 +148,11 @@ const OrderScreen = ({ navigation }) => {
                     <Text style={styles.orderSummaryLabel}>Subtotal</Text>
                     <Text style={styles.orderSummaryValue}>{getTotal().toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</Text>
                 </View>
-                {/* Add tax calculation if needed */}
-                <TouchableOpacity style={styles.orderButton}>
+
+                <TouchableOpacity
+                    style={styles.orderButton}
+                    onPress={() => navigation.navigate('CheckOutScreen')}
+                >
                     <Text style={styles.orderButtonText}>CHECKOUT</Text>
                 </TouchableOpacity>
             </View>
@@ -194,23 +197,22 @@ const styles = StyleSheet.create({
 
     actionBtn: {
         height: 30,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        backgroundColor: colors.cardbackground,
-        borderRadius: 5,
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'center',
+        marginTop: 5,
+        marginLeft: 5,
     },
 
     orderItemQuantityButton: {
         width: 30,
         height: 30,
-        backgroundColor: colors.primary_light,
+        backgroundColor: colors.primary_bold,
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: 25,
+        marginHorizontal: 10,
+        borderRadius: 5,
     },
-
     orderSummary: {
         backgroundColor: '#f2f2f2',
         padding: 20,
