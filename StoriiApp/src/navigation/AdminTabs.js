@@ -23,7 +23,7 @@ export default function RootAdminTabs() {
     >
 
       <AdminTabs.Screen
-        name="Admin Dashboard"
+        name="AdminDashboardScreen"
         component={AdminDashboardScreen}
         options={
           {
@@ -59,7 +59,7 @@ export default function RootAdminTabs() {
       />
 
       <AdminTabs.Screen
-        name="Food"
+        name="FoodList"
         component={FoodList}
         options={
           {

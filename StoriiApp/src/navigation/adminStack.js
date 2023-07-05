@@ -21,7 +21,7 @@ export function AdminStack() {
   return (
     <App.Navigator>
       <App.Screen
-        name="Admin Dashboard"
+        name="AdminDashboardScreen"
         component={DrawerAdminNavigator}
         options={{
           headerShown: false,
@@ -31,7 +31,7 @@ export function AdminStack() {
 
       {/* Edit user */}
       <App.Screen
-        name="EditUser"
+        name="EditUserScreen"
         component={EditUserScreen}
         options={{
           headerShown: false,

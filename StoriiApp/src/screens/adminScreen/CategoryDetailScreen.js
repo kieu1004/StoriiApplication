@@ -20,8 +20,6 @@ class CategoryDetail extends Component {
   }
 
   render() {
-    // const category = this.props.navigation.getParam('category');
-    // const onCategoryDeleted = this.props.navigation.getParam('categoryDeletedCallback');
 
     const { category, categoryDeletedCallback } = this.props.route.params;
 
