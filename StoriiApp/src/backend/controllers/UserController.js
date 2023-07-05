@@ -104,57 +104,57 @@ class UserController {
   }
 
 
-  static async uploadUser(user, onUserUploaded) {
-    try {
-      if (user.imageUri) {
-        const fileExtension = user.imageUri.split('.').pop();
-        const uuid = uuidv4();
-        const fileName = `${uuid}.${fileExtension}`;
-        const storageRef = firebase.storage().ref(`Users/images/${fileName}`);
+  // static async uploadUser(user, onUserUploaded) {
+  //   try {
+  //     if (user.imageUri) {
+  //       const fileExtension = user.imageUri.split('.').pop();
+  //       const uuid = uuidv4();
+  //       const fileName = `${uuid}.${fileExtension}`;
+  //       const storageRef = firebase.storage().ref(`Users/images/${fileName}`);
 
-        const uploadTask = storageRef.putFile(user.imageUri);
+  //       const uploadTask = storageRef.putFile(user.imageUri);
 
-        uploadTask.on(
-          firebase.storage.TaskEvent.STATE_CHANGED,
-          (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log(`Upload progress: ${progress}%`);
+  //       uploadTask.on(
+  //         firebase.storage.TaskEvent.STATE_CHANGED,
+  //         (snapshot) => {
+  //           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+  //           console.log(`Upload progress: ${progress}%`);
 
-            if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
-              console.log('Upload success');
-            }
-          },
-          (error) => {
-            console.log(`Image upload error: ${error}`);
-          },
-          () => {
-            uploadTask.snapshot.ref.getDownloadURL()
-              .then((downloadUrl) => {
-                console.log(`File available at: ${downloadUrl}`);
+  //           if (snapshot.state === firebase.storage.TaskState.SUCCESS) {
+  //             console.log('Upload success');
+  //           }
+  //         },
+  //         (error) => {
+  //           console.log(`Image upload error: ${error}`);
+  //         },
+  //         () => {
+  //           uploadTask.snapshot.ref.getDownloadURL()
+  //             .then((downloadUrl) => {
+  //               console.log(`File available at: ${downloadUrl}`);
 
-                user.img = downloadUrl;
-                delete user.imageUri;
+  //               user.img = downloadUrl;
+  //               delete user.imageUri;
 
-                console.log('Updating...');
-                UserController.updateUser(user, onUserUploaded);
-              })
-              .catch((error) => {
-                console.log(error);
-              });
-          }
-        );
-      } else {
-        console.log('Skipping image upload');
-        delete user.imageUri;
+  //               console.log('Updating...');
+  //               UserController.updateUser(user, onUserUploaded);
+  //             })
+  //             .catch((error) => {
+  //               console.log(error);
+  //             });
+  //         }
+  //       );
+  //     } else {
+  //       console.log('Skipping image upload');
+  //       delete user.imageUri;
 
-        console.log('Updating...');
-        UserController.updateUser(user, onUserUploaded);
-      }
-    } catch (error) {
-      console.error('Error uploading user:', error);
-      throw error;
-    }
-  }
+  //       console.log('Updating...');
+  //       UserController.updateUser(user, onUserUploaded);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error uploading user:', error);
+  //     throw error;
+  //   }
+  // }
 
   static uploadImage = async (image) => {
     try {

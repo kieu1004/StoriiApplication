@@ -1,45 +1,54 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Text, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, Button, TouchableOpacity, StyleSheet } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import { withFormik } from 'formik';
-import * as yup from 'yup';
-
-import { colors } from '../global/styles';
-import CurryImagePicker from './CurryImagePicker';
-import { PrimaryButton } from './Button';
 import UserController from '../backend/controllers/UserController';
-import UserModel from '../backend/models/UserModel';
+import CurryImagePicker from '../components/CurryImagePicker';
+import { colors } from '../global/styles';
+import { ScrollView } from 'react-native-gesture-handler';
+import { PrimaryButton } from './Button';
 
-const FormInput = ({ title, value, onChangeText, error }) => (
-  <View style={styles.inputContainer}>
-    <Text style={styles.inputTitle}>{title}</Text>
-    <TextInput
-      value={value}
-      style={styles.input}
-      onChangeText={onChangeText}
-    />
-    {error && <Text style={styles.errorText}>{error}</Text>}
-  </View>
-);
-
-const ProfileForm = ({
-  values,
-  touched,
-  errors,
-  handleChange,
-  handleBlur,
-  handleSubmit,
-  setFieldValue
-}) => {
+const ProfileForm = () => {
+  const [user, setUser] = useState(null);
+  const [fullName, setFullName] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
+  const [address, setAddress] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const onDateChange = (event, selectedDate) => {
-    setShowDatePicker(false);
-    if (selectedDate) {
-      setSelectedDate(selectedDate);
+  useEffect(() => {
+    loadUserProfile();
+  }, []);
+
+  const loadUserProfile = async () => {
+    const { success, user } = await UserController.getCurrentUser();
+    if (success) {
+      setUser(user);
+      setFullName(user.fullName);
+      setDateOfBirth(user.dateOfBirth);
+      setAddress(user.address);
+      setPhoneNumber(user.phoneNumber);
     }
   };
+
+  const saveProfile = async () => {
+    if (user) {
+      user.fullName = fullName;
+      user.dateOfBirth = dateOfBirth;
+      user.address = address;
+      user.phoneNumber = phoneNumber;
+
+      if (user.avatar !== selectedImage) {
+        user.avatar = selectedImage;
+      }
+
+      await UserController.updateUser(user, (updatedUser) => {
+        console.log('User updated:', updatedUser);
+      });
+    }
+  };
+
 
   const showDatePickerModal = () => {
     setShowDatePicker(true);
@@ -52,25 +61,43 @@ const ProfileForm = ({
     return `${day} ${month} ${year}`;
   };
 
-  const setUserImage = (image) => {
-    setFieldValue('imageUri', image.uri);
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setSelectedDate(selectedDate);
+      const formattedDate = formatDate(selectedDate);
+      setDateOfBirth(formattedDate);
+    }
   };
+
+  const handleImagePicked = async (pickedImage) => {
+    try {
+      const imageUrl = await UserController.uploadImage(pickedImage.uri);
+      if (imageUrl) {
+        setSelectedImage(imageUrl);
+        user.avatar = imageUrl;
+      } else {
+        console.log('Failed to upload image');
+      }
+    } catch (error) {
+      console.log('Error uploading image:', error);
+    }
+  };
+
+
 
   return (
     <View style={styles.container}>
       <ScrollView keyboardShouldPersistTaps="always" style={styles.details}>
-        <CurryImagePicker image={values.imageUri} onImagePicked={setUserImage} />
 
-        <FormInput
-          title="Name"
-          value={values.name}
-          onChangeText={handleChange('name')}
-          error={touched.name && errors.name}
-        />
+        <CurryImagePicker image={selectedImage} onImagePicked={handleImagePicked} />
+
+        <Text style={styles.inputTitle}>Full Name</Text>
+        <TextInput value={fullName} onChangeText={setFullName} />
 
         <TouchableOpacity style={styles.inputContainer} onPress={showDatePickerModal}>
-          <Text style={styles.inputTitle}>Date of Birth</Text>
-          <Text>{selectedDate ? formatDate(selectedDate) : 'Select your date of birth'}</Text>
+          <Text style={styles.inputTitle}>Date Of Birth</Text>
+          <Text>{dateOfBirth || 'Chọn ngày sinh'}</Text>
         </TouchableOpacity>
 
         {showDatePicker && (
@@ -78,39 +105,32 @@ const ProfileForm = ({
             value={selectedDate}
             mode="date"
             display="default"
-            onChange={(event, selectedDate) => {
-              const text = formatDate(selectedDate);
-              setFieldValue('dateOfBirth', text);
-            }}
+            onChange={handleDateChange}
           />
         )}
 
-        <FormInput
-          title="Phone number"
-          value={values.phoneNumber}
-          onChangeText={handleChange('phoneNumber')}
-          error={touched.phoneNumber && errors.phoneNumber}
-        />
+        <Text style={styles.inputTitle}>Phone Number</Text>
+        <TextInput value={phoneNumber} onChangeText={setPhoneNumber} />
 
-        <FormInput
-          title="Address"
-          value={values.address}
-          onChangeText={handleChange('address')}
-          error={touched.address && errors.address}
-        />
+        <Text style={styles.inputTitle}>Address</Text>
+        <TextInput value={address} onChangeText={setAddress} />
 
-        <View style={styles.btnSubmit}>
-          <PrimaryButton title="Confirm" onPress={handleSubmit} />
-        </View>
       </ScrollView>
+
+      <View style={styles.btnSubmit}>
+        <PrimaryButton title="Save Profile" onPress={saveProfile} />
+      </View>
+
     </View>
   );
 };
 
+export default ProfileForm;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 80,
+    marginTop: 100,
     backgroundColor: colors.banner_sale,
   },
   details: {
@@ -145,40 +165,3 @@ const styles = StyleSheet.create({
     marginHorizontal: 80,
   },
 });
-
-export default withFormik({
-  mapPropsToValues: ({ user }) => ({
-    imageUri: user && user.avatar ? user.avatar : '',
-    name: user && user.fullName ? user.fullName : '',
-    dateOfBirth: user && user.dateOfBirth ? user.dateOfBirth : '',
-    phoneNumber: user && user.phoneNumber ? user.phoneNumber : '',
-    address: user && user.address ? user.address : '',
-  }),
-  enableReinitialize: true,
-  validationSchema: yup.object().shape({
-    name: yup.string().max(30).required('Name is required'),
-    phoneNumber: yup.string().required('Phone number is required'),
-    address: yup.string().required('Address is required'),
-  }),
-  handleSubmit: async (values, { props }) => {
-    const { user } = props;
-  
-    // Tạo một đối tượng mới từ đối tượng user và chỉ cập nhật các thuộc tính cần thiết
-    const updatedUser = {
-      ...user,
-      _fullName: values.name || user.fullName,
-      _dateOfBirth: values.dateOfBirth || user.dateOfBirth,
-      _address: values.address || user.address,
-      _avatar: values.imageUri || user.avatar,
-      _phoneNumber: values.phoneNumber || user.phoneNumber,
-    };
-  
-    try {
-      await UserController.uploadUser(updatedUser, (updatedUser) => {
-        console.log('User updated successfully!');
-      }, { updating: true });
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  }  
-})(ProfileForm);
