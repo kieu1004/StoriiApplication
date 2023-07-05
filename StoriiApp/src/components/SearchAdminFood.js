@@ -8,7 +8,7 @@ import { colors } from '../global/styles';
 
 import FoodController from '../backend/controllers/FoodController';
 
-export default function SearchAdminComponent() {
+export default function SearchAdminFood() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [textInputFocused, setTextInputFocused] = useState(true);

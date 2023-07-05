@@ -12,7 +12,7 @@ import FoodDetail from '../screens/adminScreen/FoodDetailScreen'
 
 const AdminSearch = createStackNavigator()
 
-export function AdminSearchStack({ navigation, route }) {
+export function AdminSearchFoodStack({ navigation, route }) {
 
     return (
         <AdminSearch.Navigator>
