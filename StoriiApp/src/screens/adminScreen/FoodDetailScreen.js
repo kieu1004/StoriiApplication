@@ -64,49 +64,21 @@ class FoodDetail extends Component {
           <View style={styles.details}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
               <Text style={{ fontSize: 25, fontWeight: 'bold', color: colors.text_white }}>{food._name}</Text>
-              <View style={styles.iconContainer}>
-                <Icon name="favorite-border" color={colors.primary_bold} size={25} />
-              </View>
             </View>
 
-            <Text style={styles.priceText}>{parseFloat(food.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</Text>
+            <Text style={styles.priceText}>Price: {parseFloat(food.price).toLocaleString("vi-VN", { style: "currency", currency: "VND" })}</Text>
+            <Text style={styles.quantityText}>Quantity: {food._quantity}</Text>
 
             <Text style={styles.detailsText}>{food._description}</Text>
 
           </View>
         </ScrollView>
-
-        <Text style={styles.ingredientText}>Ingredients</Text>
-        {
-          food.subIngredients === undefined || food.subIngredients.length == 0 ?
-            <Text>None</Text> : <FlatList
-              data={food.subIngredients}
-              contentContainerStyle={styles.listContainer}
-              ItemSeparatorComponent={() =>
-                <Divider style={{ backgroundColor: 'black' }} />}
-              scrollEnabled={false}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({ item }) =>
-                <Text style={styles.ingredientItemText}>{item}</Text>
-              }
-            />
-        }
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  headerText: {
-    fontSize: 30,
-    marginBottom: 16
-  },
-  image: {
-    width: '100%',
-    aspectRatio: 2,
-    marginBottom: 16,
-    resizeMode: 'contain'
-  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -116,47 +88,7 @@ const styles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16
   },
-  categoryText: {
-    fontSize: 20,
-    marginBottom: 16
-  },
-  quantityText: {
-    fontSize: 20,
-    marginBottom: 16
-  },
-  priceText: {
-    fontSize: 20,
-    marginBottom: 16
-  },
-  providerText: {
-    fontSize: 20,
-    marginBottom: 16
-  },
-  descriptionText: {
-    fontSize: 15,
-    marginBottom: 32
-  },
-  ingredientText: {
-    fontStyle: 'italic',
-    fontSize: 18,
-    marginBottom: 16
-  },
-  ingredientItemText: {
-    fontSize: 16,
-    alignSelf: 'center',
-    marginBottom: 16,
-    marginTop: 16
-  },
-  container: {
-    alignItems: 'center'
-  },
-  listContainer: {
-    borderWidth: 0.5,
-    width: 200,
-    borderColor: 'grey'
-  },
-
-
+  
   header: {
     paddingVertical: 20,
     paddingTop: 60,
@@ -166,7 +98,7 @@ const styles = StyleSheet.create({
   },
 
   details: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 60,
     paddingTop: 40,
     paddingBottom: '100%',
     backgroundColor: colors.banner_sale,
@@ -193,6 +125,12 @@ const styles = StyleSheet.create({
   },
 
   priceText: {
+    marginTop: 10,
+    marginBottom: 10,
+    fontSize: 25,
+    color: colors.text_white,
+  },
+  quantityText: {
     marginTop: 10,
     marginBottom: 10,
     fontSize: 25,
