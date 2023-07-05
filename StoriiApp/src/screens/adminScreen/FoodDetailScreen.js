@@ -20,6 +20,9 @@ class FoodDetail extends Component {
   }
 
   render() {
+    // const food = this.props.navigation.getParam('food');
+    // const onFoodDeleted = this.props.navigation.getParam('foodDeletedCallback');
+
     const { food, foodDeletedCallback } = this.props.route.params;
 
     return (
