@@ -5,8 +5,7 @@ import { Icon } from 'react-native-elements'
 
 import AdminDashboardScreen from '../screens/adminScreen/AdminDashboardScreen'
 import CategoryList from '../screens/adminScreen/CategoryListScreen'
-import { AdminSearchFoodStack, AdminSearchStack } from './adminSearchFoodStack'
-import { AdminSearchCategoryStack } from './adminSearchCategoryStack'
+import FoodList from '../screens/adminScreen/FoodListScreen'
 
 
 
@@ -42,8 +41,8 @@ export default function RootAdminTabs() {
       />
 
       <AdminTabs.Screen
-        name="Category"
-        component={AdminSearchCategoryStack}
+        name="CategoryList"
+        component={CategoryList}
         options={
           {
             tabBarLabel: "Category",
@@ -61,7 +60,7 @@ export default function RootAdminTabs() {
 
       <AdminTabs.Screen
         name="Food"
-        component={AdminSearchFoodStack}
+        component={FoodList}
         options={
           {
             tabBarLabel: "Product",

@@ -4,7 +4,6 @@ import FoodController from '../../backend/controllers/FoodController';
 import { ListItem, Divider } from 'react-native-elements';
 import ActionButton from 'react-native-action-button';
 import { colors } from '../../global/styles';
-import SearchAdminFood from '../../components/SearchAdminFood';
 
 const FoodList = ({ navigation }) => {
 
@@ -85,7 +84,6 @@ const FoodList = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchAdminFood />
       {foodList.length > 0 ? (
         <FlatList
           data={foodList}
