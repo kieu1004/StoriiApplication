@@ -1,10 +1,10 @@
 class OrderModel {
-  constructor(id, idUser, idProvider, orderTime, statusOrder) {
+  constructor(id, idUser,name, phoneNumber, address) {
     this._id = id;
     this._idUser = idUser;
-    this._idProvider = idProvider;
-    this._orderTime = orderTime;
-    this._statusOrder = statusOrder;
+    this._name = name;
+    this._phoneNumber = phoneNumber;
+    this._address = address;
   }
 
   // Getter và setter cho thuộc tính id
@@ -25,31 +25,31 @@ class OrderModel {
     this._idUser = value;
   }
 
-  // Getter và setter cho thuộc tính idProvider
-  get idProvider() {
-    return this._idProvider;
+  // Getter và setter cho thuộc tính name
+  get name() {
+    return this._name;
   }
 
-  set idProvider(value) {
-    this._idProvider = value;
+  set name(value) {
+    this._name = value;
   }
 
-  // Getter và setter cho thuộc tính orderTime
-  get orderTime() {
-    return this._orderTime;
+  // Getter và setter cho thuộc tính phoneNumber
+  get phoneNumber() {
+    return this._phoneNumber;
   }
 
-  set orderTime(value) {
-    this._orderTime = value;
+  set phoneNumber(value) {
+    this._phoneNumber = value;
   }
 
-  // Getter và setter cho thuộc tính statusOrder
-  get statusOrder() {
-    return this._statusOrder;
+  // Getter và setter cho thuộc tính address
+  get address() {
+    return this._address;
   }
 
-  set statusOrder(value) {
-    this._statusOrder = value;
+  set address(value) {
+    this._address = value;
   }
 }
 

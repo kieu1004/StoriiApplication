@@ -1,10 +1,11 @@
 class OrderDetailModel {
-    constructor(id, idOrder, idFood, quantity, price) {
+    constructor(id, idOrder, idFood, quantity, price,total) {
         this._id = id;
         this._idOrder = idOrder;
         this._idFood = idFood;
         this._quantity = quantity;
         this._price = price;
+        this._total = total;
     }
 
     // Getter và setter cho thuộc tính id
@@ -50,6 +51,15 @@ class OrderDetailModel {
 
     set price(value) {
         this._price = value;
+    }
+
+    // Getter và setter cho thuộc tính total
+    get total() {
+        return this._total;
+    }
+
+    set total(value) {
+        this._price = total;
     }
 }
 

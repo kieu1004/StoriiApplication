@@ -9,6 +9,7 @@ import FilterCategory from '../screens/userScreen/FilterCategoryScreen'
 import SearchResultScreen from '../screens/userScreen/SearchResultScreen'
 import EditProfile from '../screens/userScreen/EditProfile'
 import CheckOutScreen from '../screens/userScreen/CheckOutScreen'
+import OrderSuccess from '../screens/userScreen/OrderSuccess'
 
 
 
@@ -85,6 +86,15 @@ export function AppStack() {
       <App.Screen
         name="CheckOutScreen"
         component={CheckOutScreen}
+        options={{
+          headerShown: false,
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
+      />
+
+      <App.Screen
+        name="OrderSuccess"
+        component={OrderSuccess}
         options={{
           headerShown: false,
           ...TransitionPresets.RevealFromBottomAndroid

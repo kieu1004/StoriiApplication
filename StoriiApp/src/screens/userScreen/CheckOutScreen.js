@@ -6,6 +6,7 @@ import database from '@react-native-firebase/database';
 import auth from '@react-native-firebase/auth';
 import { Picker } from '@react-native-picker/picker';
 import { colors } from '../../global/styles';
+import OrderController from '../../backend/controllers/OrderController';
 
 const CheckOutScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
@@ -60,8 +61,24 @@ const CheckOutScreen = ({ navigation }) => {
     };
 
     const handleConfirm = () => {
+        try {
+            const orderController = new OrderController();
 
-    };
+            const order = orderController.createOrder(
+                userId,
+                recipientName,
+                phoneNumber,
+                address,
+                cartList
+            );
+
+            orderController.clearCart(userId);
+
+            navigation.navigate('OrderSuccess', { order });
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -133,7 +150,7 @@ const CheckOutScreen = ({ navigation }) => {
 
 
             <ScrollView style={styles.orderSummary}>
-            <Text style={styles.label}>Delivery Infomation</Text>
+                <Text style={styles.label}>Delivery Infomation</Text>
                 <View style={styles.addressContainer}>
                     <TextInput
                         style={styles.input}
@@ -253,7 +270,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primary_backgroud,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        height:120,
+        height: 120,
     },
     orderSummaryItem: {
         flexDirection: 'row',
