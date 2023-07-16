@@ -35,7 +35,8 @@ export default function RootAdminTabs() {
                 color={color}
                 size={size}
               />
-            )
+            ),
+            header:()=> null
           }
         }
       />
@@ -53,7 +54,8 @@ export default function RootAdminTabs() {
                 color={color}
                 size={size}
               />
-            )
+            ),
+            header:()=> null
           }
         }
       />
@@ -71,7 +73,8 @@ export default function RootAdminTabs() {
                 color={color}
                 size={size}
               />
-            )
+            ),
+            header:()=> null
           }
         }
       />

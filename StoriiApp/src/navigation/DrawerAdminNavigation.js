@@ -30,7 +30,8 @@ export default function DrawerAdminNavigator() {
                             color={focussed ? '#7cc' : colors.primary_normal}
                             size={size}
                         />
-                    )
+                    ),
+                    header:()=> null
                 }}
             />
         </Drawer.Navigator>

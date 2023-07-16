@@ -129,6 +129,7 @@ export default function SignInScreen({ navigation }) {
                                         }}
                                         onChangeText={props.handleChange('password')}
                                         value={props.values.password}
+                                        secureTextEntry
                                     />
 
                                     <Animatable.View animation={textInput2Fossued ? "" : "fadeInLeft"} duration={400} >
