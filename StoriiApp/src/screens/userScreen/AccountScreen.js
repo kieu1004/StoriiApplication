@@ -63,7 +63,7 @@ const AccountScreen = ({ navigation }) => {
                             <Text style={styles.name}>{currentUser?.fullName}</Text>
                             <TouchableOpacity
                                 style={styles.editProfileButton}
-                                onPress={()=>{
+                                onPress={() => {
                                     navigation.navigate('EditProfile')
                                 }}>
                                 <Icon name="pencil" size={20} color={colors.text_fuzz3} />
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
+        paddingTop: 80
     },
     loadingContainer: {
         flex: 1,

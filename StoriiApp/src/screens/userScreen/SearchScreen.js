@@ -94,6 +94,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginBottom: 10,
         paddingTop: 20,
+        marginTop: 35,
     },
     content: {
         marginTop: 10,

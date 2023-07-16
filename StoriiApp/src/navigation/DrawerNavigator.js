@@ -32,7 +32,8 @@ export default function DrawerNavigator() {
                             color={focussed ? '#7cc' : colors.primary_normal}
                             size={size}
                         />
-                    )
+                    ),
+                    header:()=> null
                 }}
             />
 

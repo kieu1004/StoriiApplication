@@ -37,7 +37,8 @@ export default function RootClientTabs() {
                                 color={color}
                                 size={size}
                             />
-                        )
+                        ),
+                        header:()=> null
                     }
                 }
             />
@@ -56,7 +57,8 @@ export default function RootClientTabs() {
                                 color={color}
                                 size={size}
                             />
-                        )
+                        ),
+                        header:()=> null
                     }
                 }
             />
@@ -76,7 +78,8 @@ export default function RootClientTabs() {
                                 color={color}
                                 size={size}
                             />
-                        )
+                        ),
+                        header:()=> null
                     }
                 }
             />
@@ -96,7 +99,8 @@ export default function RootClientTabs() {
                                 color={color}
                                 size={size}
                             />
-                        )
+                        ),
+                        header:()=> null
                     }
                 }
             />
